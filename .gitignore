@@ -2,7 +2,7 @@
 /storage/*.key
 /storage/logs/*.log
 /*.zip
-/vendor
+vendor
 auth.json
 npm-debug.log
 yarn-error.log

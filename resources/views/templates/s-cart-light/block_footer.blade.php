@@ -30,8 +30,14 @@
                   </div>
                 </div>
               </div>
+
               <div class="col-sm-6 col-lg-4 col-xl-3 wow fadeInRight" data-wow-delay=".1s">
-                <h4 class="footer-classic-title">{{ sc_language_render('about.page_title') }}</h4>
+                <h4 class="footer-classic-title">PT. Elementa Media Literasi</h4>
+                <p>Entiti bisnis di bidang literasi yang menyediakan buku baik cetak maupun digital dengan tema beragam dan kekinian untuk memenuhi koleksi bacaan Anda</p>
+              </div>
+
+              <div class="col-sm-6 col-lg-4 col-xl-3 wow fadeInRight" data-wow-delay=".1s">
+                <h4 class="footer-classic-title">{{ sc_language_render('front.contact') }}</h4>
                 <ul class="contacts-creative">
                   <li>
                     <div class="unit unit-spacing-sm flex-column flex-md-row">
@@ -66,22 +72,6 @@
                           </div>
                         </form>
                   </li>
-                </ul>
-              </div>
-              <div class="col-lg-4 wow fadeInRight" data-wow-delay=".2s">
-                <h4 class="footer-classic-title"> {{ sc_language_render('front.my_profile') }}</h4>
-                <!-- RD Mailform-->
-                <ul class="contacts-creative">
-                  @if (!empty(sc_link_collection()['footer']))
-                  @foreach (sc_link_collection()['footer'] as $url)
-                    @if ($url['type'] != 'collection')
-                      <li class="rd-nav-item">
-                        <a class="rd-nav-link" {{ ($url['data']['target'] =='_blank')?'target=_blank':''  }}
-                            href="{{ sc_url_render($url['data']['url']) }}">{{ sc_language_render($url['data']['name']) }}</a>
-                      </li>
-                    @endif
-                  @endforeach
-                  @endif
                 </ul>
               </div>
             </div>
