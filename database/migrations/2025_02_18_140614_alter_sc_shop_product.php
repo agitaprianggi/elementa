@@ -15,6 +15,9 @@ return new class extends Migration
             if (Schema::hasColumn('sc_shop_product', 'eisbn')) {
                 $table->dropColumn('eisbn');
             }
+            if (Schema::hasColumn('sc_shop_product', 'writer')) {
+                $table->dropColumn('writer');
+            }
             if (Schema::hasColumn('sc_shop_product', 'page')) {
                 $table->dropColumn('page');
             }
@@ -31,6 +34,7 @@ return new class extends Migration
 
         Schema::table('sc_shop_product', function (Blueprint $table) {
             $table->string('eisbn', 20)->nullable();
+            $table->string('writer', 255)->nullable();
             $table->integer('page')->default(0);
             $table->string('year', 4)->default('');
             $table->string('edition', 255)->default('');
@@ -45,6 +49,7 @@ return new class extends Migration
     {
         Schema::table('sc_shop_product', function (Blueprint $table) {
             $table->dropColumn('eisbn');
+            $table->dropColumn('writer');
             $table->dropColumn('page');
             $table->dropColumn('year');
             $table->dropColumn('edition');
