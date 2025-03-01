@@ -22,6 +22,7 @@ use SCart\Core\Front\Models\ShopCustomField;
 use SCart\Core\Admin\Models\AdminProduct;
 use SCart\Core\Admin\Models\AdminStore;
 use SCart\Core\Admin\Models\AdminCategory;
+
 use Illuminate\Support\Facades\Validator;
 use DB;
 
@@ -610,7 +611,7 @@ class AdminProductController extends RootAdminController
         }
 
         //Insert path download
-        if (!empty($data['property']) && $data['property'] == SC_PROPERTY_DOWNLOAD && $downloadPath) {
+        if (!empty($data['property']) && ($data['property'] == SC_PROPERTY_DOWNLOAD || $data['property'] == SC_PROPERTY_DOWNPHYS) && $downloadPath) {
             $dataDownload = sc_clean(['product_id' => $product->id, 'path' => $downloadPath], [], true);
             (new ShopProductDownload)->insert($dataDownload);
         }
@@ -940,7 +941,7 @@ class AdminProductController extends RootAdminController
 
         //Update path download
         (new ShopProductDownload)->where('product_id', $product->id)->delete();
-        if ($product['property'] == SC_PROPERTY_DOWNLOAD && $downloadPath) {
+        if (($product['property'] == SC_PROPERTY_DOWNLOAD || $product['property'] == SC_PROPERTY_DOWNPHYS) && $downloadPath) {
             $dataDownload = sc_clean(['product_id' => $product->id, 'path' => $downloadPath], [], true);
             (new ShopProductDownload)->insert($dataDownload);
         }

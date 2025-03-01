@@ -713,7 +713,7 @@
                                     <i class="fa fa-info-circle"></i> {{ $errors->first('property') }}
                                 </span>
                                 @endif
-                                <div style="margin-top: 10px; {{ (old('property') != SC_PROPERTY_DOWNLOAD) ? 'display:none':'' }}" id="download_path">
+                                <div style="margin-top: 10px; {{ (old('property') != SC_PROPERTY_DOWNLOAD || old('property') != SC_PROPERTY_DOWNPHYS) ? 'display:none':'' }}" id="download_path">
                                     <input type="text"  name="download_path" value="{{ old('download_path') }}" class="form-control input-sm" placeholder="{{ sc_language_render('product.download_path') }}" />
                                 </div>
                             </div>
@@ -1051,7 +1051,7 @@
 <script type="text/javascript">
 
 $("[name='property']").change(function() {
-    if($(this).val() == '{{ SC_PROPERTY_DOWNLOAD }}') {
+    if($(this).val() == '{{ SC_PROPERTY_DOWNLOAD }}' || $(this).val() == '{{ SC_PROPERTY_DOWNPHYS }}') {
         $('#download_path').show();
     } else {
         $('#download_path').hide();

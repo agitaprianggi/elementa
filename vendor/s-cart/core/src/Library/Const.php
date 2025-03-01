@@ -7,6 +7,7 @@ define('SC_PRODUCT_GROUP', 2);
 //Product property
 define('SC_PROPERTY_PHYSICAL', 'physical');
 define('SC_PROPERTY_DOWNLOAD', 'download');
+define('SC_PROPERTY_DOWNPHYS', 'downphys');
 // list ID admin guard
 define('SC_GUARD_ADMIN', ['1']); // admin
 // list ID language guard

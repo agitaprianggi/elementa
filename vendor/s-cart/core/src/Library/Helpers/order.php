@@ -26,7 +26,7 @@ if (!function_exists('sc_order_process_after_success') && !in_array('sc_order_pr
                     $product = (new \SCart\Core\Front\Models\ShopProduct)->getDetail($detail['product_id']);
                     $pathDownload = $product->downloadPath->path ?? '';
                     $nameProduct = $detail['name'];
-                    if ($product && $pathDownload && $product->property == SC_PROPERTY_DOWNLOAD) {
+                    if ($product && $pathDownload && ($product->property == SC_PROPERTY_DOWNLOAD || $product->property == SC_PROPERTY_DOWNPHYS)) {
                         $nameProduct .="<br><a href='".sc_path_download_render($pathDownload)."'>Download</a>";
                     }
 
