@@ -1,11 +1,11 @@
 <article class="product wow fadeInRight">
     <div class="product-body">
-      <div class="product-figure">
+      <div class="product-figure"  style="max-width: 180px">
           <a href="{{ $product->getUrl() }}">
           <img src="{{ sc_file($product->getThumb()) }}" alt="{{ $product->name }}"/>
           </a>
       </div>
-      <h5 class="product-title"><a href="{{ $product->getUrl() }}">{{ $product->name }}</a></h5>
+      <h5 class="product-title clamped-text" title="{{ $product->name }}"><a href="{{ $product->getUrl() }}">{{ $product->name }}</a></h5>
       
       @if (empty($hiddenStore))
       {!! $product->displayVendor() !!}

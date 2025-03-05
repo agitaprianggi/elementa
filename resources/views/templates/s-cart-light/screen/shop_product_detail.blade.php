@@ -245,9 +245,10 @@ $layout_page = shop_product_detail
       <section class="section section-sm section-last bg-default">
         <div class="container">
           <h4 class="font-weight-sbold">{{ sc_language_render('front.products_recommend') }}</h4>
-          <div class="row row-lg row-30 row-lg-50 justify-content-center">
+          <div class="row row-lg row-10 row-lg-30 justify-content-center">
             @foreach ($productRelation as $key => $productRel)
-            <div class="col-sm-6 col-md-5 col-lg-3">
+            <!-- <div class="col-sm-6 col-md-5 col-lg-3"> -->
+            <div class="col-sm-5 col-md-4 col-lg-2">
                   {{-- Render product single --}}
                   @include($sc_templatePath.'.common.product_single', ['product' => $productRel])
                   {{-- //Render product single --}}

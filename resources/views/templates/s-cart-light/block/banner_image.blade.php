@@ -48,6 +48,7 @@ $banners = $modelBanner->start()->setType('banner')->getData()
 
   .elementor-icon-box-icon {
     font-size: 40px;
+    display: inline-block; /* Pastikan tidak tersembunyi */
     color: #007bff;
   }
 
@@ -62,7 +63,7 @@ $banners = $modelBanner->start()->setType('banner')->getData()
   }
 </style>
 
-<section class="elementor-section">
+<section class="container" style="margin-top: 50px;">
   <div class="elementor-container">
     <div class="elementor-column">
       <div class="elementor-widget-wrap">
@@ -78,7 +79,7 @@ $banners = $modelBanner->start()->setType('banner')->getData()
     <div class="elementor-column">
       <div class="elementor-widget-wrap">
         <div class="elementor-icon-box-icon">
-          <i class="fas fa-book-open"></i>
+          <i class="fa fa-book-open"></i>
         </div>
         <h5 class="elementor-icon-box-title">Penerbitan Buku</h5>
         <p class="elementor-icon-box-description">

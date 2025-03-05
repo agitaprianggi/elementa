@@ -6,7 +6,7 @@ $news = $modelNews->start()->setlimit(sc_config('item_top'))->getData();
 <!-- START SECTION NEWS -->
   <section class="section section-xxl section-last bg-gray-21">
     <div class="container">
-      <h2 class="wow fadeScale">{{ sc_language_render('front.blog') }}</h2>
+      <h2 class="wow fadeScale" style="font-size: 30px; color:rgb(13, 101, 195);">{{ sc_language_render('front.blog') }}</h2>
     </div>
     <!-- Owl Carousel-->
     <div class="owl-carousel owl-style-7" data-items="1" data-sm-items="2" data-xl-items="3" data-xxl-items="4" data-nav="true" data-dots="true" data-margin="30" data-autoplay="true">

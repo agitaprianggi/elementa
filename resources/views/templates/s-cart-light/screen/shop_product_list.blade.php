@@ -19,7 +19,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
     <h6 class="aside-title">{{ sc_language_render('front.sub_categories') }}</h6>
     <div class="row item-folder">
         @foreach ($subCategory as $key => $item)
-        <div class="col-6 col-sm-6 col-md-3">
+        <div class="col-6 col-sm-4 col-md-2">
             <div class="item-folder-wrapper product-single">
                 <div class="single-products">
                     <div class="productinfo text-center product-box-{{ $item->id }}">
@@ -58,7 +58,8 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
     <!-- Product list -->
     <div class="row row-30 row-lg-50">
       @foreach ($products as $key => $product)
-      <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
+      <!-- <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4"> -->
+      <div class="col-sm-4 col-md-2 col-lg-4 col-xl-2">
           <!-- Render product single -->
           @include($sc_templatePath.'.common.product_single', ['product' => $product])
           <!-- //Render product single -->

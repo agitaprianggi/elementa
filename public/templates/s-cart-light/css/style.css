@@ -8327,12 +8327,41 @@ textarea.textarea-lg {
 .product-title {
 	letter-spacing: 0;
 	text-transform: uppercase;
-	font-size: 18px;
+	font-size: 12px;
+/* 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; */
+    /* max-width: 100px; */
+	/* display: -webkit-box; line-clamp: 2; -webkit-box-orient: vertical; */
+}
 
-    white-space: nowrap;  /* Mencegah teks turun ke baris baru */
-    overflow: hidden;      /* Sembunyikan teks yang melebihi batas */
-    text-overflow: ellipsis; /* Tampilkan "..." jika teks terlalu panjang */
-    max-width: 300px; /* Sesuaikan dengan kebutuhan */
+.clamped-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Membatasi teks hingga 2 baris */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Menambahkan elipsis jika teks lebih panjang dari batas */
+    white-space: normal; /* Membuat teks dapat dibungkus dalam beberapa baris */
+}
+
+/* .product-title-box {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: black;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: normal;
+    width: max-content;
+    max-width: 300px;
+    z-index: 100;
+} */
+
+.product-title-container:hover .tooltip-box {
+    display: block;
 }
 
 .product-price {
