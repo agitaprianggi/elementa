@@ -11,7 +11,7 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
 
         <div class="row row-30 row-lg-50">
         @foreach ($productsNew as $key => $productNew)
-        <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="col-sm-5 col-md-3 col-lg-2">
             {{-- Render product single --}}
             @include($sc_templatePath.'.common.product_single', ['product' => $productNew])
             {{-- //Render product single --}}

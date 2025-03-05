@@ -37,7 +37,7 @@
         @endphp
 
         @if ($bannerBreadcrumbImage)
-        <div class="parallax-container" data-parallax-img="{{ $bannerBreadcrumbImage }}">
+        <div class="parallax-container" data-parallax-img="{{ $bannerBreadcrumbImage }}" style="border-radius: 0 0 50px 50px;">
             <div class="material-parallax parallax">
             <img src="{{ $bannerBreadcrumbImage }}" alt="" style="display: block; transform: translate3d(-50%, 83px, 0px);">
             </div>
