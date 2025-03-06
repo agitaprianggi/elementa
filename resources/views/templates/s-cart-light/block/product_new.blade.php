@@ -7,7 +7,12 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
   <section class="section section-xl bg-default">
     <div class="container">
 
-        <h2 class="wow fadeScale" style="font-size: 30px; color:rgb(13, 101, 195);">{{ sc_language_render('front.products_new') }}</h2>
+        <h2 class="wow fadeScale" style="font-size: 30px; color:rgb(13, 101, 195);">Temukan Produk Terbaru Kami</h2>
+
+        Memperkenalkan koleksi buku terbaru, sebuah karya yang penuh dengan cerita mendalam, karakter yang memikat, 
+        dan plot yang tak terduga. Dapatkan pengalaman membaca yang tak terlupakan dengan buku yang menawarkan wawasan baru, 
+        petualangan menarik, dan emosi yang menggugah. Segera dapatkan buku terbaru kami dan biarkan setiap halamannya membawa Anda ke dunia yang baru. 
+        Jangan lewatkan kesempatan untuk menjadi yang pertama menikmati kisah ini!
 
         <style>
             .product-grid {

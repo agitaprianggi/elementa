@@ -64,6 +64,11 @@ $banners = $modelBanner->start()->setType('banner')->getData()
 </style>
 
 <section class="container" style="margin-top: 50px;">
+  <h2 class="wow fadeScale" style="font-size: 30px; color:rgb(13, 101, 195);">Mengapa Memilih Kami?</h2>
+  Di Elementa Media Literasi, kami berkomitmen untuk memberikan pengalaman berbelanja buku yang tak tertandingi. 
+  Kami berkomitmen untuk memberikan lebih dari sekadar buku—kami memberikan inspirasi untuk setiap pembaca. 
+  Temukan buku yang Anda cari hanya di Elementa Media Literasi dan mulailah perjalanan literasi Anda hari ini!
+
   <div class="elementor-container">
     <div class="elementor-column">
       <div class="elementor-widget-wrap">

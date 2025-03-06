@@ -8318,10 +8318,17 @@ textarea.textarea-lg {
 }
 
 .product-figure {
-	display: flex;
-	align-items: flex-end;
-	justify-content: center;
-	min-height: 180px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    min-height: 220px;
+    width: 100%; /* Pastikan elemen mengambil lebar penuh dari kontainer */
+}
+
+.product-figure img {
+    width: 100%; /* Menjaga gambar agar selalu memenuhi lebar kontainer */
+    height: 220px; /* Menetapkan tinggi gambar tetap 180px */
+    object-fit: cover; /* Menjaga gambar agar terpotong jika ukuran aslinya tidak proporsional */
 }
 
 .product-title {
@@ -8454,7 +8461,7 @@ textarea.textarea-lg {
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
 	.product-3 .product-figure {
-		min-height: 180px;
+		min-height: 220px;
 	}
 }
 

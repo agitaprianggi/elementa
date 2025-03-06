@@ -1,6 +1,6 @@
 <article class="product wow fadeInRight">
     <div class="product-body">
-      <div class="product-figure"  style="max-width: 180px">
+      <div class="product-figure">
           <a href="{{ $product->getUrl() }}">
           <img src="{{ sc_file($product->getThumb()) }}" alt="{{ $product->name }}"/>
           </a>
