@@ -4,10 +4,10 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
 
 @if ($productsNew->count())
       <!-- New Products-->
-  <section class="section section-xl bg-default">
+  <section class="section" style="margin-top: 50px;">
     <div class="container">
 
-        <h2 class="wow fadeScale" style="font-size: 30px; color:rgb(13, 101, 195);">Temukan Produk Terbaru Kami</h2>
+        <h2 class="wow fadeScale" style="font-family: 'Poppins', sans-serif; font-size: 30px; color:rgb(13, 101, 195); text-transform: none; margin-bottom: 20px;">TEMUKAN PRODUK TERBARU KAMI</h2>
 
         Memperkenalkan koleksi buku terbaru, sebuah karya yang penuh dengan cerita mendalam, karakter yang memikat, 
         dan plot yang tak terduga. Dapatkan pengalaman membaca yang tak terlupakan dengan buku yang menawarkan wawasan baru, 
@@ -21,9 +21,21 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
                 margin-top: 50px;
             }
 
-            @media (max-width: 767px) { /* Untuk layar HP */
+            @media (max-width: 767px) {
                 .product-grid {
+                    display: grid;
                     grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+                    gap: 10px; /* Tambahkan jarak antar item */
+                    width: 100%;
+                    max-width: 100%;
+                    box-sizing: border-box; /* Pastikan padding tidak mempengaruhi lebar */
+                }
+
+                .product-grid .product-item {
+                    width: 100%; /* Pastikan elemen anak tidak lebih besar dari grid */
+                    max-width: 100%;
+                    overflow: hidden; /* Hindari overflow */
+                    box-sizing: border-box;
                 }
             }
 

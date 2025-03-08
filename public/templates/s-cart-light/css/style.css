@@ -8321,7 +8321,7 @@ textarea.textarea-lg {
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    min-height: 220px;
+    min-height: 180px;
     width: 100%; /* Pastikan elemen mengambil lebar penuh dari kontainer */
 }
 
@@ -8461,7 +8461,7 @@ textarea.textarea-lg {
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
 	.product-3 .product-figure {
-		min-height: 220px;
+		min-height: 180px;
 	}
 }
 

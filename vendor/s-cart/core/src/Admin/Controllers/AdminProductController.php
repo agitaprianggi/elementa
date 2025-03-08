@@ -540,9 +540,16 @@ class AdminProductController extends RootAdminController
             'image'          => $data['image'] ?? '',
             'tax_id'         => $data['tax_id'] ?? "",
             'status'         => (!empty($data['status']) ? 1 : 0),
-            'approve'         => (!empty($data['approve']) ? 1 : 0),
+            'approve'        => (!empty($data['approve']) ? 1 : 0),
             'sort'           => (int) $data['sort'],
             'minimum'        => (int) ($data['minimum'] ?? 0),
+            'isbn'           => $data['isbn'] ?? '',
+            'eisbn'          => $data['eisbn'] ?? '',
+            'writer'         => $data['writer'] ?? '',
+            'page'           => $data['page'] ?? '',
+            'year'           => $data['year'] ?? '',
+            'edition'        => $data['edition'] ?? '',
+            'city'           => $data['city'] ?? '',
         ];
 
         if (!empty($data['date_available'])) {
@@ -863,7 +870,14 @@ class AdminProductController extends RootAdminController
             'status'       => (!empty($data['status']) ? 1 : 0),
             'approve'       => (!empty($data['approve']) ? 1 : 0),
             'sort'         => (int) $data['sort'],
-            'minimum'      => (int) ($data['minimum'] ?? 0)
+            'minimum'      => (int) ($data['minimum'] ?? 0),
+            'isbn'         => $data['isbn'] ?? '',
+            'eisbn'        => $data['eisbn'] ?? '',
+            'writer'       => $data['writer'] ?? '',
+            'page'         => $data['page'] ?? '',
+            'year'         => $data['year'] ?? '',
+            'edition'      => $data['edition'] ?? '',
+            'city'         => $data['city'] ?? '',
         ];
         if (!empty($data['date_available'])) {
             $dataUpdate['date_available'] = $data['date_available'];

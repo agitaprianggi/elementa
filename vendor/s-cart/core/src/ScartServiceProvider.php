@@ -2,37 +2,38 @@
 
 namespace SCart\Core;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Validator;
+use Laravel\Sanctum\Sanctum;
+use SCart\Core\Commands\Make;
+use SCart\Core\Commands\Backup;
+use SCart\Core\Commands\Update;
+use SCart\Core\Commands\Restore;
 use Illuminate\Support\Facades\DB;
-use SCart\Core\Front\Models\ShopProduct;
-use SCart\Core\Front\Models\ShopCategory;
-use SCart\Core\Front\Models\ShopBanner;
-use SCart\Core\Front\Models\ShopBrand;
+use SCart\Core\Commands\ClearCart;
+use SCart\Core\Commands\Customize;
+use SCart\Core\Commands\Infomation;
 use SCart\Core\Front\Models\ShopNews;
 use SCart\Core\Front\Models\ShopPage;
+use SCart\Core\Front\Models\ShopBrand;
 use SCart\Core\Front\Models\ShopStore;
-use SCart\Core\Commands\Customize;
-use SCart\Core\Commands\Backup;
-use SCart\Core\Commands\Restore;
-use SCart\Core\Commands\Make;
-use SCart\Core\Commands\Infomation;
-use SCart\Core\Commands\ClearCart;
-use SCart\Core\Commands\Update;
+use Illuminate\Support\ServiceProvider;
+use SCart\Core\Front\Models\ShopBanner;
+use SCart\Core\Front\Models\ShopProduct;
+use Illuminate\Support\Facades\Validator;
 use SCart\Core\Admin\Models\AdminProduct;
-use SCart\Core\Front\Middleware\Localization;
-use SCart\Core\Front\Middleware\EmailIsVerified;
 use SCart\Core\Front\Middleware\Currency;
+use SCart\Core\Front\Models\ShopCategory;
+use SCart\Core\Front\Models\ShopProperty;
+use SCart\Core\Admin\Middleware\AdminTheme;
 use SCart\Core\Api\Middleware\ApiConnection;
-use SCart\Core\Api\Middleware\ForceJsonResponse;
 use SCart\Core\Front\Middleware\CheckDomain;
+use SCart\Core\Admin\Middleware\AdminStoreId;
 use SCart\Core\Admin\Middleware\Authenticate;
 use SCart\Core\Admin\Middleware\LogOperation;
-use SCart\Core\Admin\Middleware\PermissionMiddleware;
-use SCart\Core\Admin\Middleware\AdminStoreId;
-use SCart\Core\Admin\Middleware\AdminTheme;
-use Laravel\Sanctum\Sanctum;
+use SCart\Core\Front\Middleware\Localization;
+use SCart\Core\Api\Middleware\ForceJsonResponse;
+use SCart\Core\Front\Middleware\EmailIsVerified;
 use SCart\Core\Front\Models\PersonalAccessToken;
+use SCart\Core\Admin\Middleware\PermissionMiddleware;
 
 class ScartServiceProvider extends ServiceProvider
 {
@@ -281,6 +282,7 @@ class ScartServiceProvider extends ServiceProvider
         view()->share('modelBrand', (new ShopBrand));
         view()->share('modelNews', (new ShopNews));
         view()->share('modelPage', (new ShopPage));
+        view()->share('modelProperty', (new ShopProperty));
         //
         view()->share('templatePathAdmin', config('admin.path_view'));
     }

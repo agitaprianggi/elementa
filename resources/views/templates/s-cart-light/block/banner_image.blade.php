@@ -64,16 +64,16 @@ $banners = $modelBanner->start()->setType('banner')->getData()
 </style>
 
 <section class="container" style="margin-top: 50px;">
-  <h2 class="wow fadeScale" style="font-size: 30px; color:rgb(13, 101, 195);">Mengapa Memilih Kami?</h2>
+  <h2 class="wow fadeScale" style="font-family: 'Poppins', sans-serif; font-size: 30px; color:rgb(13, 101, 195); text-transform: none; margin-bottom: 20px;">Mengapa Memilih Kami?</h2>
   Di Elementa Media Literasi, kami berkomitmen untuk memberikan pengalaman berbelanja buku yang tak tertandingi. 
   Kami berkomitmen untuk memberikan lebih dari sekadar buku—kami memberikan inspirasi untuk setiap pembaca. 
   Temukan buku yang Anda cari hanya di Elementa Media Literasi dan mulailah perjalanan literasi Anda hari ini!
 
-  <div class="elementor-container">
+  <div class="elementor-container" style="margin-top: 30px;">
     <div class="elementor-column">
       <div class="elementor-widget-wrap">
         <div class="elementor-icon-box-icon">
-          <i class="fas fa-book"></i>
+          <i class="fas fa-truck"></i>
         </div>
         <h5 class="elementor-icon-box-title">Distributor Buku</h5>
         <p class="elementor-icon-box-description">
@@ -84,7 +84,7 @@ $banners = $modelBanner->start()->setType('banner')->getData()
     <div class="elementor-column">
       <div class="elementor-widget-wrap">
         <div class="elementor-icon-box-icon">
-          <i class="fa fa-book-open"></i>
+          <i class="fas fa-book"></i>
         </div>
         <h5 class="elementor-icon-box-title">Penerbitan Buku</h5>
         <p class="elementor-icon-box-description">
