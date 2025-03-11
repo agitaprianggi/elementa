@@ -35,24 +35,36 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
       @endforeach
     </div> -->
     <style>
-        .product-grid {
-            display: grid;
-            gap: 30px; /* Jarak antar elemen */
-            margin-top: 50px;
-        }
+      .product-grid {
+          display: grid;
+          gap: 30px; /* Jarak antar elemen */
+          margin-top: 50px;
+      }
 
-        @media (max-width: 767px) { /* Untuk layar HP */
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2 kolom */
-            }
-        }
+      @media (max-width: 767px) {
+          .product-grid {
+              display: grid;
+              grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+              gap: 10px; /* Tambahkan jarak antar item */
+              width: 100%;
+              max-width: 100%;
+              box-sizing: border-box; /* Pastikan padding tidak mempengaruhi lebar */
+          }
 
-        @media (min-width: 768px) { /* Untuk layar tablet ke atas */
-            .product-grid {
-                grid-template-columns: repeat(4, 1fr); /* 4 kolom */
-            }
-        }
-    </style>
+          .product-grid .product-item {
+              width: 100%; /* Pastikan elemen anak tidak lebih besar dari grid */
+              max-width: 100%;
+              overflow: hidden; /* Hindari overflow */
+              box-sizing: border-box;
+          }
+      }
+
+      @media (min-width: 768px) { /* Untuk layar tablet ke atas */
+          .product-grid {
+              grid-template-columns: repeat(4, 1fr); /* 4 kolom */
+          }
+      }
+  </style>
 
     <div class="product-grid">
         @foreach ($products as $key => $product)

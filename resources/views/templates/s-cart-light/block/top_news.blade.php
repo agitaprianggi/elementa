@@ -4,7 +4,7 @@ $news = $modelNews->start()->setlimit(sc_config('item_top'))->getData();
 
 @if ($news->count())
 <!-- START SECTION NEWS -->
-  <section class="section bg-gray-21" style="margin-top: 50px;">
+  <section class="section" style="margin: 50px 0 20px 0;">
     <div class="container">
       <h2 class="wow fadeScale" style="font-family: 'Poppins', sans-serif; font-size: 30px; color:rgb(13, 101, 195); text-transform: none; margin-bottom: 20px;">{{ sc_language_render('front.blog') }}</h2>
       
