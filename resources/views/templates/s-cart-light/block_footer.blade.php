@@ -84,11 +84,11 @@
               <div class="col-md-auto">
                 <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span><span>&nbsp;</span><span>{{ sc_store('title', ($storeId ?? null)) }}</span><span>.&nbsp; All rights reserved</span></p>
               </div>
-              @if (sc_config('fanpage_url'))
+              <!-- @if (sc_config('fanpage_url'))
               <div class="col-md-auto order-md-1"> <a target="_blank"
                 href="{{ sc_config('fanpage_url') }}">Fanpage FB</a>
               </div>
-              @endif
+              @endif -->
               @if (!sc_config('hidden_copyright_footer'))
               <div class="col-md-auto">
                     Powered by <a href="{{ config('s-cart.homepage') }}">{{ config('s-cart.name') }} {{ config('s-cart.sub-version') }}</a>

@@ -12,7 +12,6 @@
                 'shop_news',
                 'shop_news_detail', 
                 'shop_item_list',
-                'shop_product_detail',
                 'shop_search'
             ];
             $arrBreadcrumbHome = [

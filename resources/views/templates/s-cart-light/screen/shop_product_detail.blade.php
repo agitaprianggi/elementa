@@ -66,8 +66,8 @@ $layout_page = shop_product_detail
                 
                 {!! $product->displayVendor() !!}
                 
-                <p>
-                  SKU: <span id="product-detail-model">{{ $product->sku }}</span>
+                <p style="color: #d9a1a3;">
+                  Oleh: <span id="product-detail-model">{{ $product->writer }}</span>
                 </p>
 
                 {{-- Show price --}}
@@ -218,24 +218,64 @@ $layout_page = shop_product_detail
 
           <!-- Bootstrap tabs-->
           <div class="tabs-custom tabs-horizontal tabs-line" id="tabs-1">
-            <!-- Nav tabs-->
-            <div class="nav-tabs-wrap">
-              <ul class="nav nav-tabs nav-tabs-1">
-                <li class="nav-item" role="presentation">
-                  <a class="nav-link active" href="#tabs-1-1" data-toggle="tab">{{ sc_language_render('product.description') }}</a>
-                </li>
-              </ul>
-            </div>
-
-            {{-- Render connetnt --}}
-            <div class="tab-content tab-content-1">
-              <div class="tab-pane fade show active" id="tabs-1-1">
-                {!! sc_html_render($product->content) !!}
+              <!-- Nav tabs-->
+              <div class="nav-tabs-wrap">
+                  <ul class="nav nav-tabs nav-tabs-1">
+                      <li class="nav-item" role="presentation">
+                          <a class="nav-link active" href="#tabs-1-1" data-toggle="tab">{{ sc_language_render('product.description') }}</a>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                          <a class="nav-link" href="#tabs-1-2" data-toggle="tab">Informasi Tambahan</a>
+                      </li>
+                  </ul>
               </div>
-            </div>
-            {{--// Render connetnt --}}
 
+              <!-- Tab content -->
+              <div class="tab-content">
+                  <!-- Deskripsi -->
+                  <div class="tab-pane fade show active" id="tabs-1-1">
+                      {!! sc_html_render($product->content) !!}
+                  </div>
+
+                  <!-- Supplier -->
+                  <div class="tab-pane fade" id="tabs-1-2">
+                      <table class="table table-bordered">
+                          <tbody>
+                              <tr>
+                                  <td style="color: #777777;">Ukuran</td>
+                                  <td style="color: #777777;">{{ $product->length }} x {{ $product->width }}</td>
+                              </tr>
+                              <tr>
+                                  <td style="color: #777777;">Halaman</td>
+                                  <td style="color: #777777;">{{ $product->page }}</td>
+                              </tr>
+                              <tr>
+                                  <td style="color: #777777;">Tahun Terbit</td>
+                                  <td style="color: #777777;">{{ $product->year }}</td>
+                              </tr>
+                              <tr>
+                                  <td style="color: #777777;">Penulis</td>
+                                  <td style="color: #777777;">{{ $product->writer }}</td>
+                              </tr>
+                              <tr>
+                                  <td style="color: #777777;">Penerbit</td>
+                                  <td style="color: #777777;">{{ $product->supplier_name }}</td>
+                              </tr>
+                              <tr>
+                                  <td style="color: #777777;">ISBN</td>
+                                  <td style="color: #777777;">{{ $product->isbn }}</td>
+                              </tr>
+                              <tr>
+                                  <td style="color: #777777;">e-ISBN</td>
+                                  <td style="color: #777777;">{{ $product->eisbn }}</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+
+              </div>
           </div>
+
         </div>
       </section>
 
