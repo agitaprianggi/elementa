@@ -181,4 +181,41 @@ class RegisterController extends RootFrontController
                     ? new JsonResponse([], 201)
                     : redirect($this->redirectPath());
     }
+
+
+    public function searchAddress(Request $request)
+    {
+        $search = urlencode($request->query('search'));
+
+        $url = "https://rajaongkir.komerce.id/api/v1/destination/domestic-destination?limit=10&offset=0&search=$search";
+
+        $curl = curl_init();
+        curl_setopt_array($curl, [
+            CURLOPT_URL => $url,
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_CONNECTTIMEOUT => 60,
+            CURLOPT_TIMEOUT => 60,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => [
+                "key: 8ItJxI25b6412102861be883i4lqUm5c"
+            ]
+        ]);
+
+        $response = curl_exec($curl);
+        $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
+        curl_close($curl);
+
+        $body = json_decode(substr($response, $header_size), true);
+
+        return response()->json([
+            'status' => 200,
+            'data' => $body['data'] ?? [],
+        ]);
+    }
 }

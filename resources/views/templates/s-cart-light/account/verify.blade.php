@@ -4,7 +4,7 @@
 <section class="page-section">
     <div class="container">
     <div class="row">
-        <div class="col-lg-6 offset-lg-3">
+        <div class="col-lg-6 offset-lg-3" style="margin-bottom: 20px;">
             <div class="card">
                 <div class="card-header">{{ sc_language_render('customer.verify_email.title_header') }}</div>
 

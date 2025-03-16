@@ -7,7 +7,7 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
   <section class="section" style="margin-top: 50px;">
     <div class="container">
 
-        <h2 class="wow fadeScale" style="font-family: 'Poppins', sans-serif; font-size: 30px; color:rgb(13, 101, 195); text-transform: none; margin-bottom: 20px;">Temukan Produk Terbaru Kami</h2>
+        <h2 class="wow fadeScale" style="font-family: 'Poppins', sans-serif; font-size: 30px; color:rgb(13, 101, 195); text-transform: none; margin-bottom: 20px;"><b>Temukan Produk Terbaru Kami</b></h2>
 
         Memperkenalkan koleksi buku terbaru, sebuah karya yang penuh dengan cerita mendalam, karakter yang memikat, 
         dan plot yang tak terduga. Dapatkan pengalaman membaca yang tak terlupakan dengan buku yang menawarkan wawasan baru, 

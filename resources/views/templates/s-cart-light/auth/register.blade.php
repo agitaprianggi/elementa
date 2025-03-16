@@ -94,11 +94,81 @@
                     </div>
                     @endif
             
+                    <div class="form-group{{ $errors->has('address1') ? ' has-error' : '' }}">
+                        <div class="input-group">
+                            <textarea 
+                                class="is_required validate account_input form-control {{ $errors->has('address1') ? 'input-error' : '' }}"
+                                name="address1" 
+                                placeholder="Alamat Detail">{{ old('address1') }}</textarea>
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-primary">Cari</button>
+                            </div>
+                        </div>
+
+                        @if ($errors->has('address1'))
+                            <span class="help-block">
+                                {{ $errors->first('address1') }}
+                            </span>
+                        @endif
+                    </div>
+
+                    @if (sc_config('customer_province'))
+                    <div class="form-group{{ $errors->has('province') ? ' has-error' : '' }}">
+                        <input type="text"
+                            class="is_required validate account_input form-control {{ ($errors->has('province'))?"input-error":"" }}"
+                            name="province" placeholder="Provinsi" value="{{ old('province') }}" readonly>
+                        @if ($errors->has('province'))
+                        <span class="help-block">
+                            {{ $errors->first('province') }}
+                        </span>
+                        @endif
+                    </div>
+                    @endif
+
+                    @if (sc_config('customer_regency'))
+                    <div class="form-group{{ $errors->has('regency') ? ' has-error' : '' }}">
+                        <input type="text"
+                            class="is_required validate account_input form-control {{ ($errors->has('regency'))?"input-error":"" }}"
+                            name="regency" placeholder="Kabupaten" value="{{ old('regency') }}" readonly>
+                        @if ($errors->has('regency'))
+                        <span class="help-block">
+                            {{ $errors->first('regency') }}
+                        </span>
+                        @endif
+                    </div>
+                    @endif
+
+                    @if (sc_config('customer_district'))
+                    <div class="form-group{{ $errors->has('district') ? ' has-error' : '' }}">
+                        <input type="text"
+                            class="is_required validate account_input form-control {{ ($errors->has('district'))?"input-error":"" }}"
+                            name="district" placeholder="Kecamatan" value="{{ old('district') }}" readonly>
+                        @if ($errors->has('district'))
+                        <span class="help-block">
+                            {{ $errors->first('district') }}
+                        </span>
+                        @endif
+                    </div>
+                    @endif
+
+                    @if (sc_config('customer_subdistrict'))
+                    <div class="form-group{{ $errors->has('subdistrict') ? ' has-error' : '' }}">
+                        <input type="text"
+                            class="is_required validate account_input form-control {{ ($errors->has('subdistrict'))?"input-error":"" }}"
+                            name="subdistrict" placeholder="Kelurahan" value="{{ old('subdistrict') }}" readonly>
+                        @if ($errors->has('subdistrict'))
+                        <span class="help-block">
+                            {{ $errors->first('subdistrict') }}
+                        </span>
+                        @endif
+                    </div>
+                    @endif
+
                     @if (sc_config('customer_postcode'))
                     <div class="form-group{{ $errors->has('postcode') ? ' has-error' : '' }}">
                         <input type="text"
                             class="is_required validate account_input form-control {{ ($errors->has('postcode'))?"input-error":"" }}"
-                            name="postcode" placeholder="{{ sc_language_render('customer.postcode') }}" value="{{ old('postcode') }}">
+                            name="postcode" placeholder="{{ sc_language_render('customer.postcode') }}" value="{{ old('postcode') }}" readonly>
                         @if ($errors->has('postcode'))
                         <span class="help-block">
                             {{ $errors->first('postcode') }}
@@ -106,30 +176,119 @@
                         @endif
                     </div>
                     @endif
-            
-                    <div class="form-group{{ $errors->has('address1') ? ' has-error' : '' }}">
-                        <input type="text"
-                            class="is_required validate account_input form-control {{ ($errors->has('address1'))?"input-error":"" }}"
-                            name="address1" placeholder="{{ sc_language_render('customer.address1') }}" value="{{ old('address1') }}">
-                        @if ($errors->has('address1'))
-                        <span class="help-block">
-                            {{ $errors->first('address1') }}
-                        </span>
-                        @endif
+
+                    <!-- <div class="form-group">
+                        <div class="input-group">
+                            <textarea id="addressInput"
+                                class="is_required validate account_input form-control"
+                                name="address1"
+                                placeholder="Alamat Detail">{{ old('address1') }}</textarea>
+                            <div class="input-group-append">
+                                <button type="button" id="searchAddress" class="btn btn-primary">Cari</button>
+                            </div>
+                        </div>
                     </div>
 
-                    @if (sc_config('customer_address2'))
-                    <div class="form-group{{ $errors->has('address2') ? ' has-error' : '' }}">
-                        <input type="text"
-                            class="is_required validate account_input form-control {{ ($errors->has('address2'))?"input-error":"" }}"
-                            name="address2" placeholder="{{ sc_language_render('customer.address2') }}" value="{{ old('address2') }}">
-                        @if ($errors->has('address2'))
-                        <span class="help-block">
-                            {{ $errors->first('address2') }}
-                        </span>
-                        @endif
-                    </div>
+                    @if (sc_config('customer_province'))
+                        <div class="form-group">
+                            <input type="text" id="province"
+                                class="is_required validate account_input form-control"
+                                name="province" placeholder="Provinsi" value="{{ old('province') }}" readonly>
+                        </div>
                     @endif
+
+                    @if (sc_config('customer_regency'))
+                        <div class="form-group">
+                            <input type="text" id="regency"
+                                class="is_required validate account_input form-control"
+                                name="regency" placeholder="Kabupaten" value="{{ old('regency') }}" readonly>
+                        </div>
+                    @endif
+
+                    @if (sc_config('customer_district'))
+                        <div class="form-group">
+                            <input type="text" id="district"
+                                class="is_required validate account_input form-control"
+                                name="district" placeholder="Kecamatan" value="{{ old('district') }}" readonly>
+                        </div>
+                    @endif
+
+                    @if (sc_config('customer_subdistrict'))
+                        <div class="form-group">
+                            <input type="text" id="subdistrict"
+                                class="is_required validate account_input form-control"
+                                name="subdistrict" placeholder="Kelurahan" value="{{ old('subdistrict') }}" readonly>
+                        </div>
+                    @endif
+
+                    @if (sc_config('customer_postcode'))
+                        <div class="form-group">
+                            <input type="text" id="postcode"
+                                class="is_required validate account_input form-control"
+                                name="postcode" placeholder="Kode Pos" value="{{ old('postcode') }}" readonly>
+                        </div>
+                    @endif
+
+                    <div id="addressResults" class="mt-2"></div>
+
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                    <script>
+                        $(document).ready(function() {
+                            $("#searchAddress").click(function() {
+                                let address = $("#addressInput").val();
+                                if (address.trim() === "") {
+                                    alert("Silakan masukkan alamat terlebih dahulu.");
+                                    return;
+                                }
+
+                                $.ajax({
+                                    url: "{{ sc_route('getSearchAddress') }}",
+                                    type: "GET",
+                                    data: { search: address },
+                                    beforeSend: function() {
+                                        $("#searchAddress").text("Mencari...");
+                                        $("#searchAddress").attr("disabled", true);
+                                    },
+                                    success: function(response) {
+                                        $("#searchAddress").text("Cari");
+                                        $("#searchAddress").attr("disabled", false);
+
+                                        let results = response.data;
+                                        let resultHTML = "<ul class='list-group'>";
+                                        if (results.length > 0) {
+                                            results.forEach(function(item) {
+                                                resultHTML += `<li class='list-group-item address-item' data-province="${item.province_name}" 
+                                                    data-city="${item.city_name}" data-district="${item.district_name}" 
+                                                    data-subdistrict="${item.subdistrict_name}" data-zipcode="${item.zip_code}">
+                                                    ${item.label}
+                                                </li>`;
+                                            });
+                                        } else {
+                                            resultHTML += "<li class='list-group-item text-danger'>Alamat tidak ditemukan.</li>";
+                                        }
+                                        resultHTML += "</ul>";
+
+                                        $("#addressResults").html(resultHTML);
+                                    },
+                                    error: function(xhr) {
+                                        $("#searchAddress").text("Cari");
+                                        $("#searchAddress").attr("disabled", false);
+                                        $("#addressResults").html("<span class='text-danger'>Gagal mengambil data.</span>");
+                                    }
+                                });
+                            });
+
+                            // Klik hasil pencarian untuk mengisi form
+                            $(document).on("click", ".address-item", function() {
+                                $("#province").val($(this).data("province"));
+                                $("#regency").val($(this).data("city"));
+                                $("#district").val($(this).data("district"));
+                                $("#subdistrict").val($(this).data("subdistrict"));
+                                $("#postcode").val($(this).data("zipcode"));
+                                $("#addressResults").html(""); // Hapus hasil pencarian setelah memilih
+                            });
+                        });
+                    </script> -->
             
                     @if (sc_config('customer_address3'))
                     <div class="form-group{{ $errors->has('address3') ? ' has-error' : '' }}">
@@ -190,18 +349,35 @@
                     </div>
                     @endif
             
-                    @if (sc_config('customer_birthday'))
+                    <!-- @if (sc_config('customer_birthday'))
                     <div class="form-group{{ $errors->has('birthday') ? ' has-error' : '' }}">
                         <input type="date"
                             class="is_required validate account_input form-control {{ ($errors->has('birthday'))?"input-error":"" }}"
                             name="birthday" data-date-format="YYYY-MM-DD" placeholder="{{ sc_language_render('customer.birthday') }}"
-                            value="{{ old('birthday','2015-08-09') }}">
+                            value="{{ old('birthday') }}">
                         @if ($errors->has('birthday'))
                         <span class="help-block">
                             {{ $errors->first('birthday') }}
                         </span>
                         @endif
                     </div>
+                    @endif -->
+
+                    @if (sc_config('customer_birthday'))
+                        <div class="form-group{{ $errors->has('birthday') ? ' has-error' : '' }}">
+                            <input type="text"
+                                class="is_required validate account_input form-control {{ ($errors->has('birthday')) ? 'input-error' : '' }}"
+                                name="birthday" 
+                                value="{{ old('birthday') }}"
+                                placeholder="{{ sc_language_render('customer.birthday') }}"
+                                onfocus="(this.type='date')"
+                                onblur="if(!this.value) this.type='text'">
+                            @if ($errors->has('birthday'))
+                                <span class="help-block">
+                                    {{ $errors->first('birthday') }}
+                                </span>
+                            @endif
+                        </div>
                     @endif
             
                     @if (sc_config('customer_group'))
@@ -274,4 +450,100 @@
 </div>
 </section>
 <!--/form-->
+
+
+
+<style>
+    .popup-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        z-index: 1000;
+        width: 400px;
+        max-height: 300px;
+        overflow-y: auto;
+        text-align: center;
+    }
+    .popup-item {
+        cursor: pointer;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+    .popup-item:hover {
+        background-color: #f0f0f0;
+    }
+    .popup-close {
+        margin-top: 10px;
+        padding: 5px 15px;
+        background: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .loading-spinner {
+        display: none;
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-top: 3px solid white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-left: 10px;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const searchButton = document.querySelector(".btn-primary");
+    const loadingSpinner = document.createElement("div");
+    loadingSpinner.classList.add("loading-spinner");
+    searchButton.appendChild(loadingSpinner);
+    
+    searchButton.addEventListener("click", function () {
+        let address = document.querySelector("textarea[name='address1']").value;
+        let searchQuery = encodeURIComponent(address);
+        
+        loadingSpinner.style.display = "inline-block";
+            
+            fetch(`/search-address?search=${searchQuery}`)
+            .then(response => response.json())
+            .then(data => {
+                loadingSpinner.style.display = "none";
+                if (data.data.length > 0) {
+                    let popup = "<div class='popup-container' id='popup'>";
+                    data.data.forEach(item => {
+                        popup += `<p class='popup-item' data-id='${item.id}' data-province='${item.province_name}' data-city='${item.city_name}' data-district='${item.district_name}' data-subdistrict='${item.subdistrict_name}' data-zip='${item.zip_code}'>${item.label}</p>`;
+                    });
+                    popup += "<button class='popup-close' onclick='document.getElementById(\"popup\").remove()'>Close</button></div>";
+                    document.body.insertAdjacentHTML("beforeend", popup);
+                    
+                    document.querySelectorAll(".popup-item").forEach(item => {
+                        item.addEventListener("click", function () {
+                            document.querySelector("input[name='province']").value = this.dataset.province;
+                            document.querySelector("input[name='regency']").value = this.dataset.city;
+                            document.querySelector("input[name='district']").value = this.dataset.district;
+                            document.querySelector("input[name='subdistrict']").value = this.dataset.subdistrict;
+                            document.querySelector("input[name='postcode']").value = this.dataset.zip;
+                            document.getElementById("popup").remove();
+                        });
+                    });
+                }
+            })
+            .catch(error => {
+                loadingSpinner.style.display = "none";
+                console.error("Error fetching data:", error);
+            });
+        });
+    });
+</script>
 @endsection

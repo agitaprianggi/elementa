@@ -23,17 +23,6 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
       <!--// Render include filter sort -->
     </div>
 
-
-    <!-- Product list -->
-    <!-- <div class="row row-30 row-lg-50">
-      @foreach ($products as $key => $product)
-      <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4"> -->
-          <!-- Render product single -->
-          <!-- @include($sc_templatePath.'.common.product_single', ['product' => $product]) -->
-          <!-- //Render product single -->
-        <!-- </div>
-      @endforeach
-    </div> -->
     <style>
       .product-grid {
           display: grid;

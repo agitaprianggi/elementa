@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 's-cart/s-cart',
-        'pretty_version' => 'v9.0.3',
-        'version' => '9.0.3.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '87a6d7b3a5551a54c3f89ce95e9761d4fffb079a',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -727,6 +727,15 @@
             'aliases' => array(),
             'dev_requirement' => true,
         ),
+        'midtrans/midtrans-php' => array(
+            'pretty_version' => '2.6.1',
+            'version' => '2.6.1.0',
+            'reference' => '737ddabeb0c4d40316c4db132f9ef5c8f7a1b3a6',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../midtrans/midtrans-php',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'mobiledetect/mobiledetectlib' => array(
             'pretty_version' => '2.8.45',
             'version' => '2.8.45.0',
@@ -1149,9 +1158,9 @@
             'dev_requirement' => false,
         ),
         's-cart/s-cart' => array(
-            'pretty_version' => 'v9.0.3',
-            'version' => '9.0.3.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '87a6d7b3a5551a54c3f89ce95e9761d4fffb079a',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
