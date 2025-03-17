@@ -70,6 +70,16 @@ $layout_page = shop_product_detail
                   Oleh: <span id="product-detail-model">{{ $product->writer }}</span>
                 </p>
 
+                <div class="container1">
+                    @if ($product->property == 'physical' || $product->property == 'downphys')
+                        <div class="shape1 cetak">Buku Cetak</div>
+                    @endif
+
+                    @if ($product->property == 'download' || $product->property == 'downphys')
+                        <div class="shape1 digital">Buku Digital</div>
+                    @endif
+                </div>
+
                 {{-- Show price --}}
                 <div class="group-md group-middle">
                   <div class="single-product-price" id="product-detail-price">
@@ -82,6 +92,43 @@ $layout_page = shop_product_detail
 
                 {{-- Button add to cart --}}
                 @if ($product->kind != SC_PRODUCT_GROUP && $product->allowSale() && !sc_config('product_cart_off'))
+                    <div class="group-xs group-middle">
+
+                        {{-- Tampilkan tombol "Add to Cart" jika property adalah "physical" atau "downphys" --}}
+                        @if ($product->property == 'physical' || $product->property == 'downphys')
+                            <div class="product-stepper">
+                              <input class="form-input" name="qty" type="number" data-zeros="true" value="1" min="1" max="100">
+                            </div>
+                            <div>
+                                @php
+                                    $dataButton = [
+                                        'class' => '', 
+                                        'id' => 'sc_button-form-process',
+                                        'type_w' => '',
+                                        'type_t' => 'buy',
+                                        'type_a' => '',
+                                        'type' => 'submit',
+                                        'name' => ''.sc_language_render('action.add_to_cart'),
+                                        'html' => ''
+                                    ];
+                                @endphp
+                                @include($sc_templatePath.'.common.button.button', $dataButton)
+                            </div>
+                        @endif
+
+                        {{-- Tampilkan tombol "Beli Versi Digital" jika property adalah "download" atau "downphys" --}}
+                        @if ($product->property == 'download' || $product->property == 'downphys')
+                            <div>
+                                <a href="{{ $product->downloadPath->path }}" class="btn btn-primary" id="sc_button-digital">
+                                    Beli Versi Digital
+                                </a>
+                            </div>
+                        @endif
+
+                    </div>
+                @endif
+
+                <!-- @if ($product->kind != SC_PRODUCT_GROUP && $product->allowSale() && !sc_config('product_cart_off'))
                 <div class="group-xs group-middle">
                     <div class="product-stepper">
                       <input class="form-input" name="qty" type="number" data-zeros="true" value="1" min="1" max="100">
@@ -102,7 +149,7 @@ $layout_page = shop_product_detail
                       @include($sc_templatePath.'.common.button.button', $dataButton)
                     </div>
                 </div>
-                @endif
+                @endif -->
                 {{--// Button add to cart --}}
 
                 {{-- Show attribute --}}
@@ -259,7 +306,7 @@ $layout_page = shop_product_detail
                               </tr>
                               <tr>
                                   <td style="color: #777777;">Penerbit</td>
-                                  <td style="color: #777777;">{{ $product->supplier_name }}</td>
+                                  <td style="color: #777777;">{{ $product->supplier->name }}</td>
                               </tr>
                               <tr>
                                   <td style="color: #777777;">ISBN</td>
@@ -299,6 +346,42 @@ $layout_page = shop_product_detail
       @endif
 
 <!--/product-details-->
+
+<style>
+  .container1 {
+      display: flex;
+      justify-content: left;
+      gap: 20px;
+      margin-top: 50px;
+  }
+
+  .shape1 {
+      width: 160px;
+      height: 25px;
+      border-radius: 25px; /* Tidak oval penuh, lebih seperti tombol */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .cetak {
+      background-color: #0097b2;
+  }
+
+  .digital {
+      background-color: #ff914d;
+  }
+</style>
+
 @endsection
 {{-- block_main --}}
 

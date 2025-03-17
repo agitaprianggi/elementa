@@ -205,12 +205,8 @@ class ShopProduct extends Model
         }
 
         $tableDescription = (new ShopProductDescription)->getTable();
-        $tableSupplier = (new ShopSupplier)->getTable();
 
-        $dataSelect = $this->getTable().'.*, '.
-              $tableDescription.'.*, '.
-              $tableSupplier.'.id, '.
-              $tableSupplier.'.name AS supplier_name';
+        $dataSelect = $this->getTable().'.*, '.$tableDescription.'.*';
 
         $product = $this->leftJoin($tableDescription, $tableDescription . '.product_id', $this->getTable() . '.id');
         
@@ -248,7 +244,6 @@ class ShopProduct extends Model
         }
         $product = $product->selectRaw($dataSelect);
         $product = $product
-            ->leftJoin($tableSupplier, $tableSupplier . '.id', $this->getTable() . '.supplier_id')
             ->with('images')
             ->with('stores')
             ->with('promotionPrice');
