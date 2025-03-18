@@ -46,7 +46,7 @@ h1, h2, h3, h4, h5, h6 {
             </div>
         </div>
         <div class="col-md-6 mt-4 mt-md-0">
-            <h4 class="text-center mb-4 mt-3" style="color: #0074A8;">Hubungi Kami - Kami Siap Membantu Anda!</h4>
+            <h4 class="text-center mb-4 mt-4" style="color: #0074A8;">Hubungi Kami - Kami Siap Membantu Anda!</h4>
             <form method="post" action="{{ sc_route('contact.post') }}" class="contact-form p-4 shadow-sm rounded bg-light" id="sc_form-process">
                 {{ csrf_field() }}
                 <div class="row">
