@@ -17,5 +17,4 @@ yarn-error.log
 public/storage/.gitignore
 public/build
 public/hot
-public/*
-public
+public/data
