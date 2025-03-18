@@ -91,13 +91,13 @@ $layout_page = shop_product_detail
                 <hr class="hr-gray-100">
 
                 {{-- Button add to cart --}}
-                @if ($product->kind != SC_PRODUCT_GROUP && $product->allowSale() && !sc_config('product_cart_off'))
-                    <div class="group-xs group-middle">
+                  @if ($product->kind != SC_PRODUCT_GROUP && $product->allowSale() && !sc_config('product_cart_off'))
+                    <div class="group-xs group-middle button-group">
 
                         {{-- Tampilkan tombol "Add to Cart" jika property adalah "physical" atau "downphys" --}}
                         @if ($product->property == 'physical' || $product->property == 'downphys')
                             <div class="product-stepper">
-                              <input class="form-input" name="qty" type="number" data-zeros="true" value="1" min="1" max="100">
+                                <input class="form-input" name="qty" type="number" data-zeros="true" value="1" min="1" max="100">
                             </div>
                             <div>
                                 @php
@@ -105,10 +105,10 @@ $layout_page = shop_product_detail
                                         'class' => '', 
                                         'id' => 'sc_button-form-process',
                                         'type_w' => '',
-                                        'type_t' => 'buy',
+                                        'type_t' => 'buy1',
                                         'type_a' => '',
                                         'type' => 'submit',
-                                        'name' => ''.sc_language_render('action.add_to_cart'),
+                                        'name' => '<i class="fa fa-cart-plus"></i>',
                                         'html' => ''
                                     ];
                                 @endphp
@@ -118,38 +118,18 @@ $layout_page = shop_product_detail
 
                         {{-- Tampilkan tombol "Beli Versi Digital" jika property adalah "download" atau "downphys" --}}
                         @if ($product->property == 'download' || $product->property == 'downphys')
-                            <div>
-                                <a href="{{ $product->downloadPath->path }}" class="btn btn-primary" id="sc_button-digital">
-                                    Beli Versi Digital
-                                </a>
+                        <div>
+                            <a href="{{ $product->downloadPath->path }}" class="btn btn-primary button-lg single-product button" id="sc_button-digital" target="_blank" rel="noopener noreferrer" style="background: #ff914d;">
+                                <i class="fa-solid fa-book-atlas"></i>
+                            </a>
+                        </div>
+
+
                             </div>
                         @endif
 
                     </div>
-                @endif
-
-                <!-- @if ($product->kind != SC_PRODUCT_GROUP && $product->allowSale() && !sc_config('product_cart_off'))
-                <div class="group-xs group-middle">
-                    <div class="product-stepper">
-                      <input class="form-input" name="qty" type="number" data-zeros="true" value="1" min="1" max="100">
-                    </div>
-                    <div>
-                      @php
-                      $dataButton = [
-                              'class' => '', 
-                              'id' =>  'sc_button-form-process',
-                              'type_w' => '',
-                              'type_t' => 'buy',
-                              'type_a' => '',
-                              'type' => 'submit',
-                              'name' => ''.sc_language_render('action.add_to_cart'),
-                              'html' => ''
-                          ];
-                      @endphp
-                      @include($sc_templatePath.'.common.button.button', $dataButton)
-                    </div>
-                </div>
-                @endif -->
+                  @endif
                 {{--// Button add to cart --}}
 
                 {{-- Show attribute --}}
@@ -380,6 +360,75 @@ $layout_page = shop_product_detail
   .digital {
       background-color: #ff914d;
   }
+
+  .button-group {
+      display: flex;
+      align-items: center; /* Pusatkan secara vertikal */
+      gap: 10px; /* Beri jarak antar elemen */
+      flex-wrap: wrap; /* Jika terlalu sempit, elemen akan turun ke baris berikutnya */
+  }
+
+  .button-lg {
+      padding: 14px 10px;
+      font-size: 20px;
+      line-height: 1;
+      letter-spacing: .025em;
+      border-radius: 6px;
+      color: #ffffff;
+      background: #0097b2 ;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.3s ease;
+  }
+
+  .button-lg:hover {
+      background: #d9d9d9; /* Efek hover */
+  }
+
+  .single-product .button {
+      min-width: 70px;
+      min-height: 70px;
+      font-size: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      background: #0097b2 ;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+  }
+
+  .single-product .button:hover {
+      background: #d9d9d9; /* Efek hover */
+  }
+
+  /* Responsif */
+  @media (min-width: 576px) {
+      .button-lg {
+          padding: 17px 10px;
+          font-size: 24px;
+          min-height: 70px;
+      }
+
+      .single-product .button {
+          min-width: 70px;
+          min-height: 70px;
+          font-size: 24px;
+      }
+  }
+
+  /* .product-stepper {
+      margin-right: 10px;
+  }
+
+  .btn, input.form-input {
+      height: 40px;
+  } */
+
 </style>
 
 @endsection

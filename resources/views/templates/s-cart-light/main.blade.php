@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato:300,400,700%7CKalam:300,400,700">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Poppins:300,400,700%7CKalam:300,400,700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="canonical" href="{{ request()->url() }}" />
     <meta name="description" content="{{ $description??sc_store('description') }}">
     <meta name="keywords" content="{{ $keyword??sc_store('keyword') }}">

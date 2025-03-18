@@ -4771,6 +4771,46 @@ hr {
 	background: #e9da5d;
 }
 
+.button-secondary1, .button-secondary1:focus {
+	color: #ffffff;
+	background-color: #0097b2;
+	border-color: #0097b2;
+}
+
+.button-secondary1:hover, .button-secondary1:active {
+	color: #ff0000;
+	background-color: #f5f3f3;
+	border-color: #d9a1a3;
+}
+
+.button-secondary1.button-ujarak::before {
+	background: #d9a1a3;
+}
+
+.button-secondary1.button-zakaria:after {
+	background: #fff;
+}
+
+.button-secondary1-2, .button-secondary1-2:focus {
+	color: #ffffff;
+	background-color: #0097b2;
+	border-color: #0097b2;
+}
+
+.button-secondary1-2:hover, .button-secondary1-2:active {
+	color: #ffffff;
+	background-color: #f2ea6f;
+	border-color: #f2ea6f;
+}
+
+.button-secondary1-2.button-ujarak::before {
+	background: #f2ea6f;
+}
+
+.button-secondary1-2.button-zakaria:after {
+	background: #0097b2;
+}
+
 .button-gray-6, .button-gray-6:focus {
 	color: #ffffff;
 	background-color: #707475;

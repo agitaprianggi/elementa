@@ -747,7 +747,7 @@
                                 </span>
                                 @endif
 
-                                <div class="input-group" style="margin-top: 10px; {{ (old('property', $product->property) != SC_PROPERTY_DOWNLOAD) ? 'display:none':'' }}" id="download_path">
+                                <div class="input-group" style="margin-top: 10px; {{ (old('property', $product->property) != SC_PROPERTY_DOWNLOAD && old('property', $product->property) != SC_PROPERTY_DOWNPHYS) ? 'display:none':'' }}" id="download_path">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-download"></i></span>
                                     </div>
@@ -1219,7 +1219,7 @@
 <script type="text/javascript">
 
 $("[name='property']").change(function() {
-    if($(this).val() == '{{ SC_PROPERTY_DOWNLOAD }}') {
+    if($(this).val() == '{{ SC_PROPERTY_DOWNLOAD }}' || $(this).val() == '{{ SC_PROPERTY_DOWNPHYS }}') {
         $('#download_path').show();
     } else {
         $('#download_path').hide();

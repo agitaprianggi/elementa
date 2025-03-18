@@ -19,6 +19,10 @@
     @php
     $class = $class.' button-secondary';
     @endphp
+@elseif ($type_t == 'buy1')
+    @php
+    $class = $class.' button-secondary1';
+    @endphp
 @endif
 
 @if ($type_a == 'back')
