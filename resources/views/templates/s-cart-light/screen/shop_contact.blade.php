@@ -7,6 +7,11 @@ $layout_page = shop_contact
 @extends($sc_templatePath.'.layout')
 
 @section('block_main')
+<style>
+h1, h2, h3, h4, h5, h6 {
+    text-transform: none !important;
+}
+</style>
 <section class="section section-sm section-first bg-default text-md-left">
 <div class="container">
     <div class="row">
@@ -14,8 +19,7 @@ $layout_page = shop_contact
             <div class="mb-3">
                 <img src="{{ sc_file(sc_store('logo')) }}" class="img-fluid" style="max-width: 200px; height: auto;">
             </div>
-            <h4 class="font-weight-bold" style="color: #0074A8;">{{ sc_store('title') }}</h4>
-            <br>
+            <h4 class="font-weight-bold mb-3" style="color: #0074A8;">{{ sc_store('title') }}</h4>
             <address class="text-left w-100">
                 <p class="mb-2 d-flex align-items-start">
                     <span class="icon mdi mdi-map-marker" style="color: #F5A623; margin-right: 5px;"></span>
@@ -41,8 +45,8 @@ $layout_page = shop_contact
                 </iframe>
             </div>
         </div>
-        <div class="col-md-6">
-            <h4 class="text-center mb-4" style="color: #0074A8;">Ada Pertanyaan? Tim Kami Siap Membantu!</h4>
+        <div class="col-md-6 mt-4 mt-md-0">
+            <h4 class="text-center mb-4 mt-3" style="color: #0074A8;">Hubungi Kami - Kami Siap Membantu Anda!</h4>
             <form method="post" action="{{ sc_route('contact.post') }}" class="contact-form p-4 shadow-sm rounded bg-light" id="sc_form-process">
                 {{ csrf_field() }}
                 <div class="row">
