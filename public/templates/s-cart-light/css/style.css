@@ -427,12 +427,12 @@ h3 + img {
 	text-transform: capitalize;
 }
 
-.font-family-Poppins {
-	font-family: "Poppins";
+.font-family-Lato {
+	font-family: "Lato";
 }
 
-.font-family-Poppins-1 {
-	font-family: "Poppins";
+.font-family-Lato-1 {
+	font-family: "Lato";
 }
 
 .font-family-cursive {
@@ -1415,7 +1415,7 @@ html [class*='section-'].section-top-0 {
 p.rights {
 	letter-spacing: 0;
 	color: #777777;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 p.rights a, p.rights a:focus, p.rights a:active {
@@ -1581,7 +1581,7 @@ p.rights a:hover {
 	font-weight: 500;
 	line-height: 1;
 	letter-spacing: .05em;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: rgba(255, 255, 255, 0.14);
 	animation: titleColor 3s linear infinite;
 }
@@ -1808,7 +1808,7 @@ body {
 	font-size: 13px;
 	line-height: 1.6;
 	font-weight: 400;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #777777;
 	background-color: #ffffff;
 	-webkit-text-size-adjust: none;
@@ -1825,7 +1825,7 @@ h1, h2, h3, h4, h5, h6, [class^='heading-'] {
 	margin-top: 0;
 	margin-bottom: 0;
 	font-weight: 400;
-	font-family: "Poppins";
+	font-family: "Lato";
 	letter-spacing: .025em;
 	text-transform: uppercase;
 	color: #151515;
@@ -2159,7 +2159,7 @@ a[href*='tel'], a[href*='mailto'] {
 	font-weight: 600;
 	letter-spacing: .13em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 .link-tag, .link-tag:focus, .link-tag:active {
@@ -2182,7 +2182,7 @@ a[href*='tel'], a[href*='mailto'] {
 	font-weight: 600;
 	letter-spacing: .05em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 	transition: all .25s ease;
 }
 
@@ -2444,7 +2444,7 @@ a[href*='tel'], a[href*='mailto'] {
 	line-height: 1;
 	font-weight: 600;
 	letter-spacing: 0;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: rgba(21, 21, 21, 0.05);
 }
 
@@ -2893,7 +2893,7 @@ a[href*='tel'], a[href*='mailto'] {
 	font-weight: 600;
 	letter-spacing: .13em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 .box-comment-reply, .box-comment-reply:focus, .box-comment-reply:active {
@@ -3114,7 +3114,7 @@ a[href*='tel'], a[href*='mailto'] {
 	font-weight: 600;
 	letter-spacing: .05em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 	transition: transform .25s ease, color .25s ease-in-out;
 }
 
@@ -3256,7 +3256,7 @@ a[href*='tel'], a[href*='mailto'] {
 .box-info-renee-subtitle {
 	font-weight: 600;
 	letter-spacing: .1em;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 .box-info-renee-title {
@@ -3366,7 +3366,7 @@ a[href*='tel'], a[href*='mailto'] {
 .box-info-rose-text,
 .box-info-rose-author {
 	letter-spacing: .075em;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 .box-info-rose-title + .unit {
@@ -3423,7 +3423,7 @@ a[href*='tel'], a[href*='mailto'] {
 	font-weight: 700;
 	letter-spacing: .2em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #d9a1a3;
 }
 
@@ -4239,7 +4239,7 @@ img {
 	font-weight: 700;
 	letter-spacing: .1em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #151515;
 	background: #f5f5f5;
 }
@@ -4258,7 +4258,7 @@ img {
 	font-weight: 400;
 	letter-spacing: .05em;
 	background: #ffffff;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #777777;
 	min-width: 170px;
 }
@@ -4402,7 +4402,7 @@ h5 + .table-custom-responsive {
 	min-width: auto;
 	font-size: 16px;
 	letter-spacing: .075em;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #151515;
 }
 
@@ -4500,7 +4500,7 @@ h5 + .table-custom-responsive {
 	font-size: 16px;
 	letter-spacing: .05em;
 	color: #151515;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 .table-checkout td:first-child {
@@ -4601,7 +4601,7 @@ hr {
 	font-size: 14px;
 	line-height: 2;
 	border: 1px solid;
-	font-family: "Poppins";
+	font-family: "Lato";
 	font-weight: 400;
 	letter-spacing: 0.1em;
 	text-transform: none;
@@ -5307,7 +5307,7 @@ html:not(.mac-os) .button-zakaria.button-default-outline:after, html:not(.mac-os
 
 .btn-primary {
 	border-radius: 3px;
-	font-family: "Poppins";
+	font-family: "Lato";
 	font-weight: 400;
 	letter-spacing: .05em;
 	text-transform: uppercase;
@@ -5441,7 +5441,7 @@ input:-webkit-autofill ~ .form-validation {
 	font-weight: 400;
 	line-height: 24px;
 	letter-spacing: .025em;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #151515;
 	background-color: transparent;
 	background-image: none;
@@ -5495,7 +5495,7 @@ textarea.textarea-lg {
 	font-weight: 400;
 	line-height: 24px;
 	letter-spacing: .025em;
-	font-family: "Poppins";
+	font-family: "Lato";
 	transform: translateY(-50%);
 	will-change: transform;
 	pointer-events: none;
@@ -5678,7 +5678,7 @@ textarea.textarea-lg {
 	font-size: 15px;
 	line-height: 1.72;
 	letter-spacing: .025em;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #9b9b9b;
 	cursor: pointer;
 }
@@ -5718,7 +5718,7 @@ textarea.textarea-lg {
 	font-size: 15px;
 	line-height: 1.72;
 	letter-spacing: .025em;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #9b9b9b;
 	cursor: pointer;
 }
@@ -5960,7 +5960,7 @@ textarea.textarea-lg {
 	font-size: 15px;
 	font-weight: 400;
 	letter-spacing: .05em;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 .rd-form-coupon .form-input {
@@ -6207,7 +6207,7 @@ textarea.textarea-lg {
 	font-weight: 500;
 	letter-spacing: .05em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 	z-index: 1;
 }
 
@@ -6264,7 +6264,7 @@ textarea.textarea-lg {
 	font-weight: 500;
 	letter-spacing: .1em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 .post-modern-link:hover {
@@ -6402,7 +6402,7 @@ textarea.textarea-lg {
 	font-weight: 500;
 	letter-spacing: .05em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 	z-index: 1;
 }
 
@@ -6552,7 +6552,7 @@ textarea.textarea-lg {
 .post-nikki-title {
 	font-weight: 400;
 	letter-spacing: .05em;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 * + .post-nikki-title {
@@ -6677,7 +6677,7 @@ textarea.textarea-lg {
 	padding-top: 40px;
 	font-weight: 400;
 	letter-spacing: .05em;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 .quote-classic-text::before {
@@ -6701,7 +6701,7 @@ textarea.textarea-lg {
 	font-weight: 600;
 	letter-spacing: .1em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #d9a1a3;
 	border-top: 1px solid #e1e1e1;
 }
@@ -6836,7 +6836,7 @@ textarea.textarea-lg {
 	line-height: 1.44;
 	font-weight: 400;
 	letter-spacing: .02em;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 .quote-modern-text::before {
@@ -6863,7 +6863,7 @@ textarea.textarea-lg {
 	font-weight: 600;
 	letter-spacing: .1em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #151515;
 }
 
@@ -6923,7 +6923,7 @@ textarea.textarea-lg {
 	line-height: 2;
 	font-weight: 400;
 	letter-spacing: .05em;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #151515;
 }
 
@@ -6947,7 +6947,7 @@ textarea.textarea-lg {
 	font-weight: 600;
 	letter-spacing: .1em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #d9a1a3;
 }
 
@@ -6992,7 +6992,7 @@ textarea.textarea-lg {
 	line-height: 2;
 	font-weight: 400;
 	letter-spacing: .02em;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 .quote-minimal-figure img {
@@ -7004,7 +7004,7 @@ textarea.textarea-lg {
 	font-weight: 600;
 	letter-spacing: .1em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #151515;
 }
 
@@ -7041,7 +7041,7 @@ textarea.textarea-lg {
 	line-height: 1.45;
 	font-weight: 400;
 	letter-spacing: .02em;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 .quote-carly-text::before {
@@ -7068,7 +7068,7 @@ textarea.textarea-lg {
 	font-weight: 600;
 	letter-spacing: .1em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #151515;
 }
 
@@ -7447,7 +7447,7 @@ textarea.textarea-lg {
 	line-height: 2;
 	font-weight: 600;
 	letter-spacing: .13em;
-	font-family: "Poppins";
+	font-family: "Lato";
 	text-transform: uppercase;
 }
 
@@ -7543,7 +7543,7 @@ textarea.textarea-lg {
 	line-height: 1.33333;
 	font-weight: 500;
 	letter-spacing: 0;
-	font-family: "Poppins";
+	font-family: "Lato";
 	transition: all 0.25s ease-in-out;
 }
 
@@ -8041,7 +8041,7 @@ textarea.textarea-lg {
 	font-weight: 600;
 	letter-spacing: .1em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #151515;
 }
 
@@ -8442,7 +8442,7 @@ textarea.textarea-lg {
 	line-height: 1;
 	letter-spacing: .02em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 	border-radius: 6px;
 	color: #ffffff;
 	z-index: 1;
@@ -8847,7 +8847,7 @@ textarea.textarea-lg {
 .product-dawn-price {
 	line-height: 1.2;
 	letter-spacing: .025em;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 * + .product-dawn-price {
@@ -9056,7 +9056,7 @@ textarea.textarea-lg {
 	font-size: 15px;
 	line-height: 1.6;
 	letter-spacing: .1em;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #151515;
 }
 
@@ -9132,7 +9132,7 @@ textarea.textarea-lg {
 	line-height: 1;
 	font-weight: 500;
 	letter-spacing: .05em;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #d9a1a3;
 }
 
@@ -9200,7 +9200,7 @@ textarea.textarea-lg {
 	font-weight: 500;
 	letter-spacing: .1em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #151515;
 }
 
@@ -9471,7 +9471,7 @@ textarea.textarea-lg {
 	max-width: 700px;
 	margin-left: auto;
 	margin-right: auto;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 .promo-classic-title + .promo-classic-text {
@@ -9780,7 +9780,7 @@ textarea.textarea-lg {
 	font-weight: 600;
 	letter-spacing: .1em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #d9a1a3;
 }
 
@@ -9975,7 +9975,7 @@ textarea.textarea-lg {
 	font-weight: 700;
 	letter-spacing: .05em;
 	text-transform: capitalize;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #151515;
 }
 
@@ -10154,7 +10154,7 @@ html:not(.ie-10):not(.ie-11):not(.ie-edge) .team-karen-header svg {
 .event-classic-date {
 	font-weight: 600;
 	letter-spacing: .02em;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 .event-classic-month {
@@ -11202,7 +11202,7 @@ html.tablet .ui-to-top {
 	line-height: 1.2;
 	letter-spacing: .1em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #151515;
 	transition: all .25s ease-in-out;
 }
@@ -11304,7 +11304,7 @@ html.tablet .ui-to-top {
 	font-weight: 400;
 	letter-spacing: .1em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #151515;
 	transition: all .25s ease-in-out;
 }
@@ -11401,7 +11401,7 @@ html.tablet .ui-to-top {
 	font-weight: 600;
 	letter-spacing: .1em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 @media (min-width: 1200px) {
@@ -11750,7 +11750,7 @@ html.tablet .ui-to-top {
 .rd-navbar-static .rd-navbar-search-2 .search-submit {
 	display: inline-block;
 	padding: 10px 30px;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 .rd-navbar-static .rd-navbar-search-2 * + .rd-search-results-live {
@@ -11919,7 +11919,7 @@ html.tablet .ui-to-top {
 	font-size: 12px;
 	font-weight: 600;
 	letter-spacing: 0;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #d9a1a3;
 	border-radius: 50%;
     padding: 3px;
@@ -12087,7 +12087,7 @@ html.tablet .ui-to-top {
 	font-weight: 600;
 	letter-spacing: .1em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 .rd-navbar-fixed li.opened > .rd-navbar-dropdown {
@@ -12199,7 +12199,7 @@ html.tablet .ui-to-top {
 	font-weight: 600;
 	letter-spacing: .1em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 .rd-navbar-fixed .rd-navbar-submenu-toggle {
@@ -13126,7 +13126,7 @@ html.rd-navbar-fixed-linked .page {
 	font-size: 12px;
 	line-height: 2;
 	letter-spacing: .1em;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #ffffff;
 	background: #4d4e50;
 	border-bottom: 6px solid #838996;
@@ -14263,7 +14263,7 @@ html.rd-navbar-fixed-linked .page {
 
 .swiper-slider-2 .swiper-text {
 	letter-spacing: .075em;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 .swiper-slider-2 * + .swiper-text {
@@ -14342,7 +14342,7 @@ html.rd-navbar-fixed-linked .page {
 
 .swiper-slider-3 .swiper-text {
 	letter-spacing: .075em;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 .swiper-slider-3.swiper-container-horizontal > .swiper-pagination-bullets {
@@ -14829,7 +14829,7 @@ html.rd-navbar-fixed-linked .page {
 .rd-search-results-live .search-quick-result {
 	padding-left: 15px;
 	padding-right: 15px;
-	font-family: "Poppins";
+	font-family: "Lato";
 	font-size: 14px;
 	font-weight: 700;
 	line-height: 30px;
@@ -14860,7 +14860,7 @@ html.rd-navbar-fixed-linked .page {
 
 .rd-search-results-live .search-title {
 	position: relative;
-	font-family: "Poppins";
+	font-family: "Lato";
 	font-size: 14px;
 	font-weight: 700;
 	color: #d9a1a3;
@@ -14877,7 +14877,7 @@ html.rd-navbar-fixed-linked .page {
 	overflow: hidden;
 	display: block;
 	padding: 8px;
-	font-family: "Poppins";
+	font-family: "Lato";
 	font-size: 14px;
 	font-weight: 400;
 	letter-spacing: 0.1em;
@@ -14954,7 +14954,7 @@ html.rd-navbar-fixed-linked .page {
 	font-size: 16px;
 	line-height: 1.2;
 	font-weight: 400;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #000000;
 }
 
@@ -15153,7 +15153,7 @@ html.rd-navbar-fixed-linked .page {
 	padding-left: 20px;
 	padding-right: 56px;
 	letter-spacing: .05em;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #777777;
 }
 
@@ -15295,7 +15295,7 @@ html.rd-navbar-fixed-linked .page {
 }
 
 .isotope-filters-modern .inline-list > li {
-	font-family: "Poppins";
+	font-family: "Lato";
 	font-size: 18px;
 }
 
@@ -15426,7 +15426,7 @@ html.rd-navbar-fixed-linked .page {
 	line-height: 1;
 	font-weight: 600;
 	letter-spacing: .02em;
-	font-family: "Poppins";
+	font-family: "Lato";
 	text-transform: uppercase;
 	color: #9b9b9b;
 }
@@ -15569,7 +15569,7 @@ html.rd-navbar-fixed-linked .page {
 	margin: 0;
 	border: 0;
 	border-radius: 0;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #9b9b9b;
 }
 
@@ -15900,7 +15900,7 @@ html.rd-navbar-fixed-linked .page {
 	font-weight: 600;
 	letter-spacing: .1em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: rgba(21, 21, 21, 0.41);
 	background: transparent;
 	border: none;
@@ -16110,7 +16110,7 @@ h3 + .card-group-corporate {
 	line-height: 1.6;
 	font-weight: 500;
 	letter-spacing: .02em;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #151515;
 	border-bottom: 1px solid #e1e1e1;
 	z-index: 1;
@@ -16417,7 +16417,7 @@ h3 + .card-group-corporate {
 }
 
 .progress-linear-title {
-	font-family: "Poppins";
+	font-family: "Lato";
 	font-size: 14px;
 	font-weight: 600;
 	letter-spacing: .1em;
@@ -16451,7 +16451,7 @@ h3 + .card-group-corporate {
 }
 
 .progress-linear-counter {
-	font-family: "Poppins";
+	font-family: "Lato";
 	font-size: 14px;
 	font-weight: 600;
 	letter-spacing: .1em;
@@ -16658,7 +16658,7 @@ h3 + .card-group-corporate {
 	font-weight: 400;
 	letter-spacing: .075em;
 	text-transform: uppercase;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #151515;
 }
 
@@ -16924,7 +16924,7 @@ h3 + .card-group-corporate {
 	line-height: 1.8;
 	font-weight: 600;
 	letter-spacing: .05em;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #a3a3a3;
 	transition: all .2s ease;
 	transform: translate3d(0, -50%, 0);
@@ -18553,7 +18553,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 	font-size: 15px;
 	line-height: 1;
 	letter-spacing: .05em;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 .rd-range-title {
@@ -18627,7 +18627,7 @@ Version: 3.5.4 Timestamp: Sun Aug 30 13:30:32 EDT 2015
 	font-size: 14px;
 	line-height: 1.72;
 	letter-spacing: .05em;
-	font-family: "Poppins";
+	font-family: "Lato";
 	background: transparent;
 }
 
@@ -19036,7 +19036,7 @@ disabled look for disabled choices in the results dropdown
 	line-height: 21px;
 	font-weight: 500;
 	letter-spacing: 0;
-	font-family: "Poppins";
+	font-family: "Lato";
 }
 
 .select-inline .select2-choice {
@@ -19197,7 +19197,7 @@ disabled look for disabled choices in the results dropdown
 	line-height: 1.8;
 	font-weight: 600;
 	letter-spacing: .05em;
-	font-family: "Poppins";
+	font-family: "Lato";
 	color: #a3a3a3;
 	background: transparent;
 	transition: all .2s ease;
@@ -19788,7 +19788,7 @@ disabled look for disabled choices in the results dropdown
 	width: 100%;
 	padding: 10px 20px;
 	font-weight: 500;
-	font-family: "Poppins";
+	font-family: "Lato";
 	text-align: center;
 	-moz-appearance: textfield;
 	background: #f5f5f5;
