@@ -10,110 +10,70 @@ $layout_page = shop_contact
 <section class="section section-sm section-first bg-default text-md-left">
 <div class="container">
     <div class="row">
-        <div class="col-12 col-sm-12 col-md-6 contact_content">
-            <img src="{{ sc_file(sc_store('logo')) }}">
-            <address>
-                <p>{{ sc_store('title') }}</p>
-                <p><span class="icon mdi mdi-map-marker"></span> {{ sc_store('address') }}</p>
-                <p><span class="icon mdi mdi-phone"></span> {{ sc_store('long_phone') }}</p>
-                <p><span class="icon mdi mdi-email-outline"></span> {{ sc_store('email') }}</p>
+        <div class="col-md-6 contact_content text-center p-4 shadow-sm rounded bg-white d-flex flex-column align-items-center">
+            <div class="mb-3">
+                <img src="{{ sc_file(sc_store('logo')) }}" class="img-fluid" style="max-width: 200px; height: auto;">
+            </div>
+            <h4 class="font-weight-bold" style="color: #0074A8;">{{ sc_store('title') }}</h4>
+            <br>
+            <address class="text-left w-100">
+                <p class="mb-2 d-flex align-items-start">
+                    <span class="icon mdi mdi-map-marker" style="color: #F5A623; margin-right: 5px;"></span>
+                    <strong style="color: #0074A8;">Alamat:</strong>
+                    <span class="ml-2">{{ sc_store('address') }}</span>
+                </p>
+                <p class="mb-2 d-flex align-items-center">
+                    <span class="icon mdi mdi-phone" style="color: #F5A623; margin-right: 5px;"></span>
+                    <strong style="color: #0074A8;">Telepon:</strong>
+                    <span class="ml-2">{{ sc_store('long_phone') }}</span>
+                </p>
+                <p class="mb-2 d-flex align-items-center">
+                    <span class="icon mdi mdi-email-outline" style="color: #F5A623; margin-right: 5px;"></span>
+                    <strong style="color: #0074A8;">Email:</strong>
+                    <span class="ml-2">{{ sc_store('email') }}</span>
+                </p>
             </address>
+            <h4 class="text-center mt-4" style="color: #0074A8;">Lokasi Kami</h4>
+            <div class="embed-responsive embed-responsive-16by9 shadow-sm rounded mt-3" style="border-radius: 10px; overflow: hidden;">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.363088510419!2d110.374153!3d-7.8426454!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwNTAnMzMuNSJTIDExMMKwMjInMjcuMCJF!5e0!3m2!1sen!2s!4v1611816812024!5m2!1sen!2s"
+                    width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-6">
-            <form method="post" action="{{ sc_route('contact.post') }}" class="contact-form" id="sc_form-process">
+        <div class="col-md-6">
+            <h4 class="text-center mb-4" style="color: #0074A8;">Ada Pertanyaan? Tim Kami Siap Membantu!</h4>
+            <form method="post" action="{{ sc_route('contact.post') }}" class="contact-form p-4 shadow-sm rounded bg-light" id="sc_form-process">
                 {{ csrf_field() }}
-                <div id="contactFormWrapper">
-                    <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 form-group {{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label>{{ sc_language_render('contact.name') }}:</label>
-                            <input type="text" class="form-control {{ ($errors->has('name'))?"input-error":"" }}"
-                                name="name" placeholder="{{ sc_language_render('contact.name') }}" value="{{ old('name') }}">
-                            @if ($errors->has('name'))
-                            <span class="help-block">
-                                {{ $errors->first('name') }}
-                            </span>
-                            @endif
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 form-group {{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label>{{ sc_language_render('contact.email') }}:</label>
-                            <input type="email" class="form-control {{ ($errors->has('email'))?"input-error":"" }}"
-                                name="email" placeholder="{{ sc_language_render('contact.email') }}" value="{{ old('email') }}">
-                            @if ($errors->has('email'))
-                            <span class="help-block">
-                                {{ $errors->first('email') }}
-                            </span>
-                            @endif
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 form-group {{ $errors->has('phone') ? ' has-error' : '' }}">
-                            <label>{{ sc_language_render('contact.phone') }}:</label>
-                            <input type="telephone" class="form-control {{ ($errors->has('phone'))?"input-error":"" }}"
-                                name="phone" placeholder="{{ sc_language_render('contact.phone') }}" value="{{ old('phone') }}">
-                            @if ($errors->has('phone'))
-                            <span class="help-block">
-                                {{ $errors->first('phone') }}
-                            </span>
-                            @endif
-                        </div>
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label style="color: #0074A8;">{{ sc_language_render('contact.name') }}:</label>
+                        <input type="text" class="form-control" name="name" placeholder="{{ sc_language_render('contact.name') }}" value="{{ old('name') }}">
                     </div>
-
-                    <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 form-group {{ $errors->has('title') ? ' has-error' : '' }}">
-                            <label class="control-label">{{ sc_language_render('contact.subject') }}:</label>
-                            <input type="text" class="form-control {{ ($errors->has('title'))?"input-error":"" }}"
-                                name="title" placeholder="{{ sc_language_render('contact.subject') }}" value="{{ old('title') }}">
-                            @if ($errors->has('title'))
-                            <span class="help-block">
-                                {{ $errors->first('title') }}
-                            </span>
-                            @endif
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 form-group {{ $errors->has('content') ? ' has-error' : '' }}">
-                            <label class="control-label">{{ sc_language_render('contact.content') }}:</label>
-                            <textarea class="form-control {{ ($errors->has('content'))?"input-error":"" }}" rows="5"
-                                cols="75" name="content" placeholder="{{ sc_language_render('contact.content') }}">{{ old('content') }}</textarea>
-                            @if ($errors->has('content'))
-                            <span class="help-block">
-                                {{ $errors->first('content') }}
-                            </span>
-                            @endif
-
-                        </div>
+                    <div class="col-md-12 form-group">
+                        <label style="color: #0074A8;">{{ sc_language_render('contact.email') }}:</label>
+                        <input type="email" class="form-control" name="email" placeholder="{{ sc_language_render('contact.email') }}" value="{{ old('email') }}">
                     </div>
-
-                    {!! $viewCaptcha?? '' !!}
-
-                    {{-- Button submit --}}
-                    <div class="btn-toolbar form-group">
-                        @php
-                        $dataButton = [
-                                'class' => '', 
-                                'id' =>  'sc_button-form-process',
-                                'type_w' => '',
-                                'type_t' => 'buy',
-                                'type_a' => '',
-                                'type' => 'submit',
-                                'name' => ''.sc_language_render('action.submit'),
-                                'html' => ''
-                            ];
-                        @endphp
-                        @include($sc_templatePath.'.common.button.button', $dataButton)
-
+                    <div class="col-md-12 form-group">
+                        <label style="color: #0074A8;">{{ sc_language_render('contact.phone') }}:</label>
+                        <input type="tel" class="form-control" name="phone" placeholder="{{ sc_language_render('contact.phone') }}" value="{{ old('phone') }}">
                     </div>
-                    {{--// Button submit --}}
+                    <div class="col-md-12 form-group">
+                        <label style="color: #0074A8;">{{ sc_language_render('contact.subject') }}:</label>
+                        <input type="text" class="form-control" name="title" placeholder="{{ sc_language_render('contact.subject') }}" value="{{ old('title') }}">
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label style="color: #0074A8;">{{ sc_language_render('contact.content') }}:</label>
+                        <textarea class="form-control" rows="5" name="content" placeholder="{{ sc_language_render('contact.content') }}">{{ old('content') }}</textarea>
+                    </div>
+                </div>
+                {!! $viewCaptcha?? '' !!}
+                <div class="text-center">
+                    <button type="submit" class="btn" style="background-color: #F5A623; color: white;">{{ sc_language_render('action.submit') }}</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 </section>
-
 @endsection
-
-
-@push('styles')
-{{-- Your css style --}}
-@endpush
-
-@push('scripts')
-{{-- //script here --}}
-@endpush
