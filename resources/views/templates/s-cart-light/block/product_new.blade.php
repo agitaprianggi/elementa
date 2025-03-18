@@ -4,14 +4,13 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
 
 @if ($productsNew->count())
       <!-- New Products-->
-  <section class="section" style="margin-top: 50px;">
+  <section class="section" style="margin-top: 80px;">
     <div class="container">
 
         <h2 class="wow fadeScale" style="font-family: 'Poppins', sans-serif; font-size: 30px; color:rgb(13, 101, 195); text-transform: none; margin-bottom: 20px;"><b>Temukan Produk Terbaru Kami</b></h2>
 
         Memperkenalkan koleksi buku terbaru, sebuah karya yang penuh dengan cerita mendalam, karakter yang memikat, 
-        dan plot yang tak terduga. Dapatkan pengalaman membaca yang tak terlupakan dengan buku yang menawarkan wawasan baru, 
-        petualangan menarik, dan emosi yang menggugah. Segera dapatkan buku terbaru kami dan biarkan setiap halamannya membawa Anda ke dunia yang baru. 
+        dan plot yang tak terduga. Segera dapatkan buku terbaru kami dan biarkan setiap halamannya membawa Anda ke dunia yang baru. 
         Jangan lewatkan kesempatan untuk menjadi yang pertama menikmati kisah ini!
 
         <style>
