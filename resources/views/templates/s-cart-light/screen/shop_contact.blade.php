@@ -8,7 +8,7 @@ $layout_page = shop_contact
 
 @section('block_main')
 <style>
-h1, h2, h3, h4, h5, h6 {
+h4 {
     text-transform: none !important;
 }
 </style>
@@ -19,7 +19,7 @@ h1, h2, h3, h4, h5, h6 {
             <div class="mb-3">
                 <img src="{{ sc_file(sc_store('logo')) }}" class="img-fluid" style="max-width: 200px; height: auto;">
             </div>
-            <h4 class="font-weight-bold mb-3" style="color: #0074A8;">{{ sc_store('title') }}</h4>
+            <h4 class="font-weight-bold mb-3" style="font-family: 'Poppins', sans-serif; color: #0074A8;">{{ sc_store('title') }}</h4>
             <address class="text-left w-100">
                 <p class="mb-2 d-flex align-items-start">
                     <span class="icon mdi mdi-map-marker" style="color: #F5A623; margin-right: 5px;"></span>
@@ -37,7 +37,7 @@ h1, h2, h3, h4, h5, h6 {
                     <span class="ml-2">{{ sc_store('email') }}</span>
                 </p>
             </address>
-            <h4 class="text-center mt-4" style="color: #0074A8;">Lokasi Kami</h4>
+            <h4 class="text-center mt-4" style="font-family: 'Poppins', sans-serif; color: #0074A8;">Lokasi Kami</h4>
             <div class="embed-responsive embed-responsive-16by9 shadow-sm rounded mt-3" style="border-radius: 10px; overflow: hidden;">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.363088510419!2d110.374153!3d-7.8426454!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwNTAnMzMuNSJTIDExMMKwMjInMjcuMCJF!5e0!3m2!1sen!2s!4v1611816812024!5m2!1sen!2s"
@@ -46,7 +46,7 @@ h1, h2, h3, h4, h5, h6 {
             </div>
         </div>
         <div class="col-md-6 mt-4 mt-md-0">
-            <h4 class="text-center mb-4 mt-4" style="color: #0074A8;">Hubungi Kami - Kami Siap Membantu Anda!</h4>
+            <h4 class="text-center mb-4 mt-4" style="font-family: 'Poppins', sans-serif; color: #0074A8;">Hubungi Kami - Kami Siap Membantu Anda!</h4>
             <form method="post" action="{{ sc_route('contact.post') }}" class="contact-form p-4 shadow-sm rounded bg-light" id="sc_form-process">
                 {{ csrf_field() }}
                 <div class="row">
