@@ -7,15 +7,12 @@
             $bannerBreadcrumbTmp = [];
             $arrBreadcrumbPage = [
                 'shop_product_list',
-                'shop_page', 
-                'shop_news',
                 'shop_news_detail', 
                 'shop_item_list',
                 'shop_search'
             ];
             $arrBreadcrumbHome = [
                 'shop_home',
-                'product_info_home',
                 'vendor_home',
                 'vendor_product_list'
             ];
