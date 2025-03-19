@@ -62,23 +62,51 @@ $layout_page = shop_product_detail
               <input type="hidden" name="product_id" id="product-detail-id" value="{{ $product->id }}" />
               <input type="hidden" name="storeId" id="product-detail-storeId" value="{{ $product->store_id }}" />
               <div class="single-product">
-                <h3 class="text-transform-none font-weight-medium" id="product-detail-name">{!! $product->name !!}</h3>
-                
-                {!! $product->displayVendor() !!}
-                
-                <p style="color: #d9a1a3;">
-                  Oleh: <span id="product-detail-model">{{ $product->writer }}</span>
-                </p>
+                <h4 id="product-detail-name" style="
+                    font-size: 24px;
+                    font-weight: 700;
+                    color: #333;
+                    margin-bottom: 5px;
+                    text-transform: capitalize;
+                    position: relative;
+                    display: inline-block;">
+                    {!! $product->name !!}
+                </h4>
 
-                <div class="container1">
-                    @if ($product->property == 'physical' || $product->property == 'downphys')
-                        <div class="shape1 cetak">Buku Cetak</div>
-                    @endif
+                <!-- Nama Penulis -->
+                <p class="product-writer" style="
+                  font-size: 18px;
+                  color: #d76b6b;
+                  font-weight: 500;
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  margin-top: 12px;
+                  padding: 10px 15px;
+                  background: #fff3f3;
+                  border-radius: 8px;
+                  width: fit-content;
+                  transition: background 0.3s ease-in-out;">
+                  
+                  <!-- Ikon dengan background lingkaran -->
+                  <span style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      width: 30px;
+                      height: 30px;
+                      background: #ff914d;
+                      border-radius: 50%;
+                      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                      transition: transform 0.3s ease-in-out;">
+                      <i class="fa-solid fa-user-pen" style="color: white; font-size: 16px;"></i> 
+                  </span>
 
-                    @if ($product->property == 'download' || $product->property == 'downphys')
-                        <div class="shape1 digital">Buku Digital</div>
-                    @endif
-                </div>
+                  <!-- Nama Penulis -->
+                  <span style="transition: color 0.3s ease-in-out;">
+                      Oleh: <span id="product-detail-model" style="font-weight: bold;">{{ $product->writer }}</span>
+                  </span>
+              </p>
 
                 {{-- Show price --}}
                 <div class="group-md group-middle">
@@ -88,47 +116,58 @@ $layout_page = shop_product_detail
                 </div>
                 {{--// Show price --}}
 
-                <hr class="hr-gray-100">
+                <!-- <hr class="hr-gray-100"> -->
 
                 {{-- Button add to cart --}}
                   @if ($product->kind != SC_PRODUCT_GROUP && $product->allowSale() && !sc_config('product_cart_off'))
-                    <div class="group-xs group-middle button-group">
+                  <div style="
+                      display: flex;
+                      align-items: center;
+                      gap: 10px;
+                      padding: 10px;
+                      justify-content: flex-start; /* Geser tombol ke kiri */
+                  ">
 
-                        {{-- Tampilkan tombol "Add to Cart" jika property adalah "physical" atau "downphys" --}}
-                        @if ($product->property == 'physical' || $product->property == 'downphys')
-                            <div class="product-stepper">
-                                <input class="form-input" name="qty" type="number" data-zeros="true" value="1" min="1" max="100">
-                            </div>
-                            <div>
-                                @php
-                                    $dataButton = [
-                                        'class' => '', 
-                                        'id' => 'sc_button-form-process',
-                                        'type_w' => '',
-                                        'type_t' => 'buy1',
-                                        'type_a' => '',
-                                        'type' => 'submit',
-                                        'name' => '<i class="fa fa-cart-plus"></i>',
-                                        'html' => ''
-                                    ];
-                                @endphp
-                                @include($sc_templatePath.'.common.button.button', $dataButton)
-                            </div>
-                        @endif
+                      {{-- Tombol "Add to Cart" --}}
+                      <button id="sc_button-form-process" type="submit" style="
+                          background: #0097b2;
+                          border: none;
+                          padding: 10px 15px;
+                          border-radius: 8px;
+                          cursor: pointer;
+                          transition: background 0.3s ease-in-out;
+                          display: flex;
+                          align-items: center;
+                          gap: 5px;
+                      " onmouseover="this.style.background='#d9d9d9'" onmouseout="this.style.background='#0097b2'">
+                          <i class="fa fa-cart-plus" style="color: white; font-size: 18px;"></i>
+                          <span style="color: white; font-size: 14px; font-weight: bold;">Beli Versi Cetak</span>
+                      </button>
 
-                        {{-- Tampilkan tombol "Beli Versi Digital" jika property adalah "download" atau "downphys" --}}
-                        @if ($product->property == 'download' || $product->property == 'downphys')
-                        <div>
-                            <a href="{{ $product->downloadPath->path }}" class="btn btn-primary button-lg single-product button" id="sc_button-digital" target="_blank" rel="noopener noreferrer" style="background: #ff914d;">
-                                <i class="fa-solid fa-book-atlas"></i>
-                            </a>
-                        </div>
+                      {{-- Tombol "Beli Versi Digital" --}}
+                      <a href="{{ $product->downloadPath->path }}" 
+                          id="sc_button-digital"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style="
+                              background: #ff914d;
+                              padding: 10px 15px;
+                              border-radius: 8px;
+                              transition: background 0.3s ease-in-out;
+                              display: flex;
+                              align-items: center;
+                              justify-content: center;
+                              cursor: pointer;
+                              text-decoration: none;
+                              gap: 5px;
+                          "
+                          onmouseover="this.style.background='#d9d9d9'" 
+                          onmouseout="this.style.background='#ff914d'">
+                          <i class="fa-solid fa-book-atlas" style="color: white; font-size: 18px;"></i>
+                          <span style="color: white; font-size: 14px; font-weight: bold;">Beli Versi Digital</span>
+                      </a>
 
-
-                            </div>
-                        @endif
-
-                    </div>
+                  </div>
                   @endif
                 {{--// Button add to cart --}}
 
@@ -144,16 +183,22 @@ $layout_page = shop_product_detail
 
                 {{-- Stock info --}}
                 @if (sc_config('product_stock'))
-                <div>
-                    {{ sc_language_render('product.stock_status') }}:
-                    <span id="stock_status">
-                        @if($product->stock <=0 && !sc_config('product_buy_out_of_stock'))
-                            {{ sc_language_render('product.out_stock') }} 
+                    <div style="margin-top: 10px; padding: 10px; border-radius: 8px; background: #f8f9fa; display: inline-block;">
+                        <strong style="color: #555;">{{ sc_language_render('product.stock_status') }}:</strong>
+                        <span id="stock_status" 
+                              style="font-weight: bold; padding: 5px 10px; border-radius: 5px; 
+                                    @if($product->stock <= 0 && !sc_config('product_buy_out_of_stock')) 
+                                        background: #ffccd1; color: #d9534f;
+                                    @else 
+                                        background: #d4edda; color: #28a745;
+                                    @endif">
+                            @if($product->stock <= 0 && !sc_config('product_buy_out_of_stock')) 
+                                {{ sc_language_render('product.out_stock') }} 
                             @else 
-                            {{ sc_language_render('product.in_stock') }} 
-                            @endif 
-                    </span> 
-                </div>
+                                {{ sc_language_render('product.in_stock') }} 
+                            @endif
+                        </span> 
+                    </div>
                 @endif
                 {{--// Stock info --}}
 
@@ -167,11 +212,31 @@ $layout_page = shop_product_detail
                 {{--// date available --}}
 
                 {{-- Category info --}}
-                <div>
-                {{ sc_language_render('product.category') }}: 
-                @foreach ($product->categories as $category)
-                  <a href="{{ $category->getUrl() }}">{{ $category->getTitle() }}</a>,
-                @endforeach
+                <div style="padding: 10px; border-radius: 8px; display: flex; flex-direction: column;">
+                    <strong style="font-size: 14px; color: #333;">{{ sc_language_render('product.category') }}:</strong>
+                    <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 5px;">
+                        @foreach ($product->categories as $category)
+                            <a href="{{ $category->getUrl() }}" 
+                              style="padding: 6px 12px; 
+                                      border: 1.5px solid #e0e0e0; 
+                                      border-radius: 15px; 
+                                      font-size: 12px; 
+                                      font-weight: 500; 
+                                      color: #606060; 
+                                      text-decoration: none; 
+                                      transition: all 0.3s ease-in-out;" 
+                              onmouseover="this.style.backgroundColor='#ff914d'; 
+                                            this.style.color='white'; 
+                                            this.style.borderColor='#ff914d'; 
+                                            this.style.boxShadow='0 3px 6px rgba(0, 0, 0, 0.1)';"
+                              onmouseout="this.style.backgroundColor='transparent'; 
+                                          this.style.color='#606060'; 
+                                          this.style.borderColor='#e0e0e0'; 
+                                          this.style.boxShadow='none';">
+                                {{ $category->getTitle() }}
+                            </a>
+                        @endforeach
+                    </div>
                 </div>
                 {{--// Category info --}}
 
@@ -225,18 +290,63 @@ $layout_page = shop_product_detail
 
                 <hr class="hr-gray-100">
 
-                {{-- Social --}}
-                <div class="group-xs group-middle"><span class="list-social-title">Share</span>
+              {{-- Social --}}
+              <div style="display: flex; align-items: center; gap: 10px; margin-top: 15px; padding: 10px; border-radius: 8px;">
+                  <span style="font-size: 14px; font-weight: 600; color: #333;">Bagikan:</span>
                   <div>
-                    <ul class="list-inline list-social list-inline-sm">
-                      <li><a class="icon mdi mdi-facebook" href="#"></a></li>
-                      <li><a class="icon mdi mdi-twitter" href="#"></a></li>
-                      <li><a class="icon mdi mdi-instagram" href="#"></a></li>
-                      <li><a class="icon mdi mdi-google-plus" href="#"></a></li>
-                    </ul>
+                      <ul style="display: flex; gap: 8px; list-style: none; padding: 0; margin: 0;">
+                          <li>
+                              <a href="#" 
+                                style="display: flex; align-items: center; justify-content: center; 
+                                        width: 35px; height: 35px; border-radius: 50%; 
+                                        background-color: #3b5998; color: white; 
+                                        font-size: 18px; text-decoration: none; 
+                                        transition: transform 0.3s ease-in-out;" 
+                                onmouseover="this.style.transform='scale(1.1)'" 
+                                onmouseout="this.style.transform='scale(1)'">
+                                  <i class="fa-brands fa-facebook-f"></i>
+                              </a>
+                          </li>
+                          <li>
+                              <a href="#" 
+                                style="display: flex; align-items: center; justify-content: center; 
+                                        width: 35px; height: 35px; border-radius: 50%; 
+                                        background-color: #1da1f2; color: white; 
+                                        font-size: 18px; text-decoration: none; 
+                                        transition: transform 0.3s ease-in-out;" 
+                                onmouseover="this.style.transform='scale(1.1)'" 
+                                onmouseout="this.style.transform='scale(1)'">
+                                  <i class="fa-brands fa-twitter"></i>
+                              </a>
+                          </li>
+                          <li>
+                              <a href="#" 
+                                style="display: flex; align-items: center; justify-content: center; 
+                                        width: 35px; height: 35px; border-radius: 50%; 
+                                        background-color: #e4405f; color: white; 
+                                        font-size: 18px; text-decoration: none; 
+                                        transition: transform 0.3s ease-in-out;" 
+                                onmouseover="this.style.transform='scale(1.1)'" 
+                                onmouseout="this.style.transform='scale(1)'">
+                                  <i class="fa-brands fa-instagram"></i>
+                              </a>
+                          </li>
+                          <li>
+                              <a href="#" 
+                                style="display: flex; align-items: center; justify-content: center; 
+                                        width: 35px; height: 35px; border-radius: 50%; 
+                                        background-color: #db4437; color: white; 
+                                        font-size: 18px; text-decoration: none; 
+                                        transition: transform 0.3s ease-in-out;" 
+                                onmouseover="this.style.transform='scale(1.1)'" 
+                                onmouseout="this.style.transform='scale(1)'">
+                                  <i class="fa-brands fa-google-plus-g"></i>
+                              </a>
+                          </li>
+                      </ul>
                   </div>
-                </div>
-                {{--// Social --}}
+              </div>
+              {{--// Social --}}
 
               </div>
             </form>
@@ -247,15 +357,15 @@ $layout_page = shop_product_detail
           <div class="tabs-custom tabs-horizontal tabs-line" id="tabs-1">
               <!-- Nav tabs-->
               <div class="nav-tabs-wrap">
-    <ul class="nav nav-tabs nav-tabs-1">
-        <li class="nav-item">
-            <a class="nav-link active" href="#tabs-1-1" data-toggle="tab">{{ sc_language_render('product.description') }}</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#tabs-1-2" data-toggle="tab">Informasi Tambahan</a>
-        </li>
-    </ul>
-</div>
+                  <ul class="nav nav-tabs nav-tabs-1">
+                      <li class="nav-item">
+                          <a class="nav-link active" href="#tabs-1-1" data-toggle="tab">{{ sc_language_render('product.description') }}</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#tabs-1-2" data-toggle="tab">Informasi Tambahan</a>
+                      </li>
+                  </ul>
+              </div>
 
 
               <!-- Tab content -->
@@ -329,38 +439,6 @@ $layout_page = shop_product_detail
 <!--/product-details-->
 
 <style>
-  .container1 {
-      display: flex;
-      justify-content: left;
-      gap: 20px;
-      margin-top: 50px;
-  }
-
-  .shape1 {
-      width: 160px;
-      height: 40px;
-      border-radius: 25px; /* Tidak oval penuh, lebih seperti tombol */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: bold;
-      color: white;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s ease-in-out;
-      text-transform: uppercase;
-      padding: 10px 20px;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-  }
-
-  .cetak {
-      background-color: #0097b2;
-  }
-
-  .digital {
-      background-color: #ff914d;
-  }
 
   .button-group {
       display: flex;
