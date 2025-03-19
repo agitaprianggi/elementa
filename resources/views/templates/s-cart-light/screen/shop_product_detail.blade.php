@@ -119,60 +119,61 @@ $layout_page = shop_product_detail
                   <!-- <hr class="hr-gray-100"> -->
 
                   <div style="
-                      display: flex;
-                      align-items: center;
-                      gap: 10px;
-                      padding: 0px;
-                      justify-content: flex-start;
+                      display: flex; flex-direction: column; gap: 2px; align-items: flex-start;
                   ">
 
-                    <div class="product-stepper">
-                        <input class="form-input" name="qty" type="number" value="1" readonly>
-                    </div>
+                    {{-- Bagian Stepper dan Tombol Beli --}}
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div class="product-stepper">
+                                <input class="form-input" name="qty" type="number" value="1" readonly>
+                            </div>
 
-                      {{-- Tombol "Beli Versi Cetak" --}}
-                      <button id="sc_button-form-process" type="submit" style="
-                          background: #0097b2;
-                          border: none;
-                          padding: 9px 15px;
-                          border-radius: 8px;
-                          cursor: pointer;
-                          transition: background 0.3s ease-in-out;
-                          display: flex;
-                          align-items: center;
-                          justify-content: center;
-                          gap: 10px;
-                          min-width: 160px;
-                      " onmouseover="this.style.background='#d9d9d9'" 
-                        onmouseout="this.style.background='#0097b2'">
-                          <i class="fa fa-cart-plus" style="color: white; font-size: 16px;"></i>
-                          <span style="color: white; font-size: 14px; font-weight: bold;">Beli Versi Cetak</span>
-                      </button>
+                            {{-- Tombol "Beli Versi Cetak" --}}
+                            <button id="sc_button-form-process" type="submit" style="
+                                background: #0097b2;
+                                border: none;
+                                padding: 9px 15px;
+                                border-radius: 8px;
+                                cursor: pointer;
+                                transition: background 0.3s ease-in-out;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                gap: 8px;
+                                min-width: 160px;
+                            " onmouseover="this.style.background='#d9d9d9'" 
+                            onmouseout="this.style.background='#0097b2'">
+                                <i class="fa fa-cart-plus" style="color: white; font-size: 16px;"></i>
+                                <span style="color: white; font-size: 14px; font-weight: bold;">Beli Versi Cetak</span>
+                            </button>
 
-                      {{-- Tombol "Beli Versi Digital" --}}
-                      <a href="{{ $product->downloadPath->path }}" 
-                        id="sc_button-digital"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style="
-                            background: #ff914d;
-                            border: none;
-                            padding: 9px 15px;
-                            border-radius: 8px;
-                            cursor: pointer;
-                            transition: background 0.3s ease-in-out;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            gap: 10px;
-                            min-width: 160px;
-                        "
-                        onmouseover="this.style.background='#d9d9d9'" 
-                        onmouseout="this.style.background='#ff914d'">
-                        <i class="fa fa-book" style="color: white; font-size: 16px;"></i>
-                        <span style="color: white; font-size: 14px; font-weight: bold; text-align: center;">Beli Versi Digital</span>
-                      </a>
-                    </div>
+                            {{-- Tombol "Beli Versi Digital" --}}
+                            @if ($product->downloadPath)
+                                <a href="{{ $product->downloadPath->path }}" 
+                                    id="sc_button-digital"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style="
+                                        background: #ff914d;
+                                        border: none;
+                                        padding: 9px 15px;
+                                        border-radius: 6px;
+                                        cursor: pointer;
+                                        transition: background 0.3s ease-in-out;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        gap: 8px;
+                                        min-width: 160px;
+                                        text-align: center;
+                                    "
+                                    onmouseover="this.style.background='#d9d9d9'" 
+                                    onmouseout="this.style.background='#ff914d'">
+                                    <i class="fa fa-book" style="color: white; font-size: 14px;"></i>
+                                    <span style="color: white; font-size: 14px; font-weight: bold; text-align: center;">Beli Versi Digital</span>
+                                </a>
+                            @endif
+                        </div>
 
                   {{-- Show attribute --}}
                   @if (sc_config('product_property'))
@@ -184,25 +185,34 @@ $layout_page = shop_product_detail
                   @endif
                   {{--// Show attribute --}}
 
-                  {{-- Stock info --}}
-                  @if (sc_config('product_stock'))
-                      <div style="margin-top: 10px; padding: 10px; border-radius: 8px; background: #f8f9fa; display: inline-block;">
-                          <strong style="color: #555;">{{ sc_language_render('product.stock_status') }}:</strong>
-                          <span id="stock_status" 
-                                style="font-weight: bold; padding: 5px 10px; border-radius: 5px; 
-                                      @if($product->stock <= 0 && !sc_config('product_buy_out_of_stock')) 
-                                          background: #ffccd1; color: #d9534f;
-                                      @else 
-                                          background: #d4edda; color: #28a745;
-                                      @endif">
-                              @if($product->stock <= 0 && !sc_config('product_buy_out_of_stock')) 
-                                  {{ sc_language_render('product.out_stock') }} 
-                              @else 
-                                  {{ sc_language_render('product.in_stock') }} 
-                              @endif
-                          </span> 
-                      </div>
-                  @endif
+                  {{-- Stock info (dipindah ke bawah tombol) --}}
+                    @if (sc_config('product_stock'))
+                        <div style="
+                            margin-top: 5px; 
+                            padding: 5px; 
+                            border-radius: 8px; 
+                            background: #f8f9fa; 
+                            display: inline-block;
+                            width: auto
+                            margin-bottom: -5px;;
+                        ">
+                            <strong style="color: #555;">{{ sc_language_render('product.stock_status') }}:</strong>
+                            <div id="stock_status" 
+                                style="font-weight: bold; padding: 5px 5px; border-radius: 5px; margin-top: 0px; display: inline-block;
+                                    @if($product->stock <= 0 && !sc_config('product_buy_out_of_stock')) 
+                                        background: #ffccd1; color: #d9534f;
+                                    @else 
+                                        background: #d4edda; color: #28a745;
+                                    @endif">
+                                @if($product->stock <= 0 && !sc_config('product_buy_out_of_stock')) 
+                                    {{ sc_language_render('product.out_stock') }} 
+                                @else 
+                                    {{ sc_language_render('product.in_stock') }} 
+                                @endif
+                            </div> 
+                        </div>
+                    @endif
+
                   {{--// Stock info --}}
 
                   {{-- date available --}}
@@ -215,12 +225,12 @@ $layout_page = shop_product_detail
                   {{--// date available --}}
 
                   {{-- Category info --}}
-                  <div style="padding: 10px; border-radius: 8px; display: flex; flex-direction: column;">
+                  <div style="border-radius: 8px; display: flex; flex-direction: column;">
                       <strong style="font-size: 14px; color: #333;">{{ sc_language_render('product.category') }}:</strong>
                       <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 5px;">
                           @foreach ($product->categories as $category)
                               <a href="{{ $category->getUrl() }}" 
-                                style="padding: 6px 12px; 
+                                style=" padding: 6px 12px; 
                                         border: 1.5px solid #e0e0e0; 
                                         border-radius: 15px; 
                                         font-size: 12px; 
@@ -291,7 +301,7 @@ $layout_page = shop_product_detail
                   @endif
                 {{-- Product kind --}}
 
-                  <hr class="hr-gray-100">
+                  <!-- <hr class="hr-gray-100"> -->
 
                 {{-- Social --}}
                 <div style="display: flex; align-items: center; gap: 10px; margin-top: 15px; padding: 10px; border-radius: 8px;">
