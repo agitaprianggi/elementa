@@ -118,6 +118,7 @@ $layout_page = shop_product_detail
 
                   <!-- <hr class="hr-gray-100"> -->
 
+<<<<<<< HEAD
                   <div style="
                       display: flex;
                       align-items: center;
@@ -170,6 +171,61 @@ $layout_page = shop_product_detail
                       </a>
 
 </div>
+=======
+                  {{-- Button add to cart --}}
+                    @if ($product->kind != SC_PRODUCT_GROUP && $product->allowSale() && !sc_config('product_cart_off'))
+                    <input type="hidden" name="qty" value="1">
+                    <div style="
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        padding: 10px;
+                        justify-content: flex-start; /* Geser tombol ke kiri */
+                    ">
+
+                        {{-- Tombol "Add to Cart" --}}
+                        <button id="sc_button-form-process" type="submit" style="
+                            background: #0097b2;
+                            border: none;
+                            padding: 10px 15px;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            transition: background 0.3s ease-in-out;
+                            display: flex;
+                            align-items: center;
+                            gap: 5px;
+                        " onmouseover="this.style.background='#d9d9d9'" onmouseout="this.style.background='#0097b2'">
+                            <i class="fa fa-cart-plus" style="color: white; font-size: 18px;"></i>
+                            <span style="color: white; font-size: 14px; font-weight: bold;">Beli Versi Cetak</span>
+                        </button>
+
+                        {{-- Tombol "Beli Versi Digital" --}}
+                        <a href="{{ $product->downloadPath->path }}" 
+                          id="sc_button-digital"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style="
+                              background: #ff914d;
+                              border: none;
+                              padding: 10px 15px;
+                              border-radius: 8px;
+                              cursor: pointer;
+                              transition: background 0.3s ease-in-out;
+                              display: flex;
+                              align-items: center;
+                              gap: 12px;
+                              text-align: center;
+                          "
+                          onmouseover="this.style.background='#d9d9d9'" 
+                          onmouseout="this.style.background='#ff914d'">
+                          <i class="fa-book-atlas" style="color: white; font-size: 18px;"></i>
+                          <span style="color: white; font-size: 14px; font-weight: bold; text-align: center;">Beli Versi Digital</span>
+                        </a>
+
+                    </div>
+                    @endif
+                  {{--// Button add to cart --}}
+>>>>>>> 23ddbeada99e297657085acf4a150aee45fb8867
 
                   {{-- Show attribute --}}
                   @if (sc_config('product_property'))
@@ -353,6 +409,7 @@ $layout_page = shop_product_detail
             </div>
           </div>
         <!-- Bootstrap Tabs -->
+<<<<<<< HEAD
           <div class="custom-tabs">
               <!-- Nav Tabs -->
               <ul class="nav nav-tabs justify-content-center" id="myTab">
@@ -387,6 +444,43 @@ $layout_page = shop_product_detail
                   </div>
               </div>
           </div>
+=======
+<div class="custom-tabs">
+    <!-- Nav Tabs -->
+    <ul class="nav nav-tabs justify-content-center" id="myTab">
+        <li class="nav-item">
+            <a class="nav-link active" id="tab-deskripsi" data-bs-toggle="tab" href="#tabs-1-1">Deskripsi Produk</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="tab-info" data-bs-toggle="tab" href="#tabs-1-2">Informasi Tambahan</a>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content p-4">
+        <!-- Deskripsi Produk -->
+        <div class="tab-pane fade show active" id="tabs-1-1">
+            <p>{!! sc_html_render($product->content) !!}</p>
+        </div>
+
+        <!-- Informasi Tambahan -->
+        <div class="tab-pane fade" id="tabs-1-2">
+            <table class="table table-borderless">
+                <tbody>
+                    <tr><td><strong>Ukuran</strong></td><td>{{ $product->length }} x {{ $product->width }}</td></tr>
+                    <tr><td><strong>Halaman</strong></td><td>{{ $product->page }}</td></tr>
+                    <tr><td><strong>Tahun Terbit</strong></td><td>{{ $product->year }}</td></tr>
+                    <tr><td><strong>Penulis</strong></td><td>{{ $product->writer }}</td></tr>
+                    <tr><td><strong>Penerbit</strong></td><td>{{ $product->supplier->name }}</td></tr>
+                    <tr><td><strong>ISBN</strong></td><td>{{ $product->isbn }}</td></tr>
+                    <tr><td><strong>e-ISBN</strong></td><td>{{ $product->eisbn }}</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+>>>>>>> 23ddbeada99e297657085acf4a150aee45fb8867
         </div>
       </section>
 

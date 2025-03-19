@@ -3,7 +3,7 @@
         'name' => 's-cart/s-cart',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '87a6d7b3a5551a54c3f89ce95e9761d4fffb079a',
+        'reference' => 'b3d6e1a13f85bbf563d4c082a8ad0c2c4f69b60d',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -1160,7 +1160,7 @@
         's-cart/s-cart' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '87a6d7b3a5551a54c3f89ce95e9761d4fffb079a',
+            'reference' => 'b3d6e1a13f85bbf563d4c082a8ad0c2c4f69b60d',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
