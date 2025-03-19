@@ -79,6 +79,7 @@
   display: flex;
   gap: 10px;
   }
+  
   .footer-social .social-icon {
   font-size: 24px;
   width: 40px;
