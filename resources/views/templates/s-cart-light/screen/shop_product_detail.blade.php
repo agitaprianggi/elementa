@@ -122,7 +122,7 @@ $layout_page = shop_product_detail
                       display: flex;
                       align-items: center;
                       gap: 10px;
-                      padding: 10px;
+                      padding: 0px;
                       justify-content: flex-start;
                   ">
 
@@ -137,7 +137,7 @@ $layout_page = shop_product_detail
                           display: flex;
                           align-items: center;
                           justify-content: center;
-                          gap: 12px;
+                          gap: 10px;
                           min-width: 160px;
                       " onmouseover="this.style.background='#d9d9d9'" 
                         onmouseout="this.style.background='#0097b2'">
@@ -160,13 +160,13 @@ $layout_page = shop_product_detail
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            gap: 12px;
+                            gap: 10px;
                             min-width: 160px;
                         "
                         onmouseover="this.style.background='#d9d9d9'" 
                         onmouseout="this.style.background='#ff914d'">
                         <i class="fa fa-book" style="color: white; font-size: 16px;"></i>
-                        <span style="color: white; font-size: 14px; font-weight: bold;">Beli Versi Digital</span>
+                        <span style="color: white; font-size: 14px; font-weight: bold; text-align: center;">Beli Versi Digital</span>
                       </a>
 
 </div>
