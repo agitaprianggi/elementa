@@ -100,7 +100,12 @@
   box-shadow: 0 0 10px rgba(255, 192, 45, 0.8);
   }
   .footer-bottom {
-    font-size: 14px;
+  position: relative; /* Pastikan bukan absolute */
+  margin-top: 40px; /* Menambahkan jarak atas */
+  padding: 15px 0;
+  width: 100%;
+  text-align: center;
+  background-color: #333;
   }
   .contact-list li {
     display: flex;
@@ -122,4 +127,29 @@
     text-transform: uppercase;
     letter-spacing: 1px;
   }
+  @media (max-width: 768px) {
+  /* Pusatkan ikon kontak */
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .contact-list li {
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* Pusatkan ikon sosial */
+    .footer-social {
+      display: flex;
+      justify-content: center; /* Pusatkan ikon di tengah */
+      flex-wrap: wrap; /* Jika terlalu banyak, akan turun ke bawah */
+      gap: 10px;
+      text-align: center;
+    }
+  }
+
 </style>
