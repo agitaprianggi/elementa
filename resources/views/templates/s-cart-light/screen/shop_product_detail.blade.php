@@ -130,7 +130,7 @@ $layout_page = shop_product_detail
                       <button id="sc_button-form-process" type="submit" style="
                           background: #0097b2;
                           border: none;
-                          padding: 10px 17px;
+                          padding: 9px 15px;
                           border-radius: 8px;
                           cursor: pointer;
                           transition: background 0.3s ease-in-out;
@@ -153,7 +153,7 @@ $layout_page = shop_product_detail
                         style="
                             background: #ff914d;
                             border: none;
-                            padding: 10px 17px;
+                            padding: 9px 15px;
                             border-radius: 8px;
                             cursor: pointer;
                             transition: background 0.3s ease-in-out;
