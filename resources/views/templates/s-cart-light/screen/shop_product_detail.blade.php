@@ -118,10 +118,12 @@ $layout_page = shop_product_detail
 
                   <!-- <hr class="hr-gray-100"> -->
 
+                @if ($product->kind != SC_PRODUCT_GROUP && $product->allowSale() && !sc_config('product_cart_off'))
                   <div style="
                       display: flex; flex-direction: column; gap: 2px; align-items: flex-start;
                   ">
 
+                    @if ($product->property == 'physical' || $product->property == 'downphys')
                     {{-- Bagian Stepper dan Tombol Beli --}}
                         <div style="display: flex; align-items: center; gap: 10px;">
                             <div class="product-stepper">
@@ -146,9 +148,10 @@ $layout_page = shop_product_detail
                                 <i class="fa fa-cart-plus" style="color: white; font-size: 16px;"></i>
                                 <span style="color: white; font-size: 14px; font-weight: bold;">Beli Versi Cetak</span>
                             </button>
-
-                            {{-- Tombol "Beli Versi Digital" --}}
-                            @if ($product->downloadPath)
+                    @endif
+                            
+                        {{-- Tombol "Beli Versi Digital" --}}
+                            @if ($product->property == 'download' || $product->property == 'downphys')
                                 <a href="{{ $product->downloadPath->path }}" 
                                     id="sc_button-digital"
                                     target="_blank"
@@ -174,6 +177,7 @@ $layout_page = shop_product_detail
                                 </a>
                             @endif
                         </div>
+                @endif
 
                   {{-- Show attribute --}}
                   @if (sc_config('product_property'))
