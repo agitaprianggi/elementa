@@ -353,41 +353,40 @@ $layout_page = shop_product_detail
             </div>
           </div>
         <!-- Bootstrap Tabs -->
-<div class="custom-tabs">
-    <!-- Nav Tabs -->
-    <ul class="nav nav-tabs justify-content-center" id="myTab">
-        <li class="nav-item">
-            <a class="nav-link active" id="tab-deskripsi" data-bs-toggle="tab" href="#tabs-1-1">Deskripsi Produk</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="tab-info" data-bs-toggle="tab" href="#tabs-1-2">Informasi Tambahan</a>
-        </li>
-    </ul>
+          <div class="custom-tabs">
+              <!-- Nav Tabs -->
+              <ul class="nav nav-tabs justify-content-center" id="myTab">
+                  <li class="nav-item">
+                      <a class="nav-link active" id="tab-deskripsi" data-bs-toggle="tab" href="#tabs-1-1">Deskripsi Produk</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" id="tab-info" data-bs-toggle="tab" href="#tabs-1-2">Informasi Tambahan</a>
+                  </li>
+              </ul>
 
-    <!-- Tab Content -->
-    <div class="tab-content p-4">
-        <!-- Deskripsi Produk -->
-        <div class="tab-pane fade show active" id="tabs-1-1">
-            <p>{!! sc_html_render($product->content) !!}</p>
-        </div>
+              <!-- Tab Content -->
+              <div class="tab-content p-4">
+                  <!-- Deskripsi Produk -->
+                  <div class="tab-pane fade show active" id="tabs-1-1">
+                      <p>{!! sc_html_render($product->content) !!}</p>
+                  </div>
 
-        <!-- Informasi Tambahan -->
-        <div class="tab-pane fade" id="tabs-1-2">
-            <table class="table table-borderless">
-                <tbody>
-                    <tr><td><strong>Ukuran</strong></td><td>{{ $product->length }} x {{ $product->width }}</td></tr>
-                    <tr><td><strong>Halaman</strong></td><td>{{ $product->page }}</td></tr>
-                    <tr><td><strong>Tahun Terbit</strong></td><td>{{ $product->year }}</td></tr>
-                    <tr><td><strong>Penulis</strong></td><td>{{ $product->writer }}</td></tr>
-                    <tr><td><strong>Penerbit</strong></td><td>{{ $product->supplier->name }}</td></tr>
-                    <tr><td><strong>ISBN</strong></td><td>{{ $product->isbn }}</td></tr>
-                    <tr><td><strong>e-ISBN</strong></td><td>{{ $product->eisbn }}</td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
+                  <!-- Informasi Tambahan -->
+                  <div class="tab-pane fade" id="tabs-1-2">
+                      <table class="table table-borderless">
+                          <tbody>
+                              <tr><td><strong>Ukuran</strong></td><td>{{ $product->length }} x {{ $product->width }}</td></tr>
+                              <tr><td><strong>Halaman</strong></td><td>{{ $product->page }}</td></tr>
+                              <tr><td><strong>Tahun Terbit</strong></td><td>{{ $product->year }}</td></tr>
+                              <tr><td><strong>Penulis</strong></td><td>{{ $product->writer }}</td></tr>
+                              <tr><td><strong>Penerbit</strong></td><td>{{ $product->supplier->name }}</td></tr>
+                              <tr><td><strong>ISBN</strong></td><td>{{ $product->isbn }}</td></tr>
+                              <tr><td><strong>e-ISBN</strong></td><td>{{ $product->eisbn }}</td></tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
         </div>
       </section>
 
