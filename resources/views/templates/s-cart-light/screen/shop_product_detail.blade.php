@@ -57,363 +57,337 @@ $layout_page = shop_product_detail
               </div>
             </div>
             <div class="col-lg-6">
-            <form id="buy_block" class="product-information" action="{{ sc_route('cart.add') }}" method="post">
-              {{ csrf_field() }}
-              <input type="hidden" name="product_id" id="product-detail-id" value="{{ $product->id }}" />
-              <input type="hidden" name="storeId" id="product-detail-storeId" value="{{ $product->store_id }}" />
-              <div class="single-product">
-                <h4 id="product-detail-name" style="
-                    font-size: 24px;
-                    font-weight: 700;
-                    color: #333;
-                    margin-bottom: 5px;
-                    text-transform: capitalize;
-                    position: relative;
-                    display: inline-block;">
-                    {!! $product->name !!}
-                </h4>
-
-                <!-- Nama Penulis -->
-                <p class="product-writer" style="
-                  font-size: 18px;
-                  color: #d76b6b;
-                  font-weight: 500;
-                  display: flex;
-                  align-items: center;
-                  gap: 10px;
-                  margin-top: 12px;
-                  padding: 10px 15px;
-                  background: #fff3f3;
-                  border-radius: 8px;
-                  width: fit-content;
-                  transition: background 0.3s ease-in-out;">
-                  
-                  <!-- Ikon dengan background lingkaran -->
-                  <span style="
-                      display: flex;
-                      align-items: center;
-                      justify-content: center;
-                      width: 30px;
-                      height: 30px;
-                      background: #ff914d;
-                      border-radius: 50%;
-                      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-                      transition: transform 0.3s ease-in-out;">
-                      <i class="fa-solid fa-user-pen" style="color: white; font-size: 16px;"></i> 
-                  </span>
+              <form id="buy_block" class="product-information" action="{{ sc_route('cart.add') }}" method="post">
+                {{ csrf_field() }}
+                <input type="hidden" name="product_id" id="product-detail-id" value="{{ $product->id }}" />
+                <input type="hidden" name="storeId" id="product-detail-storeId" value="{{ $product->store_id }}" />
+                <div class="single-product">
+                  <h4 id="product-detail-name" style="
+                      font-size: 24px;
+                      font-weight: 700;
+                      color: #333;
+                      margin-bottom: 5px;
+                      text-transform: capitalize;
+                      position: relative;
+                      display: inline-block;">
+                      {!! $product->name !!}
+                  </h4>
 
                   <!-- Nama Penulis -->
-                  <span style="transition: color 0.3s ease-in-out;">
-                      Oleh: <span id="product-detail-model" style="font-weight: bold;">{{ $product->writer }}</span>
-                  </span>
-              </p>
+                  <p class="product-writer" style="
+                    font-size: 18px;
+                    color: #d76b6b;
+                    font-weight: 500;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    margin-top: 12px;
+                    padding: 10px 15px;
+                    background: #fff3f3;
+                    border-radius: 8px;
+                    width: fit-content;
+                    transition: background 0.3s ease-in-out;">
+                    
+                    <!-- Ikon dengan background lingkaran -->
+                    <span style="
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 30px;
+                        height: 30px;
+                        background: #ff914d;
+                        border-radius: 50%;
+                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                        transition: transform 0.3s ease-in-out;">
+                        <i class="fa-solid fa-user-pen" style="color: white; font-size: 16px;"></i> 
+                    </span>
 
-                {{-- Show price --}}
-                <div class="group-md group-middle">
-                  <div class="single-product-price" id="product-detail-price">
-                    {!! $product->showPriceDetail() !!}
+                    <!-- Nama Penulis -->
+                    <span style="transition: color 0.3s ease-in-out;">
+                        Oleh: <span id="product-detail-model" style="font-weight: bold;">{{ $product->writer }}</span>
+                    </span>
+                </p>
+
+                  {{-- Show price --}}
+                  <div class="group-md group-middle">
+                    <div class="single-product-price" id="product-detail-price">
+                      {!! $product->showPriceDetail() !!}
+                    </div>
                   </div>
-                </div>
-                {{--// Show price --}}
+                  {{--// Show price --}}
 
-                <!-- <hr class="hr-gray-100"> -->
+                  <!-- <hr class="hr-gray-100"> -->
 
-                {{-- Button add to cart --}}
-                  @if ($product->kind != SC_PRODUCT_GROUP && $product->allowSale() && !sc_config('product_cart_off'))
-                  <input type="hidden" name="qty" value="1">
-                  <div style="
-                      display: flex;
-                      align-items: center;
-                      gap: 10px;
-                      padding: 10px;
-                      justify-content: flex-start; /* Geser tombol ke kiri */
-                  ">
+                  {{-- Button add to cart --}}
+                    @if ($product->kind != SC_PRODUCT_GROUP && $product->allowSale() && !sc_config('product_cart_off'))
+                    <input type="hidden" name="qty" value="1">
+                    <div style="
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        padding: 10px;
+                        justify-content: flex-start; /* Geser tombol ke kiri */
+                    ">
 
-                      {{-- Tombol "Add to Cart" --}}
-                      <button id="sc_button-form-process" type="submit" style="
-                          background: #0097b2;
-                          border: none;
-                          padding: 10px 15px;
-                          border-radius: 8px;
-                          cursor: pointer;
-                          transition: background 0.3s ease-in-out;
-                          display: flex;
-                          align-items: center;
-                          gap: 5px;
-                      " onmouseover="this.style.background='#d9d9d9'" onmouseout="this.style.background='#0097b2'">
-                          <i class="fa fa-cart-plus" style="color: white; font-size: 18px;"></i>
-                          <span style="color: white; font-size: 14px; font-weight: bold;">Beli Versi Cetak</span>
-                      </button>
+                        {{-- Tombol "Add to Cart" --}}
+                        <button id="sc_button-form-process" type="submit" style="
+                            background: #0097b2;
+                            border: none;
+                            padding: 10px 15px;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            transition: background 0.3s ease-in-out;
+                            display: flex;
+                            align-items: center;
+                            gap: 5px;
+                        " onmouseover="this.style.background='#d9d9d9'" onmouseout="this.style.background='#0097b2'">
+                            <i class="fa fa-cart-plus" style="color: white; font-size: 18px;"></i>
+                            <span style="color: white; font-size: 14px; font-weight: bold;">Beli Versi Cetak</span>
+                        </button>
 
-                      {{-- Tombol "Beli Versi Digital" --}}
-                      <a href="{{ $product->downloadPath->path }}" 
+                        {{-- Tombol "Beli Versi Digital" --}}
+                        <a href="{{ $product->downloadPath->path }}" 
                           id="sc_button-digital"
                           target="_blank"
                           rel="noopener noreferrer"
                           style="
                               background: #ff914d;
+                              border: none;
                               padding: 10px 15px;
                               border-radius: 8px;
+                              cursor: pointer;
                               transition: background 0.3s ease-in-out;
                               display: flex;
                               align-items: center;
-                              justify-content: center;
-                              cursor: pointer;
-                              text-decoration: none;
-                              gap: 5px;
+                              gap: 12px;
+                              text-align: center;
                           "
                           onmouseover="this.style.background='#d9d9d9'" 
                           onmouseout="this.style.background='#ff914d'">
-                          <i class="fa-solid fa-book-atlas" style="color: white; font-size: 18px;"></i>
-                          <span style="color: white; font-size: 14px; font-weight: bold;">Beli Versi Digital</span>
-                      </a>
+                          <i class="fa-book-atlas" style="color: white; font-size: 18px;"></i>
+                          <span style="color: white; font-size: 14px; font-weight: bold; text-align: center;">Beli Versi Digital</span>
+                        </a>
 
+                    </div>
+                    @endif
+                  {{--// Button add to cart --}}
+
+                  {{-- Show attribute --}}
+                  @if (sc_config('product_property'))
+                  <div id="product-detail-attr">
+                      @if ($product->attributes())
+                      {!! $product->renderAttributeDetails() !!}
+                      @endif
                   </div>
                   @endif
-                {{--// Button add to cart --}}
+                  {{--// Show attribute --}}
 
-                {{-- Show attribute --}}
-                @if (sc_config('product_property'))
-                <div id="product-detail-attr">
-                    @if ($product->attributes())
-                    {!! $product->renderAttributeDetails() !!}
-                    @endif
-                </div>
-                @endif
-                {{--// Show attribute --}}
+                  {{-- Stock info --}}
+                  @if (sc_config('product_stock'))
+                      <div style="margin-top: 10px; padding: 10px; border-radius: 8px; background: #f8f9fa; display: inline-block;">
+                          <strong style="color: #555;">{{ sc_language_render('product.stock_status') }}:</strong>
+                          <span id="stock_status" 
+                                style="font-weight: bold; padding: 5px 10px; border-radius: 5px; 
+                                      @if($product->stock <= 0 && !sc_config('product_buy_out_of_stock')) 
+                                          background: #ffccd1; color: #d9534f;
+                                      @else 
+                                          background: #d4edda; color: #28a745;
+                                      @endif">
+                              @if($product->stock <= 0 && !sc_config('product_buy_out_of_stock')) 
+                                  {{ sc_language_render('product.out_stock') }} 
+                              @else 
+                                  {{ sc_language_render('product.in_stock') }} 
+                              @endif
+                          </span> 
+                      </div>
+                  @endif
+                  {{--// Stock info --}}
 
-                {{-- Stock info --}}
-                @if (sc_config('product_stock'))
-                    <div style="margin-top: 10px; padding: 10px; border-radius: 8px; background: #f8f9fa; display: inline-block;">
-                        <strong style="color: #555;">{{ sc_language_render('product.stock_status') }}:</strong>
-                        <span id="stock_status" 
-                              style="font-weight: bold; padding: 5px 10px; border-radius: 5px; 
-                                    @if($product->stock <= 0 && !sc_config('product_buy_out_of_stock')) 
-                                        background: #ffccd1; color: #d9534f;
-                                    @else 
-                                        background: #d4edda; color: #28a745;
-                                    @endif">
-                            @if($product->stock <= 0 && !sc_config('product_buy_out_of_stock')) 
-                                {{ sc_language_render('product.out_stock') }} 
-                            @else 
-                                {{ sc_language_render('product.in_stock') }} 
-                            @endif
-                        </span> 
-                    </div>
-                @endif
-                {{--// Stock info --}}
+                  {{-- date available --}}
+                  @if (sc_config('product_available') && $product->date_available >= date('Y-m-d H:i:s'))
+                      {{ sc_language_render('product.date_available') }}:
+                      <span id="product-detail-available">
+                          {{ $product->date_available }}
+                      </span>
+                  @endif
+                  {{--// date available --}}
 
-                {{-- date available --}}
-                @if (sc_config('product_available') && $product->date_available >= date('Y-m-d H:i:s'))
-                    {{ sc_language_render('product.date_available') }}:
-                    <span id="product-detail-available">
-                        {{ $product->date_available }}
-                    </span>
-                @endif
-                {{--// date available --}}
+                  {{-- Category info --}}
+                  <div style="padding: 10px; border-radius: 8px; display: flex; flex-direction: column;">
+                      <strong style="font-size: 14px; color: #333;">{{ sc_language_render('product.category') }}:</strong>
+                      <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 5px;">
+                          @foreach ($product->categories as $category)
+                              <a href="{{ $category->getUrl() }}" 
+                                style="padding: 6px 12px; 
+                                        border: 1.5px solid #e0e0e0; 
+                                        border-radius: 15px; 
+                                        font-size: 12px; 
+                                        font-weight: 500; 
+                                        color: #606060; 
+                                        text-decoration: none; 
+                                        transition: all 0.3s ease-in-out;" 
+                                onmouseover="this.style.backgroundColor='#ff914d'; 
+                                              this.style.color='white'; 
+                                              this.style.borderColor='#ff914d'; 
+                                              this.style.boxShadow='0 3px 6px rgba(0, 0, 0, 0.1)';"
+                                onmouseout="this.style.backgroundColor='transparent'; 
+                                            this.style.color='#606060'; 
+                                            this.style.borderColor='#e0e0e0'; 
+                                            this.style.boxShadow='none';">
+                                  {{ $category->getTitle() }}
+                              </a>
+                          @endforeach
+                      </div>
+                  </div>
+                  {{--// Category info --}}
 
-                {{-- Category info --}}
-                <div style="padding: 10px; border-radius: 8px; display: flex; flex-direction: column;">
-                    <strong style="font-size: 14px; color: #333;">{{ sc_language_render('product.category') }}:</strong>
-                    <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 5px;">
-                        @foreach ($product->categories as $category)
-                            <a href="{{ $category->getUrl() }}" 
-                              style="padding: 6px 12px; 
-                                      border: 1.5px solid #e0e0e0; 
-                                      border-radius: 15px; 
-                                      font-size: 12px; 
-                                      font-weight: 500; 
-                                      color: #606060; 
-                                      text-decoration: none; 
-                                      transition: all 0.3s ease-in-out;" 
-                              onmouseover="this.style.backgroundColor='#ff914d'; 
-                                            this.style.color='white'; 
-                                            this.style.borderColor='#ff914d'; 
-                                            this.style.boxShadow='0 3px 6px rgba(0, 0, 0, 0.1)';"
-                              onmouseout="this.style.backgroundColor='transparent'; 
-                                          this.style.color='#606060'; 
-                                          this.style.borderColor='#e0e0e0'; 
-                                          this.style.boxShadow='none';">
-                                {{ $category->getTitle() }}
+                  {{-- Brand info --}}
+                  @if (sc_config('product_brand') && !empty($product->brand->name))
+                  <div>
+                      {{ sc_language_render('product.brand') }}:
+                      <span id="product-detail-brand">
+                          {!! empty($product->brand->name) ? 'None' : '<a href="'.$product->brand->getUrl().'">'.$product->brand->name.'</a>' !!}
+                      </span>
+                  </div>
+                  @endif
+                  {{--// Brand info --}}
+
+                  {{-- Product kind --}}
+                  @if ($product->kind == SC_PRODUCT_GROUP)
+                    <div class="products-group">
+                        @php
+                        $groups = $product->groups
+                        @endphp
+                        <b>{{ sc_language_render('product.kind_group') }}</b>:<br>
+                        @foreach ($groups as $group)
+                        <span class="sc-product-group">
+                            <a target=_blank href="{{ $group->product->getUrl() }}">
+                                {!! sc_image_render($group->product->image) !!}
                             </a>
+                        </span>
                         @endforeach
                     </div>
-                </div>
-                {{--// Category info --}}
+                  @endif
 
-                {{-- Brand info --}}
-                @if (sc_config('product_brand') && !empty($product->brand->name))
-                <div>
-                    {{ sc_language_render('product.brand') }}:
-                    <span id="product-detail-brand">
-                        {!! empty($product->brand->name) ? 'None' : '<a href="'.$product->brand->getUrl().'">'.$product->brand->name.'</a>' !!}
-                    </span>
-                </div>
-                @endif
-                {{--// Brand info --}}
-
+                  @if ($product->kind == SC_PRODUCT_BUILD)
+                    <div class="products-group">
+                        @php
+                        $builds = $product->builds
+                        @endphp
+                        <b>{{ sc_language_render('product.kind_bundle') }}</b>:<br>
+                        <span class="sc-product-build">
+                            {!! sc_image_render($product->image) !!} =
+                        </span>
+                        @foreach ($builds as $k => $build)
+                        {!! ($k) ? '<i class="fa fa-plus" aria-hidden="true"></i>':'' !!}
+                        <span class="sc-product-build">{{ $build->quantity }} x
+                            <a target="_new" href="{{ $build->product->getUrl() }}">{!!
+                                sc_image_render($build->product->image) !!}</a>
+                        </span>
+                        @endforeach
+                    </div>
+                  @endif
                 {{-- Product kind --}}
-                @if ($product->kind == SC_PRODUCT_GROUP)
-                  <div class="products-group">
-                      @php
-                      $groups = $product->groups
-                      @endphp
-                      <b>{{ sc_language_render('product.kind_group') }}</b>:<br>
-                      @foreach ($groups as $group)
-                      <span class="sc-product-group">
-                          <a target=_blank href="{{ $group->product->getUrl() }}">
-                              {!! sc_image_render($group->product->image) !!}
-                          </a>
-                      </span>
-                      @endforeach
-                  </div>
-                @endif
 
-                @if ($product->kind == SC_PRODUCT_BUILD)
-                  <div class="products-group">
-                      @php
-                      $builds = $product->builds
-                      @endphp
-                      <b>{{ sc_language_render('product.kind_bundle') }}</b>:<br>
-                      <span class="sc-product-build">
-                          {!! sc_image_render($product->image) !!} =
-                      </span>
-                      @foreach ($builds as $k => $build)
-                      {!! ($k) ? '<i class="fa fa-plus" aria-hidden="true"></i>':'' !!}
-                      <span class="sc-product-build">{{ $build->quantity }} x
-                          <a target="_new" href="{{ $build->product->getUrl() }}">{!!
-                              sc_image_render($build->product->image) !!}</a>
-                      </span>
-                      @endforeach
-                  </div>
-                @endif
-              {{-- Product kind --}}
+                  <hr class="hr-gray-100">
 
-                <hr class="hr-gray-100">
+                {{-- Social --}}
+                <div style="display: flex; align-items: center; gap: 10px; margin-top: 15px; padding: 10px; border-radius: 8px;">
+                    <span style="font-size: 14px; font-weight: 600; color: #333;">Bagikan:</span>
+                    <div>
+                        <ul style="display: flex; gap: 8px; list-style: none; padding: 0; margin: 0;">
+                            <li>
+                                <a href="#" 
+                                  style="display: flex; align-items: center; justify-content: center; 
+                                          width: 35px; height: 35px; border-radius: 50%; 
+                                          background-color: #3b5998; color: white; 
+                                          font-size: 18px; text-decoration: none; 
+                                          transition: transform 0.3s ease-in-out;" 
+                                  onmouseover="this.style.transform='scale(1.1)'" 
+                                  onmouseout="this.style.transform='scale(1)'">
+                                    <i class="fa-brands fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" 
+                                  style="display: flex; align-items: center; justify-content: center; 
+                                          width: 35px; height: 35px; border-radius: 50%; 
+                                          background-color: #1da1f2; color: white; 
+                                          font-size: 18px; text-decoration: none; 
+                                          transition: transform 0.3s ease-in-out;" 
+                                  onmouseover="this.style.transform='scale(1.1)'" 
+                                  onmouseout="this.style.transform='scale(1)'">
+                                    <i class="fa-brands fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" 
+                                  style="display: flex; align-items: center; justify-content: center; 
+                                          width: 35px; height: 35px; border-radius: 50%; 
+                                          background-color: #e4405f; color: white; 
+                                          font-size: 18px; text-decoration: none; 
+                                          transition: transform 0.3s ease-in-out;" 
+                                  onmouseover="this.style.transform='scale(1.1)'" 
+                                  onmouseout="this.style.transform='scale(1)'">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" 
+                                  style="display: flex; align-items: center; justify-content: center; 
+                                          width: 35px; height: 35px; border-radius: 50%; 
+                                          background-color: #db4437; color: white; 
+                                          font-size: 18px; text-decoration: none; 
+                                          transition: transform 0.3s ease-in-out;" 
+                                  onmouseover="this.style.transform='scale(1.1)'" 
+                                  onmouseout="this.style.transform='scale(1)'">
+                                    <i class="fa-brands fa-google-plus-g"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                {{--// Social --}}
 
-              {{-- Social --}}
-              <div style="display: flex; align-items: center; gap: 10px; margin-top: 15px; padding: 10px; border-radius: 8px;">
-                  <span style="font-size: 14px; font-weight: 600; color: #333;">Bagikan:</span>
-                  <div>
-                      <ul style="display: flex; gap: 8px; list-style: none; padding: 0; margin: 0;">
-                          <li>
-                              <a href="#" 
-                                style="display: flex; align-items: center; justify-content: center; 
-                                        width: 35px; height: 35px; border-radius: 50%; 
-                                        background-color: #3b5998; color: white; 
-                                        font-size: 18px; text-decoration: none; 
-                                        transition: transform 0.3s ease-in-out;" 
-                                onmouseover="this.style.transform='scale(1.1)'" 
-                                onmouseout="this.style.transform='scale(1)'">
-                                  <i class="fa-brands fa-facebook-f"></i>
-                              </a>
-                          </li>
-                          <li>
-                              <a href="#" 
-                                style="display: flex; align-items: center; justify-content: center; 
-                                        width: 35px; height: 35px; border-radius: 50%; 
-                                        background-color: #1da1f2; color: white; 
-                                        font-size: 18px; text-decoration: none; 
-                                        transition: transform 0.3s ease-in-out;" 
-                                onmouseover="this.style.transform='scale(1.1)'" 
-                                onmouseout="this.style.transform='scale(1)'">
-                                  <i class="fa-brands fa-twitter"></i>
-                              </a>
-                          </li>
-                          <li>
-                              <a href="#" 
-                                style="display: flex; align-items: center; justify-content: center; 
-                                        width: 35px; height: 35px; border-radius: 50%; 
-                                        background-color: #e4405f; color: white; 
-                                        font-size: 18px; text-decoration: none; 
-                                        transition: transform 0.3s ease-in-out;" 
-                                onmouseover="this.style.transform='scale(1.1)'" 
-                                onmouseout="this.style.transform='scale(1)'">
-                                  <i class="fa-brands fa-instagram"></i>
-                              </a>
-                          </li>
-                          <li>
-                              <a href="#" 
-                                style="display: flex; align-items: center; justify-content: center; 
-                                        width: 35px; height: 35px; border-radius: 50%; 
-                                        background-color: #db4437; color: white; 
-                                        font-size: 18px; text-decoration: none; 
-                                        transition: transform 0.3s ease-in-out;" 
-                                onmouseover="this.style.transform='scale(1.1)'" 
-                                onmouseout="this.style.transform='scale(1)'">
-                                  <i class="fa-brands fa-google-plus-g"></i>
-                              </a>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
-              {{--// Social --}}
-
-              </div>
-            </form>
+                </div>
+              </form>
             </div>
           </div>
+        <!-- Bootstrap Tabs -->
+<div class="custom-tabs">
+    <!-- Nav Tabs -->
+    <ul class="nav nav-tabs justify-content-center" id="myTab">
+        <li class="nav-item">
+            <a class="nav-link active" id="tab-deskripsi" data-bs-toggle="tab" href="#tabs-1-1">Deskripsi Produk</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="tab-info" data-bs-toggle="tab" href="#tabs-1-2">Informasi Tambahan</a>
+        </li>
+    </ul>
 
-          <!-- Bootstrap tabs-->
-          <div class="tabs-custom tabs-horizontal tabs-line" id="tabs-1">
-              <!-- Nav tabs-->
-              <div class="nav-tabs-wrap">
-                  <ul class="nav nav-tabs nav-tabs-1">
-                      <li class="nav-item">
-                          <a class="nav-link active" href="#tabs-1-1" data-toggle="tab">{{ sc_language_render('product.description') }}</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="#tabs-1-2" data-toggle="tab">Informasi Tambahan</a>
-                      </li>
-                  </ul>
-              </div>
+    <!-- Tab Content -->
+    <div class="tab-content p-4">
+        <!-- Deskripsi Produk -->
+        <div class="tab-pane fade show active" id="tabs-1-1">
+            <p>{!! sc_html_render($product->content) !!}</p>
+        </div>
 
-
-              <!-- Tab content -->
-              <div class="tab-content">
-                  <!-- Deskripsi -->
-                  <div class="tab-pane fade show active" id="tabs-1-1">
-                      {!! sc_html_render($product->content) !!}
-                  </div>
-
-                  <!-- Supplier -->
-                  <div class="tab-pane fade" id="tabs-1-2">
-                      <table class="table table-bordered">
-                          <tbody>
-                              <tr>
-                                  <td style="color: #777777;">Ukuran</td>
-                                  <td style="color: #777777;">{{ $product->length }} x {{ $product->width }}</td>
-                              </tr>
-                              <tr>
-                                  <td style="color: #777777;">Halaman</td>
-                                  <td style="color: #777777;">{{ $product->page }}</td>
-                              </tr>
-                              <tr>
-                                  <td style="color: #777777;">Tahun Terbit</td>
-                                  <td style="color: #777777;">{{ $product->year }}</td>
-                              </tr>
-                              <tr>
-                                  <td style="color: #777777;">Penulis</td>
-                                  <td style="color: #777777;">{{ $product->writer }}</td>
-                              </tr>
-                              <tr>
-                                  <td style="color: #777777;">Penerbit</td>
-                                  <td style="color: #777777;">{{ $product->supplier->name }}</td>
-                              </tr>
-                              <tr>
-                                  <td style="color: #777777;">ISBN</td>
-                                  <td style="color: #777777;">{{ $product->isbn }}</td>
-                              </tr>
-                              <tr>
-                                  <td style="color: #777777;">e-ISBN</td>
-                                  <td style="color: #777777;">{{ $product->eisbn }}</td>
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>
-
-              </div>
-          </div>
+        <!-- Informasi Tambahan -->
+        <div class="tab-pane fade" id="tabs-1-2">
+            <table class="table table-borderless">
+                <tbody>
+                    <tr><td><strong>Ukuran</strong></td><td>{{ $product->length }} x {{ $product->width }}</td></tr>
+                    <tr><td><strong>Halaman</strong></td><td>{{ $product->page }}</td></tr>
+                    <tr><td><strong>Tahun Terbit</strong></td><td>{{ $product->year }}</td></tr>
+                    <tr><td><strong>Penulis</strong></td><td>{{ $product->writer }}</td></tr>
+                    <tr><td><strong>Penerbit</strong></td><td>{{ $product->supplier->name }}</td></tr>
+                    <tr><td><strong>ISBN</strong></td><td>{{ $product->isbn }}</td></tr>
+                    <tr><td><strong>e-ISBN</strong></td><td>{{ $product->eisbn }}</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
         </div>
       </section>
@@ -486,44 +460,64 @@ $layout_page = shop_product_detail
       background: #d9d9d9; /* Efek hover */
   }
 
-  .nav-tabs-wrap {
-    margin-bottom: 0 !important; /* Kurangi jarak di bawah tab */
+  /* Menghilangkan card terluar */
+.custom-tabs {
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    margin-top: 30px;
 }
 
-.nav-tabs-wrap {
-    position: relative; /* Pastikan posisi tetap */
-    padding-left: 0px; /* Sesuaikan jika perlu */
+/* Styling untuk Tabs */
+.nav-tabs {
+    border-bottom: none;
+    background: #0097b2; /* Warna yang diinginkan */
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: center; /* Membuat tab lebih rapi */
 }
 
-.nav-tabs-wrap::before {
-    content: "";
-    position: absolute;
-    left: 0; /* Pastikan mulai dari kiri */
-    width: 100%;
-    height: 1px;
-    background-color: #ddd; /* Garis bawah */
+.nav-tabs .nav-link {
+    color: white;
+    padding: 12px 20px;
+    font-weight: bold;
+    border-radius: 20px;
+    margin: 5px;
+    transition: all 0.3s ease-in-out;
 }
 
-.nav-tabs-1 {
-    padding-left: 0 !important; /* Hilangkan padding bawaan */
-    margin-left: 0 !important;
+.nav-tabs .nav-link.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
 }
 
-.nav-tabs-1 .nav-item {
-    flex-grow: 0 !important;
-    width: auto !important;
-    min-width: 100px;
-    max-width: 150px;
-    padding: 0 !important;
-    text-align: left; /* Rata kiri */
+/* Styling untuk konten tab */
+.tab-content {
+    background: white;
+    border-radius: 0 0 10px 10px;
+    padding: 20px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08); /* Shadow lebih lembut */
 }
 
-.nav-tabs-1 .nav-link {
-    padding: 6px 10px !important;
-    font-size: 13px;
-    text-align: left !important;
-    white-space: nowrap !important;
+/* Styling untuk tabel informasi tambahan */
+.table-borderless td {
+    padding: 12px;
 }
+
+/* Responsif agar tampil lebih baik di mobile */
+@media (max-width: 768px) {
+    .nav-tabs {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-tabs .nav-link {
+        width: 100%;
+        text-align: center;
+    }
+}
+
 
   /* Responsif */
   @media (min-width: 576px) {
@@ -560,4 +554,16 @@ $layout_page = shop_product_detail
 
 @push('scripts')
 {{-- //script here --}}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var triggerTabList = [].slice.call(document.querySelectorAll('.nav-tabs a'))
+        triggerTabList.forEach(function (triggerEl) {
+            var tabTrigger = new bootstrap.Tab(triggerEl)
+            triggerEl.addEventListener('click', function (event) {
+                event.preventDefault()
+                tabTrigger.show()
+            })
+        })
+    });
+</script>
 @endpush
