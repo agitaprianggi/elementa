@@ -120,6 +120,7 @@ $layout_page = shop_product_detail
 
                 {{-- Button add to cart --}}
                   @if ($product->kind != SC_PRODUCT_GROUP && $product->allowSale() && !sc_config('product_cart_off'))
+                  <input type="hidden" name="qty" value="1">
                   <div style="
                       display: flex;
                       align-items: center;
