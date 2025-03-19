@@ -138,7 +138,7 @@ $layout_page = shop_product_detail
                           align-items: center;
                           justify-content: center;
                           gap: 12px;
-                          min-width: 170px;
+                          min-width: 160px;
                       " onmouseover="this.style.background='#d9d9d9'" 
                         onmouseout="this.style.background='#0097b2'">
                           <i class="fa fa-cart-plus" style="color: white; font-size: 16px;"></i>
@@ -161,7 +161,7 @@ $layout_page = shop_product_detail
                             align-items: center;
                             justify-content: center;
                             gap: 12px;
-                            min-width: 170px;
+                            min-width: 160px;
                         "
                         onmouseover="this.style.background='#d9d9d9'" 
                         onmouseout="this.style.background='#ff914d'">
