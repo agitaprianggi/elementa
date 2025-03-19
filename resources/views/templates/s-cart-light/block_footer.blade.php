@@ -1,100 +1,124 @@
-      <!-- Page Footer-->
-      <footer class="section footer-classic">
-        <div class="footer-classic-body section-lg bg-brown-2">
-          <div class="container">
-            <div class="row row-40 row-md-50 justify-content-xl-between">
-              <div class="col-sm-6 col-lg-4 col-xl-3 wow fadeInRight">
-                <a href="{{ sc_route('home') }}">
-                    <img class="logo-footer" src="{{  sc_file(sc_store('logo', ($storeId ?? null))) }}" alt="{{ sc_store('title', ($storeId ?? null)) }}">
-                </a>
-                <p>{{ sc_store('title', ($storeId ?? null)) }}</p>
-                <p> {!! sc_store('time_active', ($storeId ?? null))  !!}</p>
-                <div class="footer-classic-social">
-                  <div class="group-lg group-middle">
-                    <div>
-                      <ul class="list-inline list-social list-inline-sm">
-                        @if (sc_config('facebook_url'))
-                        <li><a class="icon mdi mdi-facebook" href="{{ sc_config('facebook_url') }}"></a></li>
-                        @endif
-                        @if (sc_config('twitter_url'))
-                        <li><a class="icon mdi mdi-twitter" href="{{ sc_config('twitter_url') }}"></a></li>
-                        @endif
-                        @if (sc_config('instagram_url'))
-                        <li><a class="icon mdi mdi-instagram" href="{{ sc_config('instagram_url') }}"></a></li>
-                        @endif
-                        @if (sc_config('youtube_url'))
-                        <li><a class="icon mdi mdi-youtube-play" href="{{ sc_config('youtube_url') }}"></a></li>
-                        @endif
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-sm-6 col-lg-4 col-xl-3 wow fadeInRight" data-wow-delay=".1s">
-                <h4 class="footer-classic-title">PT. Elementa Media Literasi</h4>
-                <p>Entiti bisnis di bidang literasi yang menyediakan buku baik cetak maupun digital dengan tema beragam dan kekinian untuk memenuhi koleksi bacaan Anda</p>
-              </div>
-
-              <div class="col-sm-6 col-lg-4 col-xl-3 wow fadeInRight" data-wow-delay=".1s">
-                <h4 class="footer-classic-title">{{ sc_language_render('front.contact') }}</h4>
-                <ul class="contacts-creative">
-                  <li>
-                    <div class="unit unit-spacing-sm flex-column flex-md-row">
-                      <div class="unit-left"><span class="icon mdi mdi-map-marker"></span></div>
-                      <div class="unit-body"><a href="#">{{ sc_store('address', ($storeId ?? null)) }}</a></div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="unit unit-spacing-sm flex-column flex-md-row">
-                      <div class="unit-left"><span class="icon mdi mdi-phone"></span></div>
-                      <div class="unit-body"><a href="tel:#">{{ sc_store('long_phone', ($storeId ?? null)) }}</a></div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="unit unit-spacing-sm flex-column flex-md-row">
-                      <div class="unit-left"><span class="icon mdi mdi-email-outline"></span></div>
-                      <div class="unit-body"><a href="mailto:#{{ sc_store('email', ($storeId ?? null)) }}">{{ sc_store('email', ($storeId ?? null)) }}</a></div>
-                    </div>
-                  </li>
-                  <li>
-
-                    <form class="rd-form-inline rd-form-inline-2"  method="post" action="{{ sc_route('subscribe') }}">
-                        @csrf
-                          <div class="form-wrap">
-                            <input class="form-input" id="subscribe-form-2-email" type="email" name="subscribe_email" required/>
-                            <label class="form-label" for="subscribe-form-2-email">{{ sc_language_render('subscribe.email') }}</label>
-                          </div>
-                          <div class="form-button">
-                            <button class="button button-icon-2 button-zakaria button-primary" type="submit" title="{{ sc_language_render('subscribe.title') }}">
-                              <span class="fl-bigmug-line-paper122"></span>
-                            </button>
-                          </div>
-                        </form>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+<!-- Page Footer -->
+<footer class="section footer-classic bg-dark text-light py-5">
+  <div class="container">
+    <div class="row row-40 row-md-50 justify-content-between">
+      <!-- Logo & Description -->
+      <div class="col-md-3">
+        <a href="{{ sc_route('home') }}">
+          <img class="logo-footer mb-3" style="max-width: 180px; height: auto;" src="{{ sc_file(sc_store('logo', ($storeId ?? null))) }}" alt="{{ sc_store('title', ($storeId ?? null)) }}">
+        </a>
+        <!-- <p class="footer-store-name">{{ sc_store('title', ($storeId ?? null)) }}</p> -->
+        <p class="footer-store-name">Follow Us</p>
+        <p class="footer-detail">{!! sc_store('time_active', ($storeId ?? null)) !!}</p>
+        <div class="footer-social mt-3">
+          <a href="{{ sc_config('facebook_url') }}" class="social-icon"><i class="mdi mdi-facebook"></i></a>
+          <a href="{{ sc_config('twitter_url') }}" class="social-icon"><i class="mdi mdi-twitter"></i></a>
+          <a href="{{ sc_config('instagram_url') }}" class="social-icon"><i class="mdi mdi-instagram"></i></a>
+          <a href="{{ sc_config('youtube_url') }}" class="social-icon"><i class="mdi mdi-youtube-play"></i></a>
         </div>
+      </div>
 
-        <div class="footer-classic-panel">
-          <div class="container">
-            <div class="row row-10 align-items-center justify-content-sm-between">
-              <div class="col-md-auto">
-                <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span><span>&nbsp;</span><span>{{ sc_store('title', ($storeId ?? null)) }}</span><span>.&nbsp; All rights reserved</span></p>
-              </div>
-              <!-- @if (sc_config('fanpage_url'))
-              <div class="col-md-auto order-md-1"> <a target="_blank"
-                href="{{ sc_config('fanpage_url') }}">Fanpage FB</a>
-              </div>
-              @endif -->
-              @if (!sc_config('hidden_copyright_footer'))
-              <div class="col-md-auto">
-                    Powered by <a href="{{ config('s-cart.homepage') }}">{{ config('s-cart.name') }} {{ config('s-cart.sub-version') }}</a>
-              </div>
-              @endif
-            </div>
-          </div>
-        </div>
-      </footer>
+      <!-- About Section -->
+      <div class="col-md-3">
+        <h5 class="footer-title">Tentang Kami</h5>
+        <p class="footer-detail-w">PT. Elementa Media Literasi menyediakan buku cetak dan digital dengan tema beragam dan kekinian untuk memenuhi koleksi bacaan Anda.</p>
+      </div>
+
+      <!-- Contact Section -->
+      <div class="col-md-3">
+        <h5 class="footer-title">{{ sc_language_render('front.contact') }}</h5>
+        <ul class="list-unstyled contact-list">
+          <li><i class="mdi mdi-map-marker"></i> <a href="https://www.google.com/maps?q=-7.842639,110.374167" target="_blank" class="footer-detail">{{ sc_store('address', ($storeId ?? null)) }}</a></li>
+          <li><i class="mdi mdi-phone"></i> <a href="tel:#" class="footer-detail">{{ sc_store('long_phone', ($storeId ?? null)) }}</a></li>
+          <li><i class="mdi mdi-email-outline"></i> <a href="mailto:#{{ sc_store('email', ($storeId ?? null)) }}" class="footer-detail">{{ sc_store('email', ($storeId ?? null)) }}</a></li>
+        </ul>
+      </div>
+
+      <!-- Subscribe Section -->
+      <div class="col-md-3">
+        <h5 class="footer-title">JADILAH YANG PERTAMA!</h5>
+        <p class="footer-detail-w">Dapatkan informasi terbaru tentang buku, promo, dan penawaran eksklusif langsung ke email Anda.</p>
+        <form class="d-flex mt-3" method="post" action="{{ sc_route('subscribe') }}">
+          @csrf
+          <input class="form-control me-2" type="email" name="subscribe_email" placeholder="Email Anda" required>
+          <button class="btn btn-primary" type="submit"><i class="fl-bigmug-line-paper122"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="footer-bottom text-center mt-4 py-3 bg-secondary">
+    <p class="mb-0 footer-detail">&copy; <span class="copyright-year"></span> {{ sc_store('title', ($storeId ?? null)) }}. All rights reserved.</p>
+    @if (!sc_config('hidden_copyright_footer'))
+      <p class="footer-detail text-white">Powered by <a href="{{ config('s-cart.homepage') }}" class="text-white">{{ config('s-cart.name') }} {{ config('s-cart.sub-version') }}</a></p>
+    @endif
+  </div>
+</footer>
+
+<!-- Custom Styles -->
+<style>
+  .footer-title {
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: white;
+  }
+  .footer-detail-w {
+    color: #A0A0A0;
+    transition: color 0.3s;
+  }
+  .footer-detail {
+    color: #A0A0A0;
+    transition: color 0.3s;
+  }
+  .footer-detail:hover {
+    color:rgb(255, 192, 45);
+  }
+  .footer-social {
+  display: flex;
+  gap: 10px;
+  }
+  .footer-social .social-icon {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+  }
+  .footer-social .social-icon:hover {
+  background-color: rgb(255, 192, 45);
+  color: #000;
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(255, 192, 45, 0.8);
+  }
+  .footer-bottom {
+    font-size: 14px;
+  }
+  .contact-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .contact-list i {
+    font-size: 18px;
+    color: rgb(255, 192, 45);
+    transition: color 0.3s;
+  }
+  .contact-list i:hover {
+    color: white;
+  }
+  .footer-store-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(255, 255, 255); /* Warna emas agar lebih mencolok */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+</style>
