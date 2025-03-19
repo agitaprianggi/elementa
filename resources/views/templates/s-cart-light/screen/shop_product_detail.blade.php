@@ -126,6 +126,10 @@ $layout_page = shop_product_detail
                       justify-content: flex-start;
                   ">
 
+                    <div class="product-stepper">
+                        <input class="form-input" name="qty" type="number" value="1" readonly>
+                    </div>
+
                       {{-- Tombol "Beli Versi Cetak" --}}
                       <button id="sc_button-form-process" type="submit" style="
                           background: #0097b2;
