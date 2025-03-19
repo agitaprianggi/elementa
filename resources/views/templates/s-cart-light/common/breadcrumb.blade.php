@@ -12,7 +12,6 @@
                 'shop_search'
             ];
             $arrBreadcrumbHome = [
-                'shop_home',
                 'vendor_home',
                 'vendor_product_list'
             ];
