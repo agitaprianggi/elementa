@@ -247,15 +247,16 @@ $layout_page = shop_product_detail
           <div class="tabs-custom tabs-horizontal tabs-line" id="tabs-1">
               <!-- Nav tabs-->
               <div class="nav-tabs-wrap">
-                  <ul class="nav nav-tabs nav-tabs-1">
-                      <li class="nav-item" role="presentation">
-                          <a class="nav-link active" href="#tabs-1-1" data-toggle="tab">{{ sc_language_render('product.description') }}</a>
-                      </li>
-                      <li class="nav-item" role="presentation">
-                          <a class="nav-link" href="#tabs-1-2" data-toggle="tab">Informasi Tambahan</a>
-                      </li>
-                  </ul>
-              </div>
+    <ul class="nav nav-tabs nav-tabs-1">
+        <li class="nav-item">
+            <a class="nav-link active" href="#tabs-1-1" data-toggle="tab">{{ sc_language_render('product.description') }}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#tabs-1-2" data-toggle="tab">Informasi Tambahan</a>
+        </li>
+    </ul>
+</div>
+
 
               <!-- Tab content -->
               <div class="tab-content">
@@ -337,7 +338,7 @@ $layout_page = shop_product_detail
 
   .shape1 {
       width: 160px;
-      height: 25px;
+      height: 40px;
       border-radius: 25px; /* Tidak oval penuh, lebih seperti tombol */
       display: flex;
       align-items: center;
@@ -405,6 +406,45 @@ $layout_page = shop_product_detail
   .single-product .button:hover {
       background: #d9d9d9; /* Efek hover */
   }
+
+  .nav-tabs-wrap {
+    margin-bottom: 0 !important; /* Kurangi jarak di bawah tab */
+}
+
+.nav-tabs-wrap {
+    position: relative; /* Pastikan posisi tetap */
+    padding-left: 0px; /* Sesuaikan jika perlu */
+}
+
+.nav-tabs-wrap::before {
+    content: "";
+    position: absolute;
+    left: 0; /* Pastikan mulai dari kiri */
+    width: 100%;
+    height: 1px;
+    background-color: #ddd; /* Garis bawah */
+}
+
+.nav-tabs-1 {
+    padding-left: 0 !important; /* Hilangkan padding bawaan */
+    margin-left: 0 !important;
+}
+
+.nav-tabs-1 .nav-item {
+    flex-grow: 0 !important;
+    width: auto !important;
+    min-width: 100px;
+    max-width: 150px;
+    padding: 0 !important;
+    text-align: left; /* Rata kiri */
+}
+
+.nav-tabs-1 .nav-link {
+    padding: 6px 10px !important;
+    font-size: 13px;
+    text-align: left !important;
+    white-space: nowrap !important;
+}
 
   /* Responsif */
   @media (min-width: 576px) {
