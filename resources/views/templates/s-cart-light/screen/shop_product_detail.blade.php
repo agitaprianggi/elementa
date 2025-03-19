@@ -172,8 +172,7 @@ $layout_page = shop_product_detail
                         <i class="fa fa-book" style="color: white; font-size: 16px;"></i>
                         <span style="color: white; font-size: 14px; font-weight: bold; text-align: center;">Beli Versi Digital</span>
                       </a>
-
-</div>
+                    </div>
 
                   {{-- Show attribute --}}
                   @if (sc_config('product_property'))
@@ -534,7 +533,10 @@ $layout_page = shop_product_detail
           min-height: 70px;
           font-size: 24px;
       }
-  }
+  } 
+  .product-stepper {
+    display: none;
+    }  
 
   /* .product-stepper {
       margin-right: 10px;
