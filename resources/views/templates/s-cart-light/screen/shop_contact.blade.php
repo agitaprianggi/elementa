@@ -7,13 +7,17 @@ $layout_page = shop_contact
 @extends($sc_templatePath.'.layout')
 
 @section('block_main')
-<style>
-h4 {
-    text-transform: none !important;
-}
-</style>
+
+<section class="banner-contact">
+    <div class="overlay"></div>
+    <div class="banner-contact-content">
+        <h1>Hubungi Kami & Mulai Kolaborasi!</h1>
+        <p>Kami siap membantu Anda! Jangan ragu untuk menghubungi kami atau kunjungi lokasi kami untuk diskusi lebih lanjut. Mari bekerja sama dan ciptakan peluang baru bersama!</p>
+    </div>
+</section>
+
 <section class="section section-sm section-first bg-default text-md-left">
-<div class="container">
+<div class="container" style="margin-top: -40px;">
     <div class="row">
         <div class="col-md-6 contact_content text-center p-4 shadow-sm rounded bg-white d-flex flex-column align-items-center">
             <div class="mb-4">
@@ -87,19 +91,101 @@ h4 {
 @endsection
 
 <style>
+    h4 {
+    text-transform: none !important;
+    }
+
     .lokasi-heading {
-            font-family: 'Poppins', sans-serif;
-            color: #0074A8;
-            font-size: 1.1rem; /* Ukuran font sedikit lebih kecil */
-            text-align: center;
-            /* margin-top: 1.5rem; */
-        }
+        font-family: 'Poppins', sans-serif;
+        color: #0074A8;
+        font-size: 1.1rem; /* Ukuran font sedikit lebih kecil */
+        text-align: center;
+    }
+
+    .banner-contact {
+        position: relative;
+        width: 100%;
+        height: 400px;
+        background: url("{{ asset('data/banner/banner-contact.png') }}") no-repeat center center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        color: white;
+        padding-left: 10%;
+    }
+
+    /* Overlay efek untuk latar belakang */
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    /* Konten banner */
+    .banner-contact-content {
+        position: relative;
+        z-index: 1;
+        max-width: 600px;
+        text-align: left;
+    }
+
+    .banner-contact-content h1 {
+        font-size: 3rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-transform: none;
+        color: #f0f0f0;
+    }
+
+    .banner-contact-content p {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        color: #f0f0f0;
+    }
+
+    /* Responsif untuk layar tablet */
     @media (max-width: 768px) {
         .contact-form {
             text-align: left;
         }
+
         .lokasi-heading {
-                font-size: 1rem; 
-            }
+            font-size: 1rem; 
+        }
+
+        .banner-contact {
+            height: 300px;
+            padding-left: 5%;
+        }
+
+        .banner-contact-content h1 {
+            font-size: 2rem;
+        }
+
+        .banner-contact-content p {
+            font-size: 1rem;
+        }
+    }
+
+    /* Responsif untuk layar lebih kecil (HP kecil) */
+    @media (max-width: 480px) {
+        .banner-contact {
+            height: 250px;
+            padding-left: 3%;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .banner-contact-content h1 {
+            font-size: 1.8rem;
+        }
+
+        .banner-contact-content p {
+            font-size: 0.9rem;
+        }
     }
 </style>
