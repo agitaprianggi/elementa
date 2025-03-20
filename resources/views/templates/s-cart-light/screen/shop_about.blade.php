@@ -286,95 +286,95 @@ $layout_page = shop_about
         color: #f0f0f0;
     }
     section.team-section {
-            padding: 50px 20px;
-            text-align: center;
-            background-color: #f8f9fa;
-            width: 80%;
-            justify-content: center;
-            margin: auto;
-        }
-        .team-title {
-            font-size: 32px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            font-family: 'Roboto', sans-serif;
-            text-transform: none;
-            
-        }
-        .team-subtitle {
-            color: #6c757d;
-            margin-bottom: 40px;
-            font-family: 'Roboto', sans-serif;
-            text-transform: none;
-        }
-        .team-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            font-family: 'Roboto', sans-serif;
-            text-transform: none;
-        }
-        .team-member {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            text-align: center;
-            width: 250px;
-            transition: 0.3s;
-            font-family: 'Roboto', sans-serif;
-            text-transform: none;
-        }
-        .team-member:hover {
-            background: #27a7b2;
-            color: #fff;
-        }
-        .team-member:hover p {
-            color: #f1f1f1;
-        }
-        .team-member:hover .social-icons a {
-            color: #fff;
-        }
-        .team-member img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin-bottom: 15px;
-        }
-        .team-member h3 {
-            margin: 10px 0 5px;
-            font-size: 20px;
-            font-family: 'Roboto', sans-serif;
-            text-transform: none;
-        }
-        .team-member p {
-            color: #6c757d;
-            margin: 5px 0;
-            font-family: 'Roboto', sans-serif;
-            text-transform: none;
-        }
-        .team-member .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        .team-member .social-icons a {
-            text-decoration: none;
-            font-size: 24px;
-            color: #333;
-        }
-        .team-member.active {
-            background: #6c5ce7;
-            color: #fff;
-        }
-        .team-member.active p {
-            color: #ddd;
-        }
-        .team-member.active .social-icons a {
-            color: #fff;
-        }
+        padding: 50px 20px;
+        text-align: center;
+        background-color: #f8f9fa;
+        width: 80%;
+        justify-content: center;
+        margin: auto;
+    }
+    .team-title {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        font-family: 'Roboto', sans-serif;
+        text-transform: none;
+        
+    }
+    .team-subtitle {
+        color: #6c757d;
+        margin-bottom: 40px;
+        font-family: 'Roboto', sans-serif;
+        text-transform: none;
+    }
+    .team-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        font-family: 'Roboto', sans-serif;
+        text-transform: none;
+    }
+    .team-member {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        text-align: center;
+        width: 250px;
+        transition: 0.3s;
+        font-family: 'Roboto', sans-serif;
+        text-transform: none;
+    }
+    .team-member:hover {
+        background: #27a7b2;
+        color: #fff;
+    }
+    .team-member:hover p {
+        color: #f1f1f1;
+    }
+    .team-member:hover .social-icons a {
+        color: #fff;
+    }
+    .team-member img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+    }
+    .team-member h3 {
+        margin: 10px 0 5px;
+        font-size: 20px;
+        font-family: 'Roboto', sans-serif;
+        text-transform: none;
+    }
+    .team-member p {
+        color: #6c757d;
+        margin: 5px 0;
+        font-family: 'Roboto', sans-serif;
+        text-transform: none;
+    }
+    .team-member .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+    .team-member .social-icons a {
+        text-decoration: none;
+        font-size: 24px;
+        color: #333;
+    }
+    .team-member.active {
+        background: #6c5ce7;
+        color: #fff;
+    }
+    .team-member.active p {
+        color: #ddd;
+    }
+    .team-member.active .social-icons a {
+        color: #fff;
+    }
     /* Responsif untuk layar tablet */
     @media (max-width: 768px) {
         .banner-contact {
