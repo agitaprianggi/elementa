@@ -375,7 +375,6 @@ $layout_page = shop_about
     .team-member.active .social-icons a {
         color: #fff;
     }
-    /* Responsif untuk layar tablet */
     @media (max-width: 768px) {
         .banner-contact {
             height: 300px;
