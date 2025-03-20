@@ -4,10 +4,11 @@ $categoriesTop = $modelCategory->start()->getCategoryTop()->getData();
 @if ($categoriesTop->count())
 <div class="aside-item col-sm-6 col-md-5 col-lg-12">
   <h6 class="aside-title">{{ sc_language_render('front.categories') }}</h6>
-  <ul class="list-shop-filter">
+  <select class="form-control" onchange="if (this.value) window.location.href=this.value;">
+    <option value="">-- Pilih Kategori --</option>
     @foreach ($categoriesTop as $key => $category)
-    <li class="product-minimal-title active"><a href="{{ $category->getUrl() }}"> {{ $category->title }}</a></li>
+    <option value="{{ $category->getUrl() }}">{{ $category->title }}</option>
     @endforeach
-  </ul>
+  </select>
 </div>
 @endif
