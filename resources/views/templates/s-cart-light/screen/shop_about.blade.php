@@ -196,47 +196,47 @@ $layout_page = shop_about
         line-height: 1.6;
     }
     .subscribe {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px 50px;
-            background: #27a7b2;
-            color: white;
-            border-radius: 10px;
-            max-width: 1200px;
-            margin: 50px auto;
-        }
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 50px;
+        background: #27a7b2;
+        color: white;
+        border-radius: 10px;
+        max-width: 1200px;
+        margin: 50px auto;
+    }
 
-        .subscribe-content {
-            flex: 1;
-            text-align: left;
-        }
+    .subscribe-content {
+        flex: 1;
+        text-align: left;
+    }
 
-        .subscribe h4 {
-            margin: 0;
-            color: #FFFFFF;
-            font-family: 'Roboto', sans-serif;
-        }
+    .subscribe h4 {
+        margin: 0;
+        color: #FFFFFF;
+        font-family: 'Roboto', sans-serif;
+    }
 
-        .subscribe p {
-            margin-top: 5px;
-        }
+    .subscribe p {
+        margin-top: 5px;
+    }
 
-        .subscribe .btn {
-            padding: 12px 25px;
-            background: linear-gradient(45deg, #ff0080, #ff00ff);
-            color: white;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            border: 2px solid transparent;
-            transition: 0.3s;
-        }
+    .subscribe .btn {
+        padding: 12px 25px;
+        background: linear-gradient(45deg, #ff0080, #ff00ff);
+        color: white;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        border: 2px solid transparent;
+        transition: 0.3s;
+    }
 
-        .subscribe .btn:hover {
-            background: transparent;
-            border: 2px solid #F5A623;
-        }
+    .subscribe .btn:hover {
+        background: transparent;
+        border: 2px solid #F5A623;
+    }
 
     h4 {
     text-transform: none !important;
