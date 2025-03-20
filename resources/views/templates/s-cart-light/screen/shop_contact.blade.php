@@ -15,7 +15,6 @@ $layout_page = shop_contact
         <p>Kami siap membantu Anda! Jangan ragu untuk menghubungi kami atau kunjungi lokasi kami untuk diskusi lebih lanjut. Mari bekerja sama dan ciptakan peluang baru bersama!</p>
     </div>
 </section>
-
 <section class="section section-sm section-first bg-default text-md-left">
 <div class="container" style="margin-top: -40px;">
     <div class="row">
