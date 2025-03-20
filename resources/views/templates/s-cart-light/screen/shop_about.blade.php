@@ -165,7 +165,8 @@ $layout_page = shop_about
         width: 80%;
         margin: auto;
         padding: 50px 0;
-        display: grid;
+        display: flex;
+        flex-wrap: wrap;
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
         justify-content: center;
@@ -173,6 +174,12 @@ $layout_page = shop_about
     }
 
     .service {
+        width: 300px; /* Atur lebar yang sama dengan tinggi */
+        height: 300px; /* Pastikan card berbentuk kotak */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         padding: 20px;
         background: white;
         border-radius: 10px;
@@ -181,7 +188,7 @@ $layout_page = shop_about
     }
 
     .service i {
-        font-size: 40px;
+        font-size: 50px;
         color: #F5A623;
         margin-bottom: 15px;
     }
