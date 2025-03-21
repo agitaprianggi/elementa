@@ -312,59 +312,50 @@ $layout_page = shop_product_detail
                     <span style="font-size: 14px; font-weight: 600; color: #333;">Bagikan:</span>
                     <div>
                         <ul style="display: flex; gap: 8px; list-style: none; padding: 0; margin: 0;">
+                            @php
+                                $url = urlencode(url()->current());
+                                $title = urlencode(request()->title ?? config('app.name'));
+                            @endphp
                             <li>
-                                <a href="#" 
-                                  style="display: flex; align-items: center; justify-content: center; 
-                                          width: 35px; height: 35px; border-radius: 50%; 
-                                          background-color: #3b5998; color: white; 
-                                          font-size: 18px; text-decoration: none; 
-                                          transition: transform 0.3s ease-in-out;" 
-                                  onmouseover="this.style.transform='scale(1.1)'" 
-                                  onmouseout="this.style.transform='scale(1)'">
+                                <a href="https://api.whatsapp.com/send?text={{ $title }}%20{{ $url }}" target="_blank" 
+                                class="social-btn" style="background-color: #25D366;">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://t.me/share/url?url={{ $url }}&text={{ $title }}" target="_blank" 
+                                class="social-btn" style="background-color: #0088cc;">
+                                    <i class="fa-brands fa-telegram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://social-plugins.line.me/lineit/share?url={{ $url }}" target="_blank" 
+                                class="social-btn" style="background-color: #00c300;">
+                                    <i class="fa-brands fa-line"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}" target="_blank" 
+                                class="social-btn" style="background-color: #3b5998;">
                                     <i class="fa-brands fa-facebook-f"></i>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" 
-                                  style="display: flex; align-items: center; justify-content: center; 
-                                          width: 35px; height: 35px; border-radius: 50%; 
-                                          background-color: #1da1f2; color: white; 
-                                          font-size: 18px; text-decoration: none; 
-                                          transition: transform 0.3s ease-in-out;" 
-                                  onmouseover="this.style.transform='scale(1.1)'" 
-                                  onmouseout="this.style.transform='scale(1)'">
-                                    <i class="fa-brands fa-twitter"></i>
+                                <a href="https://twitter.com/intent/tweet?text={{ $title }}&url={{ $url }}" target="_blank" 
+                                class="social-btn" style="background-color: #1da1f2;">
+                                    <i class="fa-brands fa-x-twitter"></i>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" 
-                                  style="display: flex; align-items: center; justify-content: center; 
-                                          width: 35px; height: 35px; border-radius: 50%; 
-                                          background-color: #e4405f; color: white; 
-                                          font-size: 18px; text-decoration: none; 
-                                          transition: transform 0.3s ease-in-out;" 
-                                  onmouseover="this.style.transform='scale(1.1)'" 
-                                  onmouseout="this.style.transform='scale(1)'">
-                                    <i class="fa-brands fa-instagram"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" 
-                                  style="display: flex; align-items: center; justify-content: center; 
-                                          width: 35px; height: 35px; border-radius: 50%; 
-                                          background-color: #db4437; color: white; 
-                                          font-size: 18px; text-decoration: none; 
-                                          transition: transform 0.3s ease-in-out;" 
-                                  onmouseover="this.style.transform='scale(1.1)'" 
-                                  onmouseout="this.style.transform='scale(1)'">
-                                    <i class="fa-brands fa-google-plus-g"></i>
+                                <a href="#" onclick="copyToClipboard()" class="social-btn" style="background-color: #555;">
+                                    <i class="fa-solid fa-link"></i>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                {{--// Social --}}
-
+                {{-- // Social --}}
+                
                 </div>
               </form>
             </div>
@@ -429,7 +420,6 @@ $layout_page = shop_product_detail
 <!--/product-details-->
 
 <style>
-
   .button-group {
       display: flex;
       align-items: center; /* Pusatkan secara vertikal */
@@ -520,6 +510,23 @@ $layout_page = shop_product_detail
     padding: 12px;
 }
 
+.social-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        color: white;
+        font-size: 18px;
+        text-decoration: none;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .social-btn:hover {
+        transform: scale(1.1);
+    }
+
 /* Responsif agar tampil lebih baik di mobile */
 @media (max-width: 768px) {
     .nav-tabs {
@@ -583,5 +590,13 @@ $layout_page = shop_product_detail
             })
         })
     });
+
+    function copyToClipboard() {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            alert("Link disalin!");
+        }).catch(err => {
+            console.error("Gagal menyalin link", err);
+        });
+    }
 </script>
 @endpush
