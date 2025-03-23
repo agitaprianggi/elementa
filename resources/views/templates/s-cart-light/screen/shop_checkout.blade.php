@@ -43,8 +43,8 @@ $layout_page = shop_checkout
                         {{-- Select address if customer login --}}
                         @if (auth()->user())
                             <div class="">
-                                <select class="form-control" name="address_process" style="width: 100%;" id="addressList">
-                                    <option value="">{{ sc_language_render('cart.change_address') }}</option>
+                                <select class="form-control" name="address_process" style="width: 100%;" id="addressList" disabled>
+                                    <!-- <option value="">{{ sc_language_render('cart.change_address') }}</option> -->
                                     @foreach ($addressList as $k => $address)
                                     <option value="{{ $address->id }}" {{ (old('address_process') ==  $address->id) ? 'selected':''}}>- {{ $address->first_name. ' '.$address->last_name.', '.$address->address1.' '.$address->address2.' '.$address->address3 }}</option>
                                     @endforeach
@@ -121,7 +121,7 @@ $layout_page = shop_checkout
                                         <label class="control-label"><i class="fa fa-envelope"></i>
                                             {{ sc_language_render('order.email') }}:</label>
                                         <input class="form-control" name="email" type="text" placeholder="{{ sc_language_render('order.email') }}"
-                                            value="{{old('email', $shippingAddress['email'])}}">
+                                            value="{{old('email', $shippingAddress['email'])}}" readonly>
                                         @if($errors->has('email'))
                                             <span class="help-block">{{ $errors->first('email') }}</span>
                                         @endif
@@ -286,82 +286,82 @@ $layout_page = shop_checkout
                                 </div>
                                 {{-- //Total method --}}
 
-@if (!sc_config('shipping_off'))
+                                @if (!sc_config('shipping_off'))
                                 {{-- Shipping method --}}
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div
-                                            class="form-group {{ $errors->has('shippingMethod') ? ' has-error' : '' }}">
-                                            <h3 class="control-label"><i class="fa fa-truck" aria-hidden="true"></i>
-                                                {{ sc_language_render('order.shipping_method') }}:<br></h3>
-                                            @if($errors->has('shippingMethod'))
-                                            <span class="help-block">{{ $errors->first('shippingMethod') }}</span>
-                                            @endif
-                                        </div>
-
-                                        <div class="form-group">
-                                            @foreach ($shippingMethod as $key => $shipping)
-                                            <div>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="shippingMethod"
-                                                        value="{{ $shipping['key'] }}"
-                                                        {{ (old('shippingMethod') == $key)?'checked':'' }}
-                                                        style="position: relative;"
-                                                        {{ ($shipping['permission'])?'':'disabled' }}>
-                                                    <span for="shippingMethod">{{ $shipping['title'] }}</span>
-                                                </label>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div
+                                                class="form-group {{ $errors->has('shippingMethod') ? ' has-error' : '' }}">
+                                                <h3 class="control-label"><i class="fa fa-truck" aria-hidden="true"></i>
+                                                    {{ sc_language_render('order.shipping_method') }}:<br></h3>
+                                                @if($errors->has('shippingMethod'))
+                                                <span class="help-block">{{ $errors->first('shippingMethod') }}</span>
+                                                @endif
                                             </div>
 
-                                            {{-- Render view --}}
-                                            @includeIf($shipping['pathPlugin'].'::render')
-                                            {{-- //Render view --}}
-
-                                            @endforeach
+                                            <div class="form-group" id="shippingMethodsContainer">
+                                                <div id="loadingContainer" style="display: none; align-items: center;">
+                                                    <p style="margin-left: 10px;">Loading shipping methods</p>
+                                                    <div class="loading-spinner"></div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 {{-- //Shipping method --}}
-@endif
+                                @endif
 
-@if (!sc_config('payment_off'))
+                                @if (!sc_config('payment_off'))
                                 {{-- Payment method --}}
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div
-                                            class="form-group {{ $errors->has('paymentMethod') ? ' has-error' : '' }}">
-                                            <h3 class="control-label"><i class="fa fa-credit-card-alt"></i>
-                                                {{ sc_language_render('order.payment_method') }}:<br></h3>
-                                            @if($errors->has('paymentMethod'))
-                                            <span class="help-block">{{ $errors->first('paymentMethod') }}</span>
-                                            @endif
-                                        </div>
-                                        <div class="form-group cart-payment-method">
-                                            @foreach ($paymentMethod as $key => $payment)
-                                            <div>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="paymentMethod"
-                                                        value="{{ $payment['key'] }}"
-                                                        {{ (old('paymentMethod') == $key)?'checked':'' }}
-                                                        style="position: relative;"
-                                                        {{ ($payment['permission'])?'':'disabled' }}>
-                                                        <span class="radio-inline" for="paymentMethod">
-                                                            <img title="{{ $payment['title'] }}"
-                                                                alt="{{ $payment['title'] }}"
-                                                                src="{{ sc_file($payment['image']) }}">
-                                                        </span>
-                                                </label>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div
+                                                class="form-group {{ $errors->has('paymentMethod') ? ' has-error' : '' }}">
+                                                <h3 class="control-label"><i class="fa fa-credit-card-alt"></i>
+                                                    {{ sc_language_render('order.payment_method') }}:<br></h3>
+                                                @if($errors->has('paymentMethod'))
+                                                <span class="help-block">{{ $errors->first('paymentMethod') }}</span>
+                                                @endif
                                             </div>
-
-                                            {{-- Render view --}}
-                                            @includeIf($payment['pathPlugin'].'::render')
-                                            {{-- //Render view --}}
-
-                                            @endforeach
+                                            <div class="form-group cart-payment-method">
+                                                <p class="mb-2">Bank Transfer</p>
+                                                <div class="mb-2 ml-3">
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="paymentMethod" value="bca" style="position: relative;">
+                                                            <span class="radio-inline" for="paymentMethod">
+                                                                <img title="BCA"
+                                                                    alt="BCA"
+                                                                    src="{{ sc_file('Plugins/Payment/BankTransfer/images/bca.png') }}"
+                                                                    height="100px" width="100px">
+                                                            </span>
+                                                    </label>
+                                                </div>
+                                                <div class="mb-2 ml-3">
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="paymentMethod" value="bni" style="position: relative;">
+                                                            <span class="radio-inline" for="paymentMethod">
+                                                                <img title="BNI"
+                                                                    alt="BNI"
+                                                                    src="{{ sc_file('Plugins/Payment/BankTransfer/images/bni.png') }}"
+                                                                    height="100px" width="100px">
+                                                            </span>
+                                                    </label>
+                                                </div>
+                                                <div class="mb-2 ml-3">
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="paymentMethod" value="bri" style="position: relative;">
+                                                            <span class="radio-inline" for="paymentMethod">
+                                                                <img title="BRI"
+                                                                    alt="BRI"
+                                                                    src="{{ sc_file('Plugins/Payment/BankTransfer/images/bri.png') }}"
+                                                                    height="100px" width="100px">
+                                                            </span>
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 {{-- //Payment method --}}
-@endif
+                                @endif
 
                             </div>
                             
@@ -395,16 +395,33 @@ $layout_page = shop_checkout
                 </div>
             </form>
         </div>
-
-
-
-
-
             @endif
         </div>
     </div>
 </section>
 
+<style>
+    #loadingContainer {
+        display: flex; /* Susun elemen dalam satu baris */
+        align-items: center; /* Pusatkan elemen secara vertikal */
+    }
+
+    .loading-spinner {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(0, 0, 0, 0.3);
+        border-top: 3px solid white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-left: 10px;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
 @endsection
 
 
@@ -431,6 +448,69 @@ $layout_page = shop_checkout
 {{--// Render script from payment method --}}
 
 <script type="text/javascript">
+
+    $(document).ready(function () {
+        getCost();
+    });
+
+    function getCost() {
+        const loadingContainer = document.getElementById('loadingContainer');
+        loadingContainer.style.display = "flex";
+
+        let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+        fetch("/api/calculate-ship-cost", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "X-CSRF-TOKEN": csrfToken
+            },
+            body: JSON.stringify({
+                destination: "37958",
+                weight: "1000",
+            })
+        })
+        .then(response => response.json())
+        // .then(
+        //     result => console.log(result.data)
+        // )
+        .then(data => {
+            const container = document.getElementById("shippingMethodsContainer");
+            container.innerHTML = "";
+
+            // Pastikan data valid
+            if (!data || !data.data || data.data.length === 0) {
+                container.innerHTML = "<p>No shipping methods available.</p>";
+                return;
+            }
+
+            // Looping response data untuk membuat radio button
+            data.data.forEach((shipping, index) => {
+                const div = document.createElement("div");
+                div.innerHTML = `
+                    <label class="radio-inline">
+                        <input type="radio" name="shippingMethod" value="${shipping.name}|${shipping.code}|${shipping.service}|${shipping.cost}" 
+                            id="shipping-${index}" style="position: relative;" class="radio-custom">
+                        <span class="radio-custom-dummy"></span>
+                        <span for="shippingMethod">
+                            ${shipping.name} - ${shipping.service} 
+                            (${shipping.description}) - Rp ${shipping.cost.toLocaleString()} 
+                            (Estimasi: ${shipping.etd})
+                        </span>
+                    </label>
+                `;
+                container.appendChild(div);
+            });
+
+            loadingContainer.style.display = "none";
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            document.getElementById("loadingContainer").innerHTML = "<p>Error loading shipping methods.</p>";
+            loadingContainer.style.display = "none";
+        });
+    }
 
     $('#sc_button-form-process').click(function(){
         $('#sc_form-process').submit();

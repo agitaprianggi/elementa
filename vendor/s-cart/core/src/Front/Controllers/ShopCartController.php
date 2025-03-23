@@ -308,6 +308,7 @@ class ShopCartController extends RootFrontController
         $dataCheckout  = session('dataCheckout') ?? '';
         $storeCheckout = session('storeCheckout') ?? '';
         //If cart info empty
+        // dd($dataCheckout, $storeCheckout);
         if (!$dataCheckout || !$storeCheckout) {
             return redirect(sc_route('cart'))->with(['error' => sc_language_render('cart.cart_empty')]);
         }
@@ -441,9 +442,26 @@ class ShopCartController extends RootFrontController
             if (!session('shippingMethod')) {
                 return redirect(sc_route('cart'))->with(['error' => 'shippingMethod empty!']);
             }
-            $shippingMethod = session('shippingMethod');
-            $classShippingMethod = sc_get_class_plugin_config('Shipping', $shippingMethod);
-            $shippingMethodData = (new $classShippingMethod)->getData();
+            $shipping = session('shippingMethod');
+            $ship       = explode('|', $shipping);
+            $name       = $ship[0];
+            $code       = $ship[1];
+            $service    = $ship[2];
+            $cost       = $ship[3];
+
+            $shippingMethodData =  [
+                "title" => $name,
+                "code" => $code,
+                "key" => $service,
+                "image" => "Plugins/Shipping/",
+                "permission" => 1,
+                "value" => 0,
+                "version" => "2.0",
+                "auth" => "",
+                "link" => "",
+                "pathPlugin" => "Plugins/Shipping",
+                "store" => []
+            ];
         }
 
         //Payment method
@@ -453,18 +471,26 @@ class ShopCartController extends RootFrontController
             if (!session('paymentMethod')) {
                 return redirect(sc_route('cart'))->with(['error' => 'paymentMethod empty!']);
             }
-            $paymentMethod = session('paymentMethod');
-            $classPaymentMethod = sc_get_class_plugin_config('Payment', $paymentMethod);
-            $paymentMethodData = (new $classPaymentMethod)->getData();
+            $paymentMethodData = [
+                "title" => "Bank Transfer",
+                "key" => session('paymentMethod'),
+                "code" => "Payment",
+                "image" => "Plugins/Payment/BankTransfer/images/".session('paymentMethod').".png",
+                "permission" => 1,
+                "version" => "2.0",
+                "auth" => "",
+                "link" => "",
+                "pathPlugin" => "Plugins/Payment/BankTransfer"
+            ];
         }
 
         //Check plugin invalid
-        if (!sc_config(session('shippingMethod'))) {
-            return redirect(sc_route('cart'))->with(['error' => 'Plugin shipping invalid!']);
-        }
-        if (!sc_config(session('paymentMethod'))) {
-            return redirect(sc_route('cart'))->with(['error' => 'Plugin payment invalid!']);
-        }
+        // if (!sc_config(session('shippingMethod'))) {
+        //     return redirect(sc_route('cart'))->with(['error' => 'Plugin shipping invalid!']);
+        // }
+        // if (!sc_config(session('paymentMethod'))) {
+        //     return redirect(sc_route('cart'))->with(['error' => 'Plugin payment invalid!']);
+        // }
         //End check plugin invalid
         
         //Screen confirm only active if submit from screen checkout
@@ -525,7 +551,7 @@ class ShopCartController extends RootFrontController
         } else {
             $dataTotal       = session('dataTotal') ?? [];
             $shippingAddress = session('shippingAddress') ?? [];
-            $paymentMethod   = session('paymentMethod') ?? '';
+            $paymentMethod   = "Bank Transfer - ".session('paymentMethod') ?? '';
             $shippingMethod  = session('shippingMethod') ?? '';
             $address_process = session('address_process') ?? '';
             $storeCheckout   = session('storeCheckout') ?? '';
@@ -650,12 +676,7 @@ class ShopCartController extends RootFrontController
 
         $paymentMethod = sc_get_class_plugin_controller('Payment', session('paymentMethod'));
 
-        if ($paymentMethod) {
-            // Check payment method
-            return (new $paymentMethod)->processOrder();
-        } else {
-            return (new ShopCartController)->completeOrder();
-        }
+        return (new ShopCartController)->completeOrder();
     }
 
 
@@ -1037,24 +1058,24 @@ class ShopCartController extends RootFrontController
             return redirect()->route('home', ['error' => 'Error Order ID!']);
         }
 
-        $classPaymentConfig = sc_get_class_plugin_config('Payment', $paymentMethod);
-        if (method_exists($classPaymentConfig, 'endApp')) {
-            (new $classPaymentConfig)->endApp();
-        }
+        // $classPaymentConfig = sc_get_class_plugin_config('Payment', $paymentMethod);
+        // if (method_exists($classPaymentConfig, 'endApp')) {
+        //     (new $classPaymentConfig)->endApp();
+        // }
 
-        $classShippingConfig = sc_get_class_plugin_config('Shipping', $shippingMethod);
-        if (method_exists($classShippingConfig, 'endApp')) {
-            (new $classShippingConfig)->endApp();
-        }
+        // $classShippingConfig = sc_get_class_plugin_config('Shipping', $shippingMethod);
+        // if (method_exists($classShippingConfig, 'endApp')) {
+        //     (new $classShippingConfig)->endApp();
+        // }
 
-        if ($totalMethod && is_array($totalMethod)) {
-            foreach ($totalMethod as $keyMethod => $valueMethod) {
-                $classTotalConfig = sc_get_class_plugin_config('Total', $keyMethod);
-                if (method_exists($classTotalConfig, 'endApp')) {
-                    (new $classTotalConfig)->endApp(['orderID' => $orderID, 'code' => $valueMethod]);
-                }
-            }
-        }
+        // if ($totalMethod && is_array($totalMethod)) {
+        //     foreach ($totalMethod as $keyMethod => $valueMethod) {
+        //         $classTotalConfig = sc_get_class_plugin_config('Total', $keyMethod);
+        //         if (method_exists($classTotalConfig, 'endApp')) {
+        //             (new $classTotalConfig)->endApp(['orderID' => $orderID, 'code' => $valueMethod]);
+        //         }
+        //     }
+        // }
         
         // Process event success
         sc_event_order_success($order = ShopOrder::find($orderID));

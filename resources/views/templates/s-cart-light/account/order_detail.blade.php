@@ -58,6 +58,10 @@ $layout_page = shop_profile
              <td class="td-title">{{ sc_language_render('order.address1') }}:</td><td>{!! $order->address1 !!}</td>
            </tr>
 
+           <tr>
+             <td class="td-title">{{ sc_language_render('order.payment_code') }}:</td><td>{!! $order->virtual_account !!}</td>
+           </tr>
+
            @if (sc_config('customer_address2'))
            <tr>
              <td class="td-title">{{ sc_language_render('order.address2') }}:</td><td>{!! $order->address2 !!}</td>
@@ -84,7 +88,7 @@ $layout_page = shop_profile
     <table  class="table table-bordered">
         <tr><td class="td-title">{{ sc_language_render('order.order_status') }}:</td><td>{{ $statusOrder[$order->status] }}</td></tr>
         <tr><td>{{ sc_language_render('order.shipping_status') }}:</td><td>{{ $statusShipping[$order->shipping_status]??'' }}</td></tr>
-        <tr><td>{{ sc_language_render('order.shipping_method') }}:</td><td>{{ $order->shipping_method }}</td></tr>
+        <tr><td>{{ sc_language_render('order.shipping_method') }}:</td><td>{!! $order->shipping_method !!}</td></tr>
         <tr><td>{{ sc_language_render('order.payment_method') }}:</td><td>{{ $order->payment_method }}</td></tr>
         <tr>
           <td class="td-title">{{ sc_language_render('order.currency') }}:</td><td>{{ $order->currency }}</td>
@@ -114,7 +118,7 @@ $layout_page = shop_profile
                 <tbody>
                     @foreach ($order->details as $item)
                           <tr>
-                            <td>{{ $item->name }}
+                            <td>{!! $item->name !!}
                               @php
                               $html = '';
                                 if($item->attribute && is_array(json_decode($item->attribute,true))){

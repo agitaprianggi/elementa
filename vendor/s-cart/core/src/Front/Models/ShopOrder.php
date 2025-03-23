@@ -2,12 +2,13 @@
 #S-Cart/Core/Front/Models/ShopOrder.php
 namespace SCart\Core\Front\Models;
 
+use DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\Model;
+use SCart\Core\Front\Models\ShopProduct;
+use SCart\Core\Front\Models\ShopOrderTotal;
 use SCart\Core\Front\Models\ShopOrderDetail;
 use SCart\Core\Front\Models\ShopOrderHistory;
-use SCart\Core\Front\Models\ShopOrderTotal;
-use SCart\Core\Front\Models\ShopProduct;
-use DB;
-use Illuminate\Database\Eloquent\Model;
 
 
 class ShopOrder extends Model
@@ -128,6 +129,23 @@ class ShopOrder extends Model
             unset($dataOrder['admin_id']);
             $currency = $dataOrder['currency'];
             $exchange_rate = $dataOrder['exchange_rate'];
+
+            $shipping   = $dataOrder['shipping_method'];
+            $ship       = explode('|', $shipping);
+            $name       = $ship[0];
+            $code       = $ship[1];
+            $service    = $ship[2];
+            $cost       = $ship[3];
+            $dataOrder['shipping_method'] = $service;
+            $dataOrder['shipping_name'] = $name;
+            $dataOrder['shipping_code'] = $code;
+
+            // try{
+            //     $createTransaction = $this->createTransaction($dataOrder);
+            // } catch (\Throwable $e) {
+            //     Log::error('Error create transaction:', ['message' => $e->getMessage()]);
+            //     $return = ['error' => 1, 'msg' => $e->getMessage()];
+            // }
 
             //Insert order
             $order = ShopOrder::create($dataOrder);

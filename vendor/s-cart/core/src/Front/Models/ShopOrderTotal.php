@@ -133,13 +133,17 @@ class ShopOrderTotal extends Model
         $arrShipping = [];
         $shippingMethod = session('shippingMethod') ?? '';
         if ($shippingMethod) {
-            $moduleClass = sc_get_class_plugin_config('Shipping', $shippingMethod);
-            $returnModuleShipping = (new $moduleClass)->getData();
+            $shipping = session('shippingMethod');
+            $ship       = explode('|', $shipping);
+            $name       = $ship[0];
+            $code       = $ship[1];
+            $service    = $ship[2];
+            $cost       = $ship[3];
             $arrShipping = [
-                'title' => $returnModuleShipping['title'],
+                'title' => $name,
                 'code' => 'shipping',
-                'value' => sc_currency_value($returnModuleShipping['value']),
-                'text' => sc_currency_render($returnModuleShipping['value']),
+                'value' => sc_currency_value($cost),
+                'text' => sc_currency_render($cost),
                 'sort' => self::POSITION_SHIPPING_METHOD,
             ];
         }
