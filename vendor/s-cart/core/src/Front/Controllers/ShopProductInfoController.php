@@ -36,19 +36,19 @@ class ShopProductInfoController extends RootFrontController
     {
         $filter_sort = sc_request('filter_sort','','string');
         
-        $products = $this->processProductList();
+        $productInfos = $this->processProductList();
 
         sc_check_view($this->templatePath . '.screen.product_info_home');
         
         return view(
             $this->templatePath . '.screen.product_info_home',
             array(
-                'title'       => sc_language_render('front.prod_info'),
-                'keyword'     => sc_store('keyword'),
-                'description' => sc_store('description'),
-                'products'    => $products,
-                'layout_page' => 'product_info_home',
-                'filter_sort' => $filter_sort,
+                'title'         => sc_language_render('front.prod_info'),
+                'keyword'       => sc_store('keyword'),
+                'description'   => sc_store('description'),
+                'productInfos'  => $productInfos,
+                'layout_page'   => 'product_info_home',
+                'filter_sort'   => $filter_sort,
                 'breadcrumbs'        => [
                     ['url'           => '', 'title' => sc_language_render('front.prod_info')],
                 ],
@@ -82,8 +82,8 @@ class ShopProductInfoController extends RootFrontController
         $keyword = sc_request('keyword','','string');
         
         if (strtoupper($searchMode) === 'PRODUCT') {
-            $products = $this->processProductList();
-            $view = $this->templatePath . '.screen.shop_product_list';
+            $productInfos = $this->processProductList();
+            $view = $this->templatePath . '.screen.product_info_list';
 
             if (view()->exists($this->templatePath . '.screen.shop_search')) {
                 $view = $this->templatePath . '.screen.shop_search';
@@ -92,12 +92,12 @@ class ShopProductInfoController extends RootFrontController
             return view(
                 $view,
                 array(
-                    'title'       => sc_language_render('action.search') . ': ' . $keyword,
-                    'products'    => $products,
-                    'layout_page' => 'shop_search',
-                    'filter_sort' => $filter_sort,
-                    'breadcrumbs' => [
-                        ['url'    => '', 'title' => sc_language_render('action.search')],
+                    'title'         => sc_language_render('action.search') . ': ' . $keyword,
+                    'productInfos'  => $productInfos,
+                    'layout_page'   => 'shop_search',
+                    'filter_sort'   => $filter_sort,
+                    'breadcrumbs'   => [
+                        ['url'      => '', 'title' => sc_language_render('action.search')],
                     ],
                 )
             );
@@ -190,31 +190,31 @@ class ShopProductInfoController extends RootFrontController
             }
         }
 
-        $products = (new ShopProductInfo);
+        $productInfos = (new ShopProductInfo);
 
         if ($keyword) {
-            $products = $products->setKeyword($keyword);
+            $productInfos = $productInfos->setKeyword($keyword);
         }
         //Filter category
         if ($categoryId) {
             $arrCate = (new ShopCategory)->getListSub($categoryId);
-            $products = $products->getProductToCategory($arrCate);
+            $productInfos = $productInfos->getProductToCategory($arrCate);
         }
         //filter brand
         if ($arrBrandId) {
-            $products = $products->getProductToBrand($arrBrandId);
+            $productInfos = $productInfos->getProductToBrand($arrBrandId);
         }
         //Filter price
         if ($price) {
-            $products = $products->setRangePrice($price);
+            $productInfos = $productInfos->setRangePrice($price);
         }
 
-        $products = $products
+        $productInfos = $productInfos
             ->setLimit(sc_config('product_list'))
             ->setPaginate()
             ->setSort([$sortBy, $sortOrder])
             ->getData();
 
-        return $products;
+        return $productInfos;
     }
 }

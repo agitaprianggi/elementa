@@ -79,7 +79,17 @@
       <tr>
         <td>{{ sc_language_render('admin.env.PREFIX_ORDER_SUCCESS') }}</td>
         <td>{{ url('/') }}/<a href="#" class="editable-required editable editable-click" data-name="PREFIX_ORDER_SUCCESS" data-type="text" data-pk="" data-source="" data-url="{{ $urlUpdateConfig }}" data-title="{{ sc_language_render('admin.env.PREFIX_ORDER_SUCCESS') }}" data-value="{{ sc_config('PREFIX_ORDER_SUCCESS', $storeId) }}" data-original-title="" title=""></a>{{ sc_config('SUFFIX_URL', $storeId) }}</td>
+      </tr>
+
+      <tr>
+        <td>{{ sc_language_render('admin.env.PREFIX_PRODUCT_INFO') }}</td>
+        <td>{{ url('/') }}/<a href="#" class="editable-required editable editable-click" data-name="PREFIX_PRODUCT_INFO" data-type="text" data-pk="" data-source="" data-url="{{ $urlUpdateConfig }}" data-title="{{ sc_language_render('admin.env.PREFIX_PRODUCT_INFO') }}" data-value="{{ sc_config('PREFIX_PRODUCT_INFO', $storeId) }}" data-original-title="" title=""></a></td>
       </tr> 
+
+      <tr>
+        <td>{{ sc_language_render('admin.env.PREFIX_PRODUCT_INFO_PRODUCT') }}</td>
+        <td>{{ url('/') }}/<a href="#" class="editable-required editable editable-click" data-name="PREFIX_PRODUCT_INFO_PRODUCT" data-type="text" data-pk="" data-source="" data-url="{{ $urlUpdateConfig }}" data-title="{{ sc_language_render('admin.env.PREFIX_PRODUCT_INFO_PRODUCT') }}" data-value="{{ sc_config('PREFIX_PRODUCT_INFO_PRODUCT', $storeId) }}" data-original-title="" title=""></a>/name-of-product-info{{ sc_config('SUFFIX_URL', $storeId) }}</td>
+      </tr>
 
       @endif
 

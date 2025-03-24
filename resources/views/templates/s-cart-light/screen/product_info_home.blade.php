@@ -2,8 +2,8 @@
 /*
 $layout_page = product_info_home
 **Variables:**
-- $products: paginate
-Use paginate: $products->appends(request()->except(['page','_token']))->links()
+- $productInfos: paginate
+Use paginate: $productInfos->appends(request()->except(['page','_token']))->links()
 */ 
 @endphp
 
@@ -12,10 +12,10 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
 {{--  block_main_content_center  --}}
 @section('block_main_content_center')
  
-  @if (count($products))
+  @if (count($productInfos))
     <div class="product-top-panel group-md">
       <!-- Render pagination result -->
-      @include($sc_templatePath.'.common.pagination_result', ['items' => $products])
+      @include($sc_templatePath.'.common.pagination_result', ['items' => $productInfos])
       <!--// Render pagination result -->
       
       <!-- Render include filter sort -->
@@ -56,10 +56,10 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
   </style>
 
     <div class="product-grid">
-        @foreach ($products as $key => $product)
+        @foreach ($productInfos as $key => $product)
         <div class="product-item">
             {{-- Render product single --}}
-            @include($sc_templatePath.'.common.product_single', ['product' => $product])
+            @include($sc_templatePath.'.common.product_info_single', ['product' => $product])
             {{-- //Render product single --}}
         </div>
         @endforeach
@@ -67,7 +67,7 @@ Use paginate: $products->appends(request()->except(['page','_token']))->links()
     <!-- //Product list -->
 
     <!-- Render pagination -->
-    @include($sc_templatePath.'.common.pagination', ['items' => $products])
+    @include($sc_templatePath.'.common.pagination', ['items' => $productInfos])
     <!--// Render pagination -->
   @else
     <div class="product-top-panel group-md">

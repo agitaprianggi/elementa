@@ -116,6 +116,7 @@ if (!function_exists('sc_customer_sendmail_welcome') && !in_array('sc_customer_s
                     '/\{\{\$address2\}\}/',
                     '/\{\{\$address3\}\}/',
                     '/\{\{\$country\}\}/',
+                    '/\{\{\$id_addr\}\}/',
                     '/\{\{\$province\}\}/',
                     '/\{\{\$regency\}\}/',
                     '/\{\{\$district\}\}/',
@@ -132,6 +133,7 @@ if (!function_exists('sc_customer_sendmail_welcome') && !in_array('sc_customer_s
                     $data['address2'] ?? '',
                     $data['address3'] ?? '',
                     $data['country'] ?? '',
+                    $data['id_addr'] ?? '',
                     $data['province'] ?? '',
                     $data['regency'] ?? '',
                     $data['district'] ?? '',
@@ -195,6 +197,10 @@ if (!function_exists('sc_customer_address_mapping') && !in_array('sc_customer_ad
             $validate['postcode'] = config('validation.customer.postcode_null', 'nullable|min:5');
             $dataAddress['postcode'] = $dataRaw['postcode']??'';
         }
+        if (sc_config('customer_id_addr')) {
+            $validate['id_addr'] = config('validation.customer.id_addr_required', 'required|string');
+            $dataAddress['id_addr'] = $dataRaw['id_addr']??'';
+        }
         if (sc_config('customer_province')) {
             $validate['province'] = config('validation.customer.province_required', 'required|string');
             $dataAddress['province'] = $dataRaw['province']??'';
@@ -221,6 +227,7 @@ if (!function_exists('sc_customer_address_mapping') && !in_array('sc_customer_ad
             'phone.required'      => sc_language_render('validation.required', ['attribute'=> sc_language_render('customer.phone')]),
             'country.required'    => sc_language_render('validation.required', ['attribute'=> sc_language_render('customer.country')]),
             'postcode.required'   => sc_language_render('validation.required', ['attribute'=> sc_language_render('customer.postcode')]),
+            'id_addr.required'    => sc_language_render('validation.required', ['attribute'=> sc_language_render('customer.id_addr')]),
             'province.required'   => sc_language_render('validation.required', ['attribute'=> sc_language_render('customer.province')]),
             'regency.required'    => sc_language_render('validation.required', ['attribute'=> sc_language_render('customer.regency')]),
             'district.required'   => sc_language_render('validation.required', ['attribute'=> sc_language_render('customer.district')]),
@@ -420,6 +427,17 @@ if (!function_exists('sc_customer_data_insert_mapping') && !in_array('sc_custome
             }
         }
 
+        if (sc_config('customer_id_addr')) {
+            if (sc_config('customer_id_addr_required')) {
+                $validate['id_addr'] = config('validation.customer.id_addr_required', 'required|string');
+            } else {
+                $validate['id_addr'] = config('validation.customer.id_addr_null', 'nullable|string');
+            }
+            if (!empty($dataRaw['id_addr'])) {
+                $dataInsert['id_addr'] = $dataRaw['id_addr'];
+            }
+        }
+
         if (sc_config('customer_province')) {
             if (sc_config('customer_province_required')) {
                 $validate['province'] = config('validation.customer.province_required', 'required|string');
@@ -482,6 +500,7 @@ if (!function_exists('sc_customer_data_insert_mapping') && !in_array('sc_custome
             'company.required'     => sc_language_render('validation.required', ['attribute'=> sc_language_render('customer.company')]),
             'sex.required'         => sc_language_render('validation.required', ['attribute'=> sc_language_render('customer.sex')]),
             'birthday.required'    => sc_language_render('validation.required', ['attribute'=> sc_language_render('customer.birthday')]),
+            'id_addr.required'     => sc_language_render('validation.required', ['attribute'=> sc_language_render('customer.id_addr')]),
             'province.required'    => sc_language_render('validation.required', ['attribute'=> sc_language_render('customer.province')]),
             'regency.required'     => sc_language_render('validation.required', ['attribute'=> sc_language_render('customer.regency')]),
             'district.required'    => sc_language_render('validation.required', ['attribute'=> sc_language_render('customer.district')]),
@@ -691,6 +710,17 @@ if (!function_exists('sc_customer_data_edit_mapping') && !in_array('sc_customer_
             $dataUpdate['last_name_kana'] = $dataRaw['last_name_kana']?? '';
         }
 
+        if (sc_config('customer_id_addr')) {
+            if (sc_config('customer_id_addr_required')) {
+                $validate['id_addr'] = config('validation.customer.id_addr_required', 'required|string');
+            } else {
+                $validate['id_addr'] = config('validation.customer.id_addr_null', 'nullable|string');
+            }
+            if (!empty($dataRaw['id_addr'])) {
+                $dataUpdate['id_addr'] = $dataRaw['id_addr'];
+            }
+        }
+
         if (sc_config('customer_province')) {
             if (sc_config('customer_province_required')) {
                 $validate['province'] = config('validation.customer.province_required', 'required|string');
@@ -749,6 +779,7 @@ if (!function_exists('sc_customer_data_edit_mapping') && !in_array('sc_customer_
             'company.required'     => sc_language_render('validation.required', ['attribute'=> sc_language_render('customer.company')]),
             'sex.required'         => sc_language_render('validation.required', ['attribute'=> sc_language_render('customer.sex')]),
             'birthday.required'    => sc_language_render('validation.required', ['attribute'=> sc_language_render('customer.birthday')]),
+            'id_addr.required'     => sc_language_render('validation.required', ['attribute'=> sc_language_render('customer.id_addr')]),
             'province.required'    => sc_language_render('validation.required', ['attribute'=> sc_language_render('customer.province')]),
             'regency.required'     => sc_language_render('validation.required', ['attribute'=> sc_language_render('customer.regency')]),
             'district.required'    => sc_language_render('validation.required', ['attribute'=> sc_language_render('customer.district')]),

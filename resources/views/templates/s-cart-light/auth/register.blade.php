@@ -112,6 +112,11 @@
                         @endif
                     </div>
 
+                    <div class="form-group d-none">
+                        <input type="hidden" 
+                            name="id_addr" value="{{ old('id_addr') }}">
+                    </div>
+
                     @if (sc_config('customer_province'))
                     <div class="form-group{{ $errors->has('province') ? ' has-error' : '' }}">
                         <input type="text"
@@ -176,119 +181,6 @@
                         @endif
                     </div>
                     @endif
-
-                    <!-- <div class="form-group">
-                        <div class="input-group">
-                            <textarea id="addressInput"
-                                class="is_required validate account_input form-control"
-                                name="address1"
-                                placeholder="Alamat Detail">{{ old('address1') }}</textarea>
-                            <div class="input-group-append">
-                                <button type="button" id="searchAddress" class="btn btn-primary">Cari</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    @if (sc_config('customer_province'))
-                        <div class="form-group">
-                            <input type="text" id="province"
-                                class="is_required validate account_input form-control"
-                                name="province" placeholder="Provinsi" value="{{ old('province') }}" readonly>
-                        </div>
-                    @endif
-
-                    @if (sc_config('customer_regency'))
-                        <div class="form-group">
-                            <input type="text" id="regency"
-                                class="is_required validate account_input form-control"
-                                name="regency" placeholder="Kabupaten" value="{{ old('regency') }}" readonly>
-                        </div>
-                    @endif
-
-                    @if (sc_config('customer_district'))
-                        <div class="form-group">
-                            <input type="text" id="district"
-                                class="is_required validate account_input form-control"
-                                name="district" placeholder="Kecamatan" value="{{ old('district') }}" readonly>
-                        </div>
-                    @endif
-
-                    @if (sc_config('customer_subdistrict'))
-                        <div class="form-group">
-                            <input type="text" id="subdistrict"
-                                class="is_required validate account_input form-control"
-                                name="subdistrict" placeholder="Kelurahan" value="{{ old('subdistrict') }}" readonly>
-                        </div>
-                    @endif
-
-                    @if (sc_config('customer_postcode'))
-                        <div class="form-group">
-                            <input type="text" id="postcode"
-                                class="is_required validate account_input form-control"
-                                name="postcode" placeholder="Kode Pos" value="{{ old('postcode') }}" readonly>
-                        </div>
-                    @endif
-
-                    <div id="addressResults" class="mt-2"></div>
-
-                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                    <script>
-                        $(document).ready(function() {
-                            $("#searchAddress").click(function() {
-                                let address = $("#addressInput").val();
-                                if (address.trim() === "") {
-                                    alert("Silakan masukkan alamat terlebih dahulu.");
-                                    return;
-                                }
-
-                                $.ajax({
-                                    url: "{{ sc_route('getSearchAddress') }}",
-                                    type: "GET",
-                                    data: { search: address },
-                                    beforeSend: function() {
-                                        $("#searchAddress").text("Mencari...");
-                                        $("#searchAddress").attr("disabled", true);
-                                    },
-                                    success: function(response) {
-                                        $("#searchAddress").text("Cari");
-                                        $("#searchAddress").attr("disabled", false);
-
-                                        let results = response.data;
-                                        let resultHTML = "<ul class='list-group'>";
-                                        if (results.length > 0) {
-                                            results.forEach(function(item) {
-                                                resultHTML += `<li class='list-group-item address-item' data-province="${item.province_name}" 
-                                                    data-city="${item.city_name}" data-district="${item.district_name}" 
-                                                    data-subdistrict="${item.subdistrict_name}" data-zipcode="${item.zip_code}">
-                                                    ${item.label}
-                                                </li>`;
-                                            });
-                                        } else {
-                                            resultHTML += "<li class='list-group-item text-danger'>Alamat tidak ditemukan.</li>";
-                                        }
-                                        resultHTML += "</ul>";
-
-                                        $("#addressResults").html(resultHTML);
-                                    },
-                                    error: function(xhr) {
-                                        $("#searchAddress").text("Cari");
-                                        $("#searchAddress").attr("disabled", false);
-                                        $("#addressResults").html("<span class='text-danger'>Gagal mengambil data.</span>");
-                                    }
-                                });
-                            });
-
-                            // Klik hasil pencarian untuk mengisi form
-                            $(document).on("click", ".address-item", function() {
-                                $("#province").val($(this).data("province"));
-                                $("#regency").val($(this).data("city"));
-                                $("#district").val($(this).data("district"));
-                                $("#subdistrict").val($(this).data("subdistrict"));
-                                $("#postcode").val($(this).data("zipcode"));
-                                $("#addressResults").html(""); // Hapus hasil pencarian setelah memilih
-                            });
-                        });
-                    </script> -->
             
                     @if (sc_config('customer_address3'))
                     <div class="form-group{{ $errors->has('address3') ? ' has-error' : '' }}">
@@ -522,13 +414,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (data.data.length > 0) {
                     let popup = "<div class='popup-container' id='popup'>";
                     data.data.forEach(item => {
-                        popup += `<p class='popup-item' data-id='${item.id}' data-province='${item.province_name}' data-city='${item.city_name}' data-district='${item.district_name}' data-subdistrict='${item.subdistrict_name}' data-zip='${item.zip_code}'>${item.label}</p>`;
+                        popup += `<p class='popup-item' data-id_addr='${item.id}' data-province='${item.province_name}' data-city='${item.city_name}' data-district='${item.district_name}' data-subdistrict='${item.subdistrict_name}' data-zip='${item.zip_code}'>${item.label}</p>`;
                     });
                     popup += "<button class='popup-close' onclick='document.getElementById(\"popup\").remove()'>Close</button></div>";
                     document.body.insertAdjacentHTML("beforeend", popup);
                     
                     document.querySelectorAll(".popup-item").forEach(item => {
                         item.addEventListener("click", function () {
+                            document.querySelector("input[name='id_addr']").value = this.dataset.id_addr;
                             document.querySelector("input[name='province']").value = this.dataset.province;
                             document.querySelector("input[name='regency']").value = this.dataset.city;
                             document.querySelector("input[name='district']").value = this.dataset.district;

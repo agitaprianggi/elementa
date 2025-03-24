@@ -68,6 +68,7 @@ Route::group(
         $prefixContact = sc_config('PREFIX_CONTACT')??'contact';
         $prefixAbout = sc_config('PREFIX_ABOUT')??'about';
         $prefixNews = sc_config('PREFIX_NEWS')??'news';
+        $prefixProdInfo = sc_config('PREFIX_PRODUCT_INFO')??'product-info';
 
         //Search
         if (config('s-cart.ecommerce_mode', 1)) {
@@ -102,6 +103,10 @@ Route::group(
         //Process click banner
         Route::get('/banner/{id}', $nameSpaceFrontContent.'\ShopContentController@clickBanner')
             ->name('banner.click');
+
+        //Product info
+        Route::get($prefixProdInfo, $nameSpaceFrontContent.'\ShopProductInfoController@shopProcessFront')
+            ->name('product_info');
     }
 );
 
