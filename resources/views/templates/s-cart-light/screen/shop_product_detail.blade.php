@@ -315,12 +315,16 @@ $layout_page = shop_product_detail
                         @php
                             use Illuminate\Support\Str;
 
-                            $url = rawurlencode(url()->current()); // Gunakan rawurlencode() agar spasi tetap %20
-                            $title = rawurlencode($product->name ?? config('app.name'));
-
+                            $url = urlencode(url()->current());
+                            $title = urlencode($product->name ?? config('app.name'));
+                            
                             // Ambil konten produk, hilangkan tag HTML, dan batasi panjangnya
                             $rawDescription = strip_tags(sc_html_render($product->content));
-                            $description = rawurlencode(Str::limit($rawDescription, 150, '...'));
+                            $description = urlencode(Str::limit($rawDescription, 150, '...'));
+
+                            // Ganti + menjadi spasi agar lebih enak dibaca di WhatsApp
+                            $title = str_replace('+', ' ', $title);
+                            $description = str_replace('+', ' ', $description);
                         @endphp
 
                             <li>
