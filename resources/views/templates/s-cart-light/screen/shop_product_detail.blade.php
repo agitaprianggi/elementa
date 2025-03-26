@@ -315,15 +315,14 @@ $layout_page = shop_product_detail
                         @php
                             use Illuminate\Support\Str;
 
-                            $url = urlencode(url()->current());
-                            $title = urlencode($product->name ?? config('app.name'));
+                            $url = rawurlencode(url()->current()); // Gunakan rawurlencode() agar spasi tetap %20
+                            $title = rawurlencode($product->name ?? config('app.name'));
 
-                            // Ambil konten produk dan hilangkan tag HTML
+                            // Ambil konten produk, hilangkan tag HTML, dan batasi panjangnya
                             $rawDescription = strip_tags(sc_html_render($product->content));
-
-                            // Batasi deskripsi agar tidak terlalu panjang (misalnya 150 karakter)
-                            $description = urlencode(Str::limit($rawDescription, 150, '...'));
+                            $description = rawurlencode(Str::limit($rawDescription, 150, '...'));
                         @endphp
+
                             <li>
                                 <a href="https://api.whatsapp.com/send?text={{ $title }}%0A{{ request()->description ?? '' }}%0A{{ $url }}" target="_blank" class="social-btn" style="background-color: #25D366;">
                                     <i class="fa-brands fa-whatsapp"></i>
