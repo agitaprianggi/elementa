@@ -328,9 +328,10 @@ $layout_page = shop_product_detail
                         @endphp
 
                             <li>
-                                <a href="https://api.whatsapp.com/send?text={{ $title }}%0A{{ request()->description ?? '' }}%0A{{ $url }}" target="_blank" class="social-btn" style="background-color: #25D366;">
-                                    <i class="fa-brands fa-whatsapp"></i>
-                                </a>
+                            <a href="https://api.whatsapp.com/send?text={{ $title }}%0A{{ $description }}%0A{{ $url }}" target="_blank" 
+                            class="social-btn" style="background-color: #25D366;">
+                                <i class="fa-brands fa-whatsapp"></i>
+</a>
                             </li>
                             <li>
                                 <a href="https://t.me/share/url?url={{ $url }}&text={{ $title }}" target="_blank" 
