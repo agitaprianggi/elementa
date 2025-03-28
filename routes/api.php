@@ -6,13 +6,17 @@ use Illuminate\Support\Facades\Http;
 
 Route::post('/calculate-ship-cost', function (Request $request) {
     try {
+        $apikey         = env('RAJAONGKIR_API_KEY');
+        $id_addr_origin = env('RAJAONGKIR_ORIGIN_ID_ADDR');
+        $courier        = env('RAJAONGKIR_COURIER');
+
         $data = $request->validate([
             'destination' => 'required|string',
             'weight'      => 'required|numeric'
         ]);
 
-        $data['origin'] = "31513";
-        $data['courier'] = "jne:pos";
+        $data['origin']         = $id_addr_origin;
+        $data['courier']        = $courier;
 
         $curl = curl_init();
 
@@ -30,7 +34,7 @@ Route::post('/calculate-ship-cost', function (Request $request) {
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => http_build_query($data),
             CURLOPT_HTTPHEADER => [
-                "key: 8ItJxI25b6412102861be883i4lqUm5c",
+                "key: $apikey",
                 "Content-Type: application/x-www-form-urlencoded"
             ]
         ]);

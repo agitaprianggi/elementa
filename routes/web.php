@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Log;
 Route::get('/search-address', function () {
     try {
         $search = request('search');
+        $apikey = env('RAJAONGKIR_API_KEY');
         if (!$search) {
             return response()->json(['error' => 'Search parameter is required'], 400);
         }
@@ -14,7 +15,7 @@ Route::get('/search-address', function () {
         $response = Http::withOptions([
             'verify' => false  // << Nonaktifkan SSL verification
         ])->withHeaders([
-            'key' => '8ItJxI25b6412102861be883i4lqUm5c'
+            'key' => $apikey
         ])->get("https://rajaongkir.komerce.id/api/v1/destination/domestic-destination", [
             'limit' => 10,
             'offset' => 0,
