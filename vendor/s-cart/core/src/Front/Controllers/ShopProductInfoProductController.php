@@ -150,7 +150,7 @@ class ShopProductInfoProductController extends RootFrontController
                     'og_image'        => sc_file($product->getImage()),
                     'layout_page'     => 'product_info_detail',
                     'breadcrumbs'     => [
-                        ['url'        => sc_route('shop'), 'title' => sc_language_render('front.shop')],
+                        ['url'        => sc_route('product_info'), 'title' => sc_language_render('front.prod_info')],
                         $dataCategoryFirst,
                         ['url'        => '', 'title' => $product->name],
                     ],

@@ -308,7 +308,7 @@ class ShopProductInfo extends Model
      */
     public function getUrl($lang = null)
     {
-        return sc_route('product.detail', ['alias' => $this->alias, 'lang' => $lang ?? app()->getLocale()]);
+        return sc_route('product-info-product.detail', ['alias' => $this->alias, 'lang' => $lang ?? app()->getLocale()]);
     }
 
     /**
