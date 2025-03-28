@@ -234,7 +234,10 @@ class ShopOrder extends Model
                     }
                 }else{
                     DB::connection(SC_CONNECTION)->rollBack();
+<<<<<<< HEAD
                     Log::error('Error create midtrans transaction:', ['message' => "Virtual Acount $va_number"]);
+=======
+>>>>>>> f9212ebbfe776914a1e62c0622f5002ccbcfb34d
                     $return = ['error' => 1, 'msg' => 'Error create transaction'];
                     return $return;
                 }
@@ -482,7 +485,11 @@ class ShopOrder extends Model
             'city' => $customer->regency,
             'postal_code' => $dataOrder['postcode'],
             'phone' => $dataOrder['phone'],
+<<<<<<< HEAD
             'country_code' => ($customer->country=='ID') ? 'IDN' : $customer->country,
+=======
+            'country_code' => $customer->country
+>>>>>>> f9212ebbfe776914a1e62c0622f5002ccbcfb34d
         ];
 
         $shipping_address = [
@@ -492,7 +499,11 @@ class ShopOrder extends Model
             'address' => $dataOrder['address1'],
             'city' => $customer->regency,
             'postal_code' => $dataOrder['postcode'],
+<<<<<<< HEAD
             'country_code' => ($customer->country=='ID') ? 'IDN' : $customer->country,
+=======
+            'country_code' => $customer->country
+>>>>>>> f9212ebbfe776914a1e62c0622f5002ccbcfb34d
         ];
 
         $customer_details = [
