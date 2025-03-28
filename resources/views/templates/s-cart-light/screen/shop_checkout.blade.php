@@ -179,7 +179,7 @@ $layout_page = shop_checkout
                                         <label for="postcode" class="control-label"><i class="fa fa-tablet"></i>
                                             {{ sc_language_render('order.postcode') }}:</label>
                                         <input class="form-control" name="postcode" type="text" placeholder="{{ sc_language_render('order.postcode') }}"
-                                            value="{{ old('postcode',$shippingAddress['postcode'])}}">
+                                            value="{{ old('postcode',$shippingAddress['postcode'])}}" readonly>
                                         @if($errors->has('postcode'))
                                             <span class="help-block">{{ $errors->first('postcode') }}</span>
                                         @endif
@@ -199,6 +199,7 @@ $layout_page = shop_checkout
                                 @endif
                             </tr>
 
+                            <input type="hidden" id="id_addr" class="form-control" name="id_addr" type="text" value="{{ $shippingAddress['id_addr']}}">
                             @if (sc_config('customer_address1'))
                             <tr>
                                     <td colspan="2"
@@ -206,7 +207,7 @@ $layout_page = shop_checkout
                                         <label for="address1" class="control-label"><i class="fa fa-list-ul"></i>
                                             {{ sc_language_render('order.address') }}:</label>
                                         <input class="form-control" name="address1" type="text" placeholder="{{ sc_language_render('order.address1') }}"
-                                            value="{{ old('address1',$shippingAddress['address1'])}}">
+                                            value="{{ old('address1',$shippingAddress['address1'])}}" readonly>
                                         @if($errors->has('address1'))
                                             <span class="help-block">{{ $errors->first('address1') }}</span>
                                         @endif
@@ -456,8 +457,9 @@ $layout_page = shop_checkout
     function getCost() {
         const loadingContainer = document.getElementById('loadingContainer');
         loadingContainer.style.display = "flex";
-
         let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+        const id_addr = document.getElementById('id_addr').value;
 
         fetch("/api/calculate-ship-cost", {
             method: "POST",
@@ -467,7 +469,7 @@ $layout_page = shop_checkout
                 "X-CSRF-TOKEN": csrfToken
             },
             body: JSON.stringify({
-                destination: "37958",
+                destination: id_addr,
                 weight: "1000",
             })
         })

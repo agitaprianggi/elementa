@@ -3,6 +3,10 @@
 namespace SCart\Core\Front\Models;
 
 use DB;
+use Carbon\Carbon;
+use Midtrans\Snap;
+use Midtrans\Config;
+use Midtrans\CoreApi;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Model;
 use SCart\Core\Front\Models\ShopProduct;
@@ -127,6 +131,7 @@ class ShopOrder extends Model
             $uID = $dataOrder['customer_id'] ?? 0;
             $adminID = $dataOrder['admin_id'] ?? 0;
             unset($dataOrder['admin_id']);
+            unset($dataOrder['id_addr']);
             $currency = $dataOrder['currency'];
             $exchange_rate = $dataOrder['exchange_rate'];
 
@@ -139,13 +144,6 @@ class ShopOrder extends Model
             $dataOrder['shipping_method'] = $service;
             $dataOrder['shipping_name'] = $name;
             $dataOrder['shipping_code'] = $code;
-
-            // try{
-            //     $createTransaction = $this->createTransaction($dataOrder);
-            // } catch (\Throwable $e) {
-            //     Log::error('Error create transaction:', ['message' => $e->getMessage()]);
-            //     $return = ['error' => 1, 'msg' => $e->getMessage()];
-            // }
 
             //Insert order
             $order = ShopOrder::create($dataOrder);
@@ -225,12 +223,34 @@ class ShopOrder extends Model
             }
             // End process Discount
 
+            //Create midtrans transaction
+            $va_number = '';
+            try{
+                $va_number = $this->createMidtransTransaction($orderID, $dataOrder, $arrCartDetail, $dataTotal);
+                if($va_number!=''){
+                    $order = $this->find($orderID);
+                    if ($order) {
+                        $order->update(['virtual_account' => $va_number]);
+                    }
+                }else{
+                    DB::connection(SC_CONNECTION)->rollBack();
+                    $return = ['error' => 1, 'msg' => 'Error create transaction'];
+                    return $return;
+                }
+            } catch (\Throwable $e) {
+                DB::connection(SC_CONNECTION)->rollBack();
+                Log::error('Error create midtrans transaction:', ['message' => $e->getMessage()]);
+                $return = ['error' => 1, 'msg' => 'Error create transaction'];
+                return $return;
+            }
+            //Create midtrans transaction
+
             DB::connection(SC_CONNECTION)->commit();
 
             // Process event created
             sc_event_order_created($order);
 
-            $return = ['error' => 0, 'orderID' => $orderID, 'msg' => "", 'detail' => $order];
+            $return = ['error' => 0, 'orderID' => $orderID, 'msg' => "", 'detail' => $order, 'va_number' => $va_number];
         } catch (\Throwable $e) {
             DB::connection(SC_CONNECTION)->rollBack();
             $return = ['error' => 1, 'msg' => $e->getMessage()];
@@ -417,5 +437,93 @@ class ShopOrder extends Model
             ->where('order_id', $this->id)
             ->where('code', 'received')
             ->update(['value' =>  -$total]);
+    }
+
+    /**
+     * Update value balance, received when order capture full money with payment method
+     *
+     * @return  [type]  [return description]
+     */
+    public function createMidtransTransaction($orderID, $dataOrder, $arrCartDetail, $dataTotal)
+    {
+        $customer = auth()->user();
+        Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+        Config::$clientKey = env('MIDTRANS_CLIENT_KEY');
+        Config::$isProduction = env('MIDTRANS_ENVIRONMENT') == 'production' ? true : false;
+        Config::$isSanitized = true;
+        Config::$is3ds = true;
+
+        // Mendapatkan order_id dan gross_amount dari argumen
+        $now = Carbon::now()->setTimezone('Asia/Jakarta');
+
+        // Item details
+        $item_details = [];
+        foreach($arrCartDetail as $key => $row) {
+            $item_details[$key]['id'] = $row['product_id'];
+            $item_details[$key]['name'] = $row['name'];
+            $item_details[$key]['price'] = $row['total_price'];
+            $item_details[$key]['quantity'] = $row['qty'];
+        }
+
+        $grossAmount = array_sum(array_column($item_details, 'price'));
+
+        // Data transaksi
+        $transaction_details = [
+            'order_id' => $orderID,
+            'gross_amount' => $grossAmount,
+        ];
+
+        // Customer details
+        $billing_address = [
+            'first_name' => $dataOrder['first_name'],
+            'last_name' => $dataOrder['last_name'],
+            'address' => $dataOrder['address1'],
+            'city' => $customer->regency,
+            'postal_code' => $dataOrder['postcode'],
+            'phone' => $dataOrder['phone'],
+            'country_code' => $customer->country
+        ];
+
+        $shipping_address = [
+            'first_name' => $dataOrder['first_name'],
+            'last_name' => $dataOrder['last_name'],
+            'phone' => $dataOrder['phone'],
+            'address' => $dataOrder['address1'],
+            'city' => $customer->regency,
+            'postal_code' => $dataOrder['postcode'],
+            'country_code' => $customer->country
+        ];
+
+        $customer_details = [
+            'first_name' => $dataOrder['first_name'],
+            'last_name' => $dataOrder['last_name'],
+            'email' => $dataOrder['email'],
+            'phone' => $dataOrder['phone'],
+            'billing_address' => $billing_address,
+            'shipping_address' => $shipping_address,
+        ];
+
+        $transaction_data = [
+            'transaction_details' => $transaction_details,
+            'item_details' => $item_details,
+            'customer_details' => $customer_details,
+            'payment_type' => 'bank_transfer',
+            'bank_transfer' => [
+                'bank' => $dataOrder['payment_method'],
+            ],
+        ];
+
+        try {
+            // $response = Snap::createTransaction($transaction_data);
+            // $this->info('Response: ' . print_r($response, true));
+
+            $response = CoreApi::charge($transaction_data);
+            return $response->va_numbers[0]->va_number;
+            // $this->info('Response: ' . print_r($response, true));
+            // $this->info('Response: ' . $response->va_numbers[0]->va_number);
+        } catch (\Midtrans\MidtransException $e) {
+            return '';
+            Log::error('Error: ' . $e->getMessage());
+        }
     }
 }

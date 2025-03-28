@@ -217,6 +217,7 @@ class ShopCartController extends RootFrontController
                     'country'         => $address->country,
                     'phone'           => $address->phone,
                     'comment'         => '',
+                    'id_addr'         => $address->id_addr,
                 ];
             } else {
                 $addressDefaul = [
@@ -233,6 +234,7 @@ class ShopCartController extends RootFrontController
                     'country'         => $customer->country,
                     'phone'           => $customer->phone,
                     'comment'         => '',
+                    'id_addr'         => $customer->id_addr,
                 ];
             }
         } else {
@@ -250,9 +252,11 @@ class ShopCartController extends RootFrontController
                 'country'         => '',
                 'phone'           => '',
                 'comment'         => '',
+                'id_addr'         => '',
             ];
         }
         $shippingAddress = session('shippingAddress') ?? $addressDefaul;
+
         $objects = ShopOrderTotal::getObjectOrderTotal();
 
         //Process captcha
@@ -308,7 +312,7 @@ class ShopCartController extends RootFrontController
         $dataCheckout  = session('dataCheckout') ?? '';
         $storeCheckout = session('storeCheckout') ?? '';
         //If cart info empty
-        // dd($dataCheckout, $storeCheckout);
+
         if (!$dataCheckout || !$storeCheckout) {
             return redirect(sc_route('cart'))->with(['error' => sc_language_render('cart.cart_empty')]);
         }
@@ -373,6 +377,7 @@ class ShopCartController extends RootFrontController
                     'postcode'        => request('postcode'),
                     'company'         => request('company'),
                     'comment'         => request('comment'),
+                    'id_addr'         => $customer->id_addr ?? '',
                 ],
             ]
         );
@@ -551,7 +556,7 @@ class ShopCartController extends RootFrontController
         } else {
             $dataTotal       = session('dataTotal') ?? [];
             $shippingAddress = session('shippingAddress') ?? [];
-            $paymentMethod   = "Bank Transfer - ".session('paymentMethod') ?? '';
+            $paymentMethod   = session('paymentMethod') ?? '';
             $shippingMethod  = session('shippingMethod') ?? '';
             $address_process = session('address_process') ?? '';
             $storeCheckout   = session('storeCheckout') ?? '';
@@ -625,6 +630,9 @@ class ShopCartController extends RootFrontController
         if (!empty($shippingAddress['comment'])) {
             $dataOrder['comment']       = $shippingAddress['comment'];
         }
+        if (!empty($shippingAddress['id_addr'])) {
+            $dataOrder['id_addr']       = $shippingAddress['id_addr'];
+        }
 
         $arrCartDetail = [];
         foreach ($dataCheckout as $cartItem) {
@@ -665,6 +673,7 @@ class ShopCartController extends RootFrontController
                 'address3'        => $shippingAddress['address3'] ?? '',
                 'country'         => $shippingAddress['country'] ?? '',
                 'phone'           => $shippingAddress['phone'] ?? '',
+                'id_addr'         => $shippingAddress['id_addr'] ?? '',
             ];
 
             //Process escape
