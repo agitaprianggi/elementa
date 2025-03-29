@@ -461,6 +461,20 @@ $layout_page = shop_checkout
 
         const id_addr = document.getElementById('id_addr').value;
 
+        let totalWeight = 0;
+
+        document.querySelectorAll("tr.row_cart").forEach(row => {
+            let weightElement = row.querySelector("td#productweight");
+            let qtyElement = row.querySelector("td#productqty");
+
+            if (weightElement && qtyElement) {
+                let weight = parseFloat(weightElement.textContent.trim()) || 0;
+                let qty = parseInt(qtyElement.textContent.trim()) || 0;
+
+                totalWeight += weight * qty;
+            }
+        });
+
         fetch("/api/calculate-ship-cost", {
             method: "POST",
             headers: {
@@ -470,7 +484,7 @@ $layout_page = shop_checkout
             },
             body: JSON.stringify({
                 destination: id_addr,
-                weight: "1000",
+                weight: totalWeight,
             })
         })
         .then(response => response.json())
@@ -496,9 +510,8 @@ $layout_page = shop_checkout
                             id="shipping-${index}" style="position: relative;" class="radio-custom">
                         <span class="radio-custom-dummy"></span>
                         <span for="shippingMethod">
-                            ${shipping.name} - ${shipping.service} 
-                            (${shipping.description}) - Rp ${shipping.cost.toLocaleString()} 
-                            (Estimasi: ${shipping.etd})
+                            <b>${shipping.code.toUpperCase()} - ${shipping.service}</b> (Rp ${shipping.cost.toLocaleString()})<br>
+                            <small class="ml-4">Estimasi: ${shipping.etd}</small>
                         </span>
                     </label>
                 `;

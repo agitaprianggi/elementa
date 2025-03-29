@@ -46,7 +46,7 @@
 
                   <td>{!! $product->showPrice() !!}</td>
 
-                  <td class="cart-col-qty">
+                  <td id="productqty" class="cart-col-qty">
                       <div class="cart-qty">
                         {{$item->qty}}
                       </div>
@@ -54,6 +54,10 @@
 
                   <td align="right">
                       {{sc_currency_render($item->subtotal)}}
+                  </td>
+
+                  <td id="productweight" style="display: none">
+                    {{$product->weight}}
                   </td>
               </tr>
 
