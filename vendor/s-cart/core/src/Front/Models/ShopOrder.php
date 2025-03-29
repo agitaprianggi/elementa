@@ -458,15 +458,27 @@ class ShopOrder extends Model
         $now = Carbon::now()->setTimezone('Asia/Jakarta');
 
         // Item details
-        $item_details = [];
+        $item_details[0] = [
+            "id" => 'ongkir',
+            "name" => 'ongkir',
+            "price" => $dataOrder['shipping'],
+            "quantity" => 1,
+        ];
+        $item_details[1] = [
+            "id" => 'tax',
+            "name" => 'tax',
+            "price" => $dataOrder['tax'],
+            "quantity" => 1,
+        ];
+        $grossAmount = $dataOrder['shipping']+$dataOrder['tax'];
         foreach($arrCartDetail as $key => $row) {
-            $item_details[$key]['id'] = $row['product_id'];
-            $item_details[$key]['name'] = $row['name'];
-            $item_details[$key]['price'] = $row['total_price'];
-            $item_details[$key]['quantity'] = $row['qty'];
-        }
+            $item_details[$key+2]['id'] = $row['product_id'];
+            $item_details[$key+2]['name'] = $row['name'];
+            $item_details[$key+2]['price'] = $row['price'];
+            $item_details[$key+2]['quantity'] = $row['qty'];
 
-        $grossAmount = array_sum(array_column($item_details, 'price'));
+            $grossAmount += $row['price'] * $row['qty'];
+        }
 
         // Data transaksi
         $transaction_details = [

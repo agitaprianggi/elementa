@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\OrderNotificationController;
 
 Route::post('/calculate-ship-cost', function (Request $request) {
     try {
@@ -54,6 +55,8 @@ Route::post('/calculate-ship-cost', function (Request $request) {
         return response()->json(['error' => 'Internal Server Error'], 500);
     }
 });
+
+Route::post('/midtrans/transactionOrder', [OrderNotificationController::class, 'handleTransaction']);
 
 /*
 |--------------------------------------------------------------------------
