@@ -118,7 +118,7 @@ $layout_page = product_info_detail
 
                   <!-- <hr class="hr-gray-100"> -->
 
-                @if ($product->kind != SC_PRODUCT_GROUP && $product->allowSale() && !sc_config('product_cart_off'))
+                <!-- @if ($product->kind != SC_PRODUCT_GROUP && $product->allowSale() && !sc_config('product_cart_off'))
                   <div style="
                       display: flex; flex-direction: column; gap: 2px; align-items: flex-start;
                   ">
@@ -177,7 +177,7 @@ $layout_page = product_info_detail
                                 </a>
                             @endif
                         </div>
-                @endif
+                @endif -->
 
                   {{-- Show attribute --}}
                   @if (sc_config('product_property'))
