@@ -37,7 +37,7 @@ $layout_page = shop_compare
                                         <tr>
                                         @endif
                                         <td align="center">
-                                            {{ $product->name }}({{ $product->sku }})
+                                            {!! $product->name !!}({{ $product->sku }})
                                             <hr>
                                             <a href="{{ $product->getUrl() }}"><img width="100"
                                                     src="{{sc_file($product->getImage())}}" alt=""></a>

@@ -2,16 +2,16 @@
     <div class="product-body">
       <div class="product-figure">
           <a href="{{ $product->getUrl() }}">
-          <img src="{{ sc_file($product->getThumb()) }}" alt="{{ $product->name }}"/>
+          <img src="{{ sc_file($product->getThumb()) }}" alt="{!! $product->name !!}"/>
           </a>
       </div>
-      <h5 class="product-title clamped-text" title="{{ $product->name }}"><a href="{{ $product->getUrl() }}">{{ $product->name }}</a></h5>
+      <h5 class="product-title clamped-text" title="{!! $product->name !!}"><a href="{{ $product->getUrl() }}">{!! $product->name !!}</a></h5>
       
       @if (empty($hiddenStore))
       {!! $product->displayVendor() !!}
       @endif
 
-      @if ($product->allowSale() && !sc_config('product_cart_off'))
+      <!-- @if ($product->allowSale() && !sc_config('product_cart_off'))
       @php
           $dataLink = [
               'class' => '', 
@@ -24,7 +24,7 @@
           ];
       @endphp
       @include($sc_templatePath.'.common.button.link', $dataLink)
-      @endif
+      @endif -->
 
       {!! $product->showPrice() !!}
     </div>

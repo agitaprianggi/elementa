@@ -25,6 +25,7 @@ use SCart\Core\Admin\Models\AdminCategory;
 
 use Illuminate\Support\Facades\Validator;
 use DB;
+use Illuminate\Support\Str;
 
 class AdminProductInfoController extends RootAdminController
 {
@@ -525,7 +526,7 @@ class AdminProductInfoController extends RootAdminController
             'brand_id'       => $data['brand_id'] ?? "",
             'supplier_id'    => $data['supplier_id'] ?? "",
             'price'          => $data['price'] ?? 0,
-            'sku'            => $data['sku'],
+            'sku'            => Str::startsWith($data['sku'], 'INF-') ? $data['sku'] : 'INF-' . $data['sku'],
             'cost'           => $data['cost'] ?? 0,
             'stock'          => $data['stock'] ?? 0,
             'weight_class'   => $data['weight_class'] ?? '',
@@ -865,7 +866,7 @@ class AdminProductInfoController extends RootAdminController
             'length'       => $data['length'] ?? 0,
             'width'        => $data['width'] ?? 0,
             'property'     => $data['property'] ?? SC_PROPERTY_PHYSICAL,
-            'sku'          => $data['sku'],
+            'sku'          => Str::startsWith($data['sku'], 'INF-') ? $data['sku'] : 'INF-' . $data['sku'],
             'alias'        => $data['alias'],
             'status'       => (!empty($data['status']) ? 1 : 0),
             'approve'       => (!empty($data['approve']) ? 1 : 0),

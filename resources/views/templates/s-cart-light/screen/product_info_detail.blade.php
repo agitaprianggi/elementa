@@ -116,9 +116,7 @@ $layout_page = product_info_detail
                   </div>
                   {{--// Show price --}}
 
-                  <!-- <hr class="hr-gray-100"> -->
-
-                <!-- @if ($product->kind != SC_PRODUCT_GROUP && $product->allowSale() && !sc_config('product_cart_off'))
+                @if ($product->kind != SC_PRODUCT_GROUP && $product->allowSale() && !sc_config('product_cart_off'))
                   <div style="
                       display: flex; flex-direction: column; gap: 2px; align-items: flex-start;
                   ">
@@ -131,7 +129,7 @@ $layout_page = product_info_detail
                             </div>
 
                             {{-- Tombol "Beli Versi Cetak" --}}
-                            <button id="sc_button-form-process" type="submit" style="
+                            <button id="sc_button-form-process" type="submit" disabled style="
                                 background: #0097b2;
                                 border: none;
                                 padding: 9px 15px;
@@ -143,10 +141,11 @@ $layout_page = product_info_detail
                                 justify-content: center;
                                 gap: 8px;
                                 min-width: 160px;
+                                pointer-events: none;
                             " onmouseover="this.style.background='#d9d9d9'" 
                             onmouseout="this.style.background='#0097b2'">
-                                <i class="fa fa-cart-plus" style="color: white; font-size: 16px;"></i>
-                                <span style="color: white; font-size: 14px; font-weight: bold;">Beli Versi Cetak</span>
+                                <i class="fa fa-book" style="color: white; font-size: 16px;"></i>
+                                <span style="color: white; font-size: 14px; font-weight: bold;">Buku Cetak</span>
                             </button>
                     @endif
                             
@@ -169,15 +168,16 @@ $layout_page = product_info_detail
                                         gap: 8px;
                                         min-width: 160px;
                                         text-align: center;
+                                        pointer-events: none;
                                     "
                                     onmouseover="this.style.background='#d9d9d9'" 
                                     onmouseout="this.style.background='#ff914d'">
-                                    <i class="fa fa-book" style="color: white; font-size: 14px;"></i>
-                                    <span style="color: white; font-size: 14px; font-weight: bold; text-align: center;">Beli Versi Digital</span>
+                                    <i class="fa fa-book-atlas" style="color: white; font-size: 14px;"></i>
+                                    <span style="color: white; font-size: 14px; font-weight: bold; text-align: center;">Buku Digital</span>
                                 </a>
                             @endif
                         </div>
-                @endif -->
+                @endif
 
                   {{-- Show attribute --}}
                   @if (sc_config('product_property'))

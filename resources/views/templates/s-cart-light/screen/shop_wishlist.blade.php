@@ -38,9 +38,9 @@ $layout_page = shop_wishlist
                                 <td>{{ $product->sku }}</td>
                                 <td>
                                     <a href="{{$product->getUrl() }}" class="row_cart-name">
-                                        <img width="100" src="{{sc_file($product->getImage())}}" alt="{{ $product->name }}">
+                                        <img width="100" src="{{sc_file($product->getImage())}}" alt="{!! $product->name !!}">
                                         <span>
-                                            {{ $product->name }}<br />
+                                            {!! $product->name !!}<br />
                                             {{-- Process attributes --}}
                                             @if ($item->options->count())
                                             (

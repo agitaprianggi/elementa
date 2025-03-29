@@ -28,7 +28,7 @@
                   <td>
                       <a href="{{$product->getUrl() }}" class="row_cart-name">
                           <img width="100" src="{{sc_file($product->getImage())}}"
-                              alt="{{ $product->name }}">
+                              alt="{!! $product->name !!}">
                       </a>
                           <span>
                             <a href="{{$product->getUrl() }}" class="row_cart-name">{!! $product->name !!}</a><br />

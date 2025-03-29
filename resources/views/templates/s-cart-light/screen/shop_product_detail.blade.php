@@ -415,9 +415,9 @@ $layout_page = shop_product_detail
       <section class="section section-sm section-last bg-default">
         <div class="container">
           <h4 class="font-weight-sbold">{{ sc_language_render('front.products_recommend') }}</h4>
-          <div class="row row-lg row-10 row-lg-30 justify-content-center">
+          <div class="product-grid">
             @foreach ($productRelation as $key => $productRel)
-            <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+            <div class="product-item">
                   {{-- Render product single --}}
                   @include($sc_templatePath.'.common.product_single', ['product' => $productRel])
                   {{-- //Render product single --}}
@@ -431,144 +431,174 @@ $layout_page = shop_product_detail
 <!--/product-details-->
 
 <style>
-  .button-group {
-      display: flex;
-      align-items: center; /* Pusatkan secara vertikal */
-      gap: 10px; /* Beri jarak antar elemen */
-      flex-wrap: wrap; /* Jika terlalu sempit, elemen akan turun ke baris berikutnya */
-  }
-
-  .button-lg {
-      padding: 14px 10px;
-      font-size: 20px;
-      line-height: 1;
-      letter-spacing: .025em;
-      border-radius: 6px;
-      color: #ffffff;
-      background: #0097b2 ;
-      border: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: background 0.3s ease;
-  }
-
-  .button-lg:hover {
-      background: #d9d9d9; /* Efek hover */
-  }
-
-  .single-product .button {
-      min-width: 70px;
-      min-height: 70px;
-      font-size: 24px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 6px;
-      background: #0097b2 ;
-      border: none;
-      cursor: pointer;
-      transition: background 0.3s ease;
-  }
-
-  .single-product .button:hover {
-      background: #d9d9d9; /* Efek hover */
-  }
-
-  /* Menghilangkan card terluar */
-.custom-tabs {
-    background: transparent;
-    padding: 0;
-    box-shadow: none;
-    margin-top: 30px;
-}
-
-/* Styling untuk Tabs */
-.nav-tabs {
-    border-bottom: none;
-    background: #0097b2; /* Warna yang diinginkan */
-    padding: 10px;
-    border-radius: 10px 10px 0 0;
-    display: flex;
-    justify-content: center; /* Membuat tab lebih rapi */
-}
-
-.nav-tabs .nav-link {
-    color: white;
-    padding: 12px 20px;
-    font-weight: bold;
-    border-radius: 20px;
-    margin: 5px;
-    transition: all 0.3s ease-in-out;
-}
-
-.nav-tabs .nav-link.active {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-}
-
-/* Styling untuk konten tab */
-.tab-content {
-    background: white;
-    border-radius: 0 0 10px 10px;
-    padding: 20px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08); /* Shadow lebih lembut */
-}
-
-/* Styling untuk tabel informasi tambahan */
-.table-borderless td {
-    padding: 12px;
-}
-
-.social-btn {
+    .button-group {
         display: flex;
+        align-items: center; /* Pusatkan secara vertikal */
+        gap: 10px; /* Beri jarak antar elemen */
+        flex-wrap: wrap; /* Jika terlalu sempit, elemen akan turun ke baris berikutnya */
+    }
+
+    .button-lg {
+        padding: 14px 10px;
+        font-size: 20px;
+        line-height: 1;
+        letter-spacing: .025em;
+        border-radius: 6px;
+        color: #ffffff;
+        background: #0097b2 ;
+        border: none;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-        color: white;
-        font-size: 18px;
-        text-decoration: none;
-        transition: transform 0.3s ease-in-out;
+        cursor: pointer;
+        transition: background 0.3s ease;
     }
 
-    .social-btn:hover {
-        transform: scale(1.1);
+    .button-lg:hover {
+        background: #d9d9d9; /* Efek hover */
     }
 
-/* Responsif agar tampil lebih baik di mobile */
-@media (max-width: 768px) {
-    .nav-tabs {
-        flex-direction: column;
+    .single-product .button {
+        min-width: 70px;
+        min-height: 70px;
+        font-size: 24px;
+        display: inline-flex;
         align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        background: #0097b2 ;
+        border: none;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .single-product .button:hover {
+        background: #d9d9d9; /* Efek hover */
+    }
+
+    /* Menghilangkan card terluar */
+    .custom-tabs {
+        background: transparent;
+        padding: 0;
+        box-shadow: none;
+        margin-top: 30px;
+    }
+
+    /* Styling untuk Tabs */
+    .nav-tabs {
+        border-bottom: none;
+        background: #0097b2; /* Warna yang diinginkan */
+        padding: 10px;
+        border-radius: 10px 10px 0 0;
+        display: flex;
+        justify-content: center; /* Membuat tab lebih rapi */
     }
 
     .nav-tabs .nav-link {
-        width: 100%;
-        text-align: center;
+        color: white;
+        padding: 12px 20px;
+        font-weight: bold;
+        border-radius: 20px;
+        margin: 5px;
+        transition: all 0.3s ease-in-out;
     }
-}
 
+    .nav-tabs .nav-link.active {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+    }
 
-  /* Responsif */
-  @media (min-width: 576px) {
-      .button-lg {
-          padding: 17px 10px;
-          font-size: 24px;
-          min-height: 70px;
-      }
+    /* Styling untuk konten tab */
+    .tab-content {
+        background: white;
+        border-radius: 0 0 10px 10px;
+        padding: 20px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08); /* Shadow lebih lembut */
+    }
 
-      .single-product .button {
-          min-width: 70px;
-          min-height: 70px;
-          font-size: 24px;
-      }
-  } 
-  .product-stepper {
-    display: none;
+    /* Styling untuk tabel informasi tambahan */
+    .table-borderless td {
+        padding: 12px;
+    }
+
+    .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .social-btn:hover {
+            transform: scale(1.1);
+        }
+
+    /* Responsif agar tampil lebih baik di mobile */
+    @media (max-width: 768px) {
+        .nav-tabs {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav-tabs .nav-link {
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+    /* Responsif */
+    @media (min-width: 576px) {
+        .button-lg {
+            padding: 17px 10px;
+            font-size: 24px;
+            min-height: 70px;
+        }
+
+        .single-product .button {
+            min-width: 70px;
+            min-height: 70px;
+            font-size: 24px;
+        }
+    } 
+
+    .product-stepper {
+        display: none;
     }  
+
+    .product-grid {
+        display: grid;
+        gap: 30px; /* Jarak antar elemen */
+        margin-top: 50px;
+    }
+
+    @media (max-width: 767px) {
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+            gap: 10px; /* Tambahkan jarak antar item */
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box; /* Pastikan padding tidak mempengaruhi lebar */
+        }
+
+        .product-grid .product-item {
+            width: 100%; /* Pastikan elemen anak tidak lebih besar dari grid */
+            max-width: 100%;
+            overflow: hidden; /* Hindari overflow */
+            box-sizing: border-box;
+        }
+    }
+
+    @media (min-width: 768px) { /* Untuk layar tablet ke atas */
+        .product-grid {
+            grid-template-columns: repeat(4, 1fr); /* 4 kolom */
+        }
+    }
 </style>
 
 @endsection
