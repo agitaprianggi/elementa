@@ -460,13 +460,13 @@ class ShopOrder extends Model
         // Item details
         $item_details[0] = [
             "id" => 'ongkir',
-            "name" => 'ongkir',
+            "name" => 'Ongkos Kirim',
             "price" => $dataOrder['shipping'],
             "quantity" => 1,
         ];
         $item_details[1] = [
             "id" => 'tax',
-            "name" => 'tax',
+            "name" => 'Pajak',
             "price" => $dataOrder['tax'],
             "quantity" => 1,
         ];
