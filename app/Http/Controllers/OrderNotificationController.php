@@ -53,8 +53,8 @@ class OrderNotificationController extends Controller
             $transaction->payment_status = 3;
             $transaction->status = 2;
 
-            $total_transaction->value = sc_currency_value($cost);
-            $total_transaction->text = sc_currency_render($cost);
+            $total_transaction->value = sc_currency_value($grossAmount);
+            $total_transaction->text = sc_currency_render($grossAmount);
         } elseif ($transactionStatus == 'deny' || $transactionStatus == 'cancel' || $transactionStatus == 'expire') {
             $transaction->status = 4;
         } elseif ($transactionStatus == 'refund') {
