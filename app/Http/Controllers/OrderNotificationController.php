@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Log;
 use Midtrans\Config;
 use Midtrans\Notification;
 use SCart\Core\Front\Models\ShopOrder;
+use SCart\Core\Front\Models\ShopOrderTotal;
 
 class OrderNotificationController extends Controller
 {
@@ -28,6 +29,7 @@ class OrderNotificationController extends Controller
         $orderId = $notification->order_id;
         $transactionStatus = $notification->transaction_status;
         $fraudStatus = $notification->fraud_status;
+        $grossAmount = (int) $notification->gross_amount;
 
         // Cari transaksi berdasarkan order_id
         $transaction = ShopOrder::where('id', $orderId)->first();
@@ -36,11 +38,23 @@ class OrderNotificationController extends Controller
             Log::error("Transaction not found: " . $orderId);
             return response()->json(['message' => 'Transaction not found'], 404);
         }
+        
+        $total_transaction = ShopOrderTotal::where('order_id', $orderId)->where('code', 'received')->first();
+
+        if (!$total_transaction) {
+            Log::error("Total Transaction not found: " . $orderId);
+            return response()->json(['message' => 'Total Transaction not found'], 404);
+        }
 
         // Update status berdasarkan notifikasi dari Midtrans
         if ($transactionStatus == 'settlement') {
+            $transaction->received = -$grossAmount;
+            $transaction->balance = 0;
             $transaction->payment_status = 3;
             $transaction->status = 2;
+
+            $total_transaction->value = sc_currency_value($cost);
+            $total_transaction->text = sc_currency_render($cost);
         } elseif ($transactionStatus == 'deny' || $transactionStatus == 'cancel' || $transactionStatus == 'expire') {
             $transaction->status = 4;
         } elseif ($transactionStatus == 'refund') {
@@ -48,6 +62,7 @@ class OrderNotificationController extends Controller
             $transaction->status = 6;
         }
 
+        $total_transaction->save();
         $transaction->save();
 
         return response()->json(['message' => 'Notification processed successfully']);
