@@ -128,6 +128,7 @@ if (!function_exists('sc_order_process_after_success') && !in_array('sc_order_pr
         $dataResponse = [
             'orderID'        => $orderID,
             'va_number'      => $data['virtual_account'],
+            'total_order'    => sc_currency_render($data['total']),
         ];
 
         return $dataResponse;
