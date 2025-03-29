@@ -501,6 +501,12 @@ $layout_page = shop_checkout
                 return;
             }
 
+            data.data.sort((a, b) => {
+                if (a.code < b.code) return -1;
+                if (a.code > b.code) return 1;
+                return a.cost - b.cost;
+            });
+
             // Looping response data untuk membuat radio button
             data.data.forEach((shipping, index) => {
                 const div = document.createElement("div");
