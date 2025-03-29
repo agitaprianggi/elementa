@@ -30,30 +30,25 @@ class OrderNotificationController extends Controller
         $fraudStatus = $notification->fraud_status;
 
         // Cari transaksi berdasarkan order_id
-        $transaction = ShopOrder::where('order_id', $orderId)->first();
-        Log::info('Transaction :', print_r($transaction, true));
+        $transaction = ShopOrder::where('id', $orderId)->first();
 
         if (!$transaction) {
             Log::error("Transaction not found: " . $orderId);
             return response()->json(['message' => 'Transaction not found'], 404);
         }
 
-        // // Update status berdasarkan notifikasi dari Midtrans
-        // if ($transactionStatus == 'capture') {
-        //     if ($fraudStatus == 'accept') {
-        //         $transaction->status = 'success';
-        //     }
-        // } elseif ($transactionStatus == 'settlement') {
-        //     $transaction->status = 'success';
-        // } elseif ($transactionStatus == 'pending') {
-        //     $transaction->status = 'pending';
-        // } elseif ($transactionStatus == 'deny' || $transactionStatus == 'cancel' || $transactionStatus == 'expire') {
-        //     $transaction->status = 'failed';
-        // } elseif ($transactionStatus == 'refund') {
-        //     $transaction->status = 'refunded';
-        // }
+        // Update status berdasarkan notifikasi dari Midtrans
+        if ($transactionStatus == 'settlement') {
+            $transaction->payment_status = 3;
+            $transaction->status = 2;
+        } elseif ($transactionStatus == 'deny' || $transactionStatus == 'cancel' || $transactionStatus == 'expire') {
+            $transaction->status = 4;
+        } elseif ($transactionStatus == 'refund') {
+            $transaction->payment_status = 4;
+            $transaction->status = 6;
+        }
 
-        // $transaction->save();
+        $transaction->save();
 
         return response()->json(['message' => 'Notification processed successfully']);
     }

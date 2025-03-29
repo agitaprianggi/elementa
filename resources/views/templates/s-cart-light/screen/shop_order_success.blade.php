@@ -18,6 +18,7 @@ $layout_page = shop_order_success
         <div class="col-md-12 text-success">
             <h2>{{ sc_language_render('checkout.order_success_msg') }}</h2>
             <h3>{{ sc_language_render('checkout.order_success_order_info', ['order_id'=>session('orderID')]) }}</h3>
+            <h3>{{ sc_language_render('checkout.order_success_va_number', ['va_number'=>session('va_number')]) }}</h3>
         </div>
     </div>
 </div>
