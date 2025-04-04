@@ -108,7 +108,7 @@ $layout_page = shop_profile
                 </div>
                 @endif
 
-                @if (sc_config('customer_postcode'))
+                <!-- @if (sc_config('customer_postcode'))
                 <div class="form-group row {{ $errors->has('postcode') ? ' has-error' : '' }}">
                     <label for="postcode"
                         class="col-md-4 col-form-label text-md-right">{{ sc_language_render('customer.postcode') }}</label>
@@ -123,7 +123,7 @@ $layout_page = shop_profile
 
                     </div>
                 </div>
-                @endif
+                @endif -->
 
                 <div class="form-group row {{ $errors->has('email') ? ' has-error' : '' }}">
                     <label for="email"
@@ -135,7 +135,7 @@ $layout_page = shop_profile
                     </div>
                 </div>
 
-                <div class="form-group row {{ $errors->has('address1') ? ' has-error' : '' }}">
+                <!-- <div class="form-group row {{ $errors->has('address1') ? ' has-error' : '' }}">
                     <label for="address1"
                         class="col-md-4 col-form-label text-md-right">{{ sc_language_render('customer.address1') }}</label>
 
@@ -182,7 +182,7 @@ $layout_page = shop_profile
 
                     </div>
                 </div>
-                @endif
+                @endif -->
 
                 @if (sc_config('customer_country'))
                 @php

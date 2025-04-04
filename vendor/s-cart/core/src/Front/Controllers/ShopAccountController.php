@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use SCart\Core\Front\Controllers\Auth\AuthTrait;
+use Carbon\Carbon;
 
 class ShopAccountController extends RootFrontController
 {
@@ -211,12 +212,6 @@ class ShopAccountController extends RootFrontController
         $cId = $user->id;
         $data = request()->all();
 
-        $v =  $this->validator($data);
-        if ($v->fails()) {
-            return redirect()->back()
-                ->withErrors($v)
-                ->withInput();
-        }
         $user = $this->updateCustomer($data, $cId);
 
         return redirect(sc_route('customer.index'))
@@ -237,8 +232,17 @@ class ShopAccountController extends RootFrontController
      */
     protected function updateCustomer(array $data, string $cId)
     {
-        $dataMapp = $this->mappingValidatorEdit($data);
-        $user = ShopCustomer::updateInfo($dataMapp['dataUpdate'], $cId);
+        $user = ShopCustomer::updateInfo($data, $cId);
+        $address = ShopCustomerAddress::where('customer_id', $cId)->first();
+
+        if ($address) {
+            $address->update([
+                'first_name'    => $data['first_name'] ?? $address->first_name,
+                'last_name'     => $data['last_name'] ?? $address->last_name,
+                'phone'         => $data['phone'] ?? $address->phone,
+                'updated_at'    => Carbon::now(),
+            ]);
+        }
 
         return $user;
     }
@@ -456,20 +460,22 @@ class ShopAccountController extends RootFrontController
     {
         $customer = auth()->user();
         $data = request()->all();
-        $address =  (new ShopCustomerAddress)->where('customer_id', $customer->id)
+
+        $address = (new ShopCustomerAddress)->where('customer_id', $customer->id)
             ->where('id', $id)
             ->first();
-        
+
+        if (!$address) {
+            return redirect()->back()->withErrors(['msg' => 'Alamat tidak ditemukan!']);
+        }
+
         $dataMapp = sc_customer_address_mapping($data);
         $dataUpdate = $dataMapp['dataAddress'];
+
         $validate = $dataMapp['validate'];
         $messages = $dataMapp['messages'];
 
-        $v = Validator::make(
-            $dataUpdate,
-            $validate,
-            $messages
-        );
+        $v = Validator::make($dataUpdate, $validate, $messages);
         if ($v->fails()) {
             return redirect()->back()->withErrors($v->errors());
         }
@@ -479,6 +485,21 @@ class ShopAccountController extends RootFrontController
         if (!empty($data['default'])) {
             (new ShopCustomer)->find($customer->id)->update(['address_id' => $id]);
         }
+
+        (new ShopCustomer)->find($customer->id)->update([
+            'first_name' => $data['first_name'] ?? $customer->first_name,
+            'last_name' => $data['last_name'] ?? $customer->last_name,
+            'postcode' => $data['postcode'] ?? $customer->postcode,
+            'address1' => $data['address1'] ?? $customer->address1,
+            'phone' => $data['phone'] ?? $customer->phone,
+            'updated_at' => Carbon::now(),
+            'province' => $data['province'] ?? $customer->province,
+            'regency' => $data['regency'] ?? $customer->regency,
+            'district' => $data['district'] ?? $customer->district,
+            'subdistrict' => $data['subdistrict'] ?? $customer->subdistrict,
+            'id_addr' => $data['id_addr'] ?? $customer->id_addr,
+        ]);
+
         return redirect(sc_route('customer.address_list'))
             ->with(['success' => sc_language_render('customer.update_success')]);
     }

@@ -10,7 +10,7 @@ $layout_page = shop_profile
 
 @extends($sc_templatePath.'.account.layout')
 @section('block_main_profile')
-<h3 class="title-store">{{ $title }}</h3>
+    <h3 class="title-store">{{ $title }}</h3>
         <form method="POST" action="{{ sc_route('customer.post_update_address', ['id' => $address->id]) }}">
             @csrf
             @if (sc_config('customer_lastname'))
@@ -77,36 +77,23 @@ $layout_page = shop_profile
             </div>
             @endif
 
-            @if (sc_config('customer_postcode'))
-            <div class="form-group row {{ $errors->has('postcode') ? ' has-error' : '' }}">
-                <label for="postcode"
-                    class="col-md-4 col-form-label text-md-right">{{ sc_language_render('customer.postcode') }}</label>
-
-                <div class="col-md-6">
-                    <input id="postcode" type="text" class="form-control" name="postcode" required
-                        value="{{ (old('postcode'))?old('postcode'):$address['postcode']}}">
-
-                    @if($errors->has('postcode'))
-                    <span class="help-block">{{ $errors->first('postcode') }}</span>
-                    @endif
-
-                </div>
-            </div>
-            @endif
-
 
             <div class="form-group row {{ $errors->has('address1') ? ' has-error' : '' }}">
-                <label for="address1"
-                    class="col-md-4 col-form-label text-md-right">{{ sc_language_render('customer.address1') }}</label>
+                <label for="address1" class="col-md-4 col-form-label text-md-right">
+                    {{ sc_language_render('customer.address1') }}
+                </label>
 
                 <div class="col-md-6">
-                    <input id="address1" type="text" class="form-control" name="address1" required
-                        value="{{ (old('address1'))?old('address1'):$address['address1']}}">
+                    <div class="input-group">
+                        <textarea id="address1" class="form-control" name="address1" required>{{ old('address1', $address['address1'] ?? '') }}</textarea>
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-primary">Cari</button>
+                        </div>
+                    </div>
 
                     @if($errors->has('address1'))
                     <span class="help-block">{{ $errors->first('address1') }}</span>
                     @endif
-
                 </div>
             </div>
 
@@ -137,6 +124,95 @@ $layout_page = shop_profile
 
                     @if($errors->has('address3'))
                     <span class="help-block">{{ $errors->first('address3') }}</span>
+                    @endif
+
+                </div>
+            </div>
+            @endif            
+
+            <div class="form-group d-none">
+                <input type="hidden" name="id_addr" value="{{ old('id_addr') }}">
+            </div>
+
+            @if (sc_config('customer_province'))
+            <div class="form-group row {{ $errors->has('province') ? ' has-error' : '' }}">
+                <label for="province"
+                    class="col-md-4 col-form-label text-md-right">Provinsi</label>
+
+                <div class="col-md-6">
+                    <input id="province" type="text" class="form-control" name="province" required
+                        value="{{ (old('province'))?old('province'):$address['province']}}" readonly>
+
+                    @if($errors->has('province'))
+                    <span class="help-block">{{ $errors->first('province') }}</span>
+                    @endif
+
+                </div>
+            </div>
+            @endif
+
+            @if (sc_config('customer_regency'))
+            <div class="form-group row {{ $errors->has('regency') ? ' has-error' : '' }}">
+                <label for="regency"
+                    class="col-md-4 col-form-label text-md-right">Kabupaten</label>
+
+                <div class="col-md-6">
+                    <input id="regency" type="text" class="form-control" name="regency" required
+                        value="{{ (old('regency'))?old('regency'):$address['regency']}}" readonly>
+
+                    @if($errors->has('regency'))
+                    <span class="help-block">{{ $errors->first('regency') }}</span>
+                    @endif
+
+                </div>
+            </div>
+            @endif
+
+            @if (sc_config('customer_district'))
+            <div class="form-group row {{ $errors->has('district') ? ' has-error' : '' }}">
+                <label for="district"
+                    class="col-md-4 col-form-label text-md-right">Kecamatan</label>
+
+                <div class="col-md-6">
+                    <input id="district" type="text" class="form-control" name="district" required
+                        value="{{ (old('district'))?old('district'):$address['district']}}" readonly>
+
+                    @if($errors->has('district'))
+                    <span class="help-block">{{ $errors->first('district') }}</span>
+                    @endif
+
+                </div>
+            </div>
+            @endif
+
+            @if (sc_config('customer_subdistrict'))
+            <div class="form-group row {{ $errors->has('subdistrict') ? ' has-error' : '' }}">
+                <label for="subdistrict"
+                    class="col-md-4 col-form-label text-md-right">Kelurahan</label>
+
+                <div class="col-md-6">
+                    <input id="subdistrict" type="text" class="form-control" name="subdistrict" required
+                        value="{{ (old('subdistrict'))?old('subdistrict'):$address['subdistrict']}}" readonly>
+
+                    @if($errors->has('subdistrict'))
+                    <span class="help-block">{{ $errors->first('subdistrict') }}</span>
+                    @endif
+
+                </div>
+            </div>
+            @endif
+
+            @if (sc_config('customer_postcode'))
+            <div class="form-group row {{ $errors->has('postcode') ? ' has-error' : '' }}">
+                <label for="postcode"
+                    class="col-md-4 col-form-label text-md-right">{{ sc_language_render('customer.postcode') }}</label>
+
+                <div class="col-md-6">
+                    <input id="postcode" type="text" class="form-control" name="postcode" required
+                        value="{{ (old('postcode'))?old('postcode'):$address['postcode']}}" readonly>
+
+                    @if($errors->has('postcode'))
+                    <span class="help-block">{{ $errors->first('postcode') }}</span>
                     @endif
 
                 </div>
@@ -196,4 +272,105 @@ $layout_page = shop_profile
                 </div>
             </div>
         </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchButton = document.querySelector(".btn-primary");
+            const loadingSpinner = document.createElement("div");
+            loadingSpinner.classList.add("loading-spinner");
+            searchButton.appendChild(loadingSpinner);
+            
+            searchButton.addEventListener("click", function () {
+                let address = document.querySelector("textarea[name='address1']").value.trim();
+                if (!address) {
+                    alert("Silakan masukkan alamat terlebih dahulu");
+                    return;
+                }
+                
+                let searchQuery = encodeURIComponent(address);
+                loadingSpinner.style.display = "inline-block";
+                fetch(`/search-address?search=${searchQuery}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        loadingSpinner.style.display = "none";
+                        if (data.data && data.data.length > 0) {
+                            let popupContent = `<div class='popup-container' id='popup'>`;
+                            data.data.forEach(item => {
+                                popupContent += `<p class='popup-item' data-id_addr='${item.id}' data-province='${item.province_name}' data-regency='${item.city_name}' data-district='${item.district_name}' data-subdistrict='${item.subdistrict_name}' data-zip='${item.zip_code}'>${item.label}</p>`;
+                            });
+                            popupContent += "<button class='popup-close' onclick='document.getElementById(\"popup\").remove()'>Close</button></div>";
+                            document.body.insertAdjacentHTML("beforeend", popupContent);
+                            
+                            document.querySelectorAll(".popup-item").forEach(item => {
+                                item.addEventListener("click", function () {
+                                    document.querySelector("input[name='id_addr']").value = this.dataset.id_addr;
+                                    document.querySelector("input[name='province']").value = this.dataset.province;
+                                    document.querySelector("input[name='regency']").value = this.dataset.regency;
+                                    document.querySelector("input[name='district']").value = this.dataset.district;
+                                    document.querySelector("input[name='subdistrict']").value = this.dataset.subdistrict;
+                                    document.querySelector("input[name='postcode']").value = this.dataset.zip;
+                                    document.getElementById("popup").remove();
+                                });
+                            });
+                        } else {
+                            alert("Data tidak ditemukan.");
+                        }
+                    })
+                    .catch(error => {
+                        loadingSpinner.style.display = "none";
+                        console.error("Error fetching data:", error);
+                        alert("Terjadi kesalahan saat mengambil data.");
+                    });
+            });
+        });
+    </script>
+
+    <style>
+        .popup-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            z-index: 1000;
+            width: 400px;
+            max-height: 300px;
+            overflow-y: auto;
+            text-align: center;
+        }
+        .popup-item {
+            cursor: pointer;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .popup-item:hover {
+            background-color: #f0f0f0;
+        }
+        .popup-close {
+            margin-top: 10px;
+            padding: 5px 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 @endsection

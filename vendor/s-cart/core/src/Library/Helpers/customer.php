@@ -586,6 +586,7 @@ if (!function_exists('sc_customer_data_edit_mapping') && !in_array('sc_customer_
                 $dataUpdate['last_name'] = $dataRaw['last_name'];
             }
         }
+
         if (sc_config('customer_address1')) {
             if (sc_config('customer_address1_required')) {
                 $validate['address1'] = config('validation.customer.address1_required', 'required|string|max:100');
