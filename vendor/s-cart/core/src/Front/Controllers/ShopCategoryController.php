@@ -5,6 +5,7 @@ use SCart\Core\Front\Controllers\RootFrontController;
 use SCart\Core\Front\Models\ShopCategory;
 use SCart\Core\Front\Models\ShopBrand;
 use SCart\Core\Front\Models\ShopProduct;
+use SCart\Core\Front\Models\ShopProductInfo;
 
 class ShopCategoryController extends RootFrontController
 {
@@ -132,30 +133,45 @@ class ShopCategoryController extends RootFrontController
         $category = (new ShopCategory)->getDetail($alias, $type = 'alias');
 
         if ($category) {
-            
-            $products = (new ShopProduct);
-
-            if ($keyword) {
-                $products = $products->setKeyword($keyword);
-            }
-            //Filter category
+            // Ambil data dari model ShopCategory
             $arrCate = (new ShopCategory)->getListSub($category->id);
-            $products = $products->getProductToCategory($arrCate);
 
-            //filter brand
-            if ($arrBrandId) {
-                $products = $products->getProductToBrand($arrBrandId);
-            }
-            //Filter price
-            if ($price) {
-                $products = $products->setRangePrice($price);
-            }
+            // Ambil data dari kedua model TANPA limit
+            $productsA = (new ShopProduct)
+                ->setKeyword($keyword)
+                ->getProductToCategory($arrCate)
+                ->getProductToBrand($arrBrandId)
+                ->setRangePrice($price)
+                ->setPaginate(false)
+                ->setSort([$sortBy, $sortOrder])
+                ->getData();
 
-            $products = $products
-            ->setLimit(sc_config('product_list'))
-            ->setPaginate()
-            ->setSort([$sortBy, $sortOrder])
-            ->getData();
+            $productsB = (new ShopProductInfo)
+                ->setKeyword($keyword)
+                ->getProductToCategory($arrCate)
+                ->getProductToBrand($arrBrandId)
+                ->setRangePrice($price)
+                ->setPaginate(false)
+                ->setSort([$sortBy, $sortOrder])
+                ->getData();
+
+            // Merge hasil
+            $mergedProducts = $productsA->merge($productsB)->values();
+
+            // Manual pagination
+            $page = request()->get('page', 1);
+            $perPage = sc_config('product_list');
+            $total = $mergedProducts->count();
+            $pagedProducts = $mergedProducts->forPage($page, $perPage)->values();
+
+            // Buat paginator yang dikirim ke view
+            $products = new \Illuminate\Pagination\LengthAwarePaginator(
+                $pagedProducts,
+                $total,
+                $perPage,
+                $page,
+                ['path' => request()->url(), 'query' => request()->query()]
+            );
 
             $subCategory = (new ShopCategory)
                 ->setParent($category->id)
