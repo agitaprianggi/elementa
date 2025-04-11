@@ -20,7 +20,7 @@ $layout_page = shop_about
 <section class="about-us">
     <div class="about-left">
         <h2>PT. Elementa Media Literasi</h2>
-        <a href="https://elementa-media.pustakadigital.id/id/shop" target="_blank">TEMUKAN KOLEKSI MENARIK KAMI</a>
+        <a href="https://elementamedia.id/id/shop" target="_blank">TEMUKAN KOLEKSI MENARIK KAMI</a>
         <p>PT. Elementa Media Literasi adalah Distributor dan Penerbitan Buku baik cetak maupun digital (ebook, audiobook, videobook). Imprint Penerbitan yang tergabung dengan kami di antaranya: <strong>PT. Elementa Media Literasi, PT. Elementa Agro Lestari dan CV. Elementa Media</strong>. Penerbitan kami berfokus pada tema-tema menarik yang kekinian untuk menunjang edukasi dan literasi di Indonesia.</p>
     </div>
     <div class="about-right">
