@@ -348,6 +348,64 @@ function cloneProduct(id){
   })
 }
 
+function cloneProductInfo(id){
+  Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: true,
+  }).fire({
+    title: '{{ sc_language_render('product.admin.clone_confirm') }}',
+    text: "",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonText: '{{ sc_language_render('action.confirm_yes') }}',
+    confirmButtonColor: "#DD6B55",
+    cancelButtonText: '{{ sc_language_render('action.confirm_no') }}',
+    reverseButtons: true,
+
+    preConfirm: function() {
+        return new Promise(function(resolve) {
+            $.ajax({
+                method: 'post',
+                url: '{{ sc_route_admin('admin_product_info.clone') }}',
+                data: {
+                  pId:id,
+                  _token: '{{ csrf_token() }}'
+                },
+                success: function (data) {
+                    if(data.error == 1){
+                      alertMsg('error', data.msg, '{{ sc_language_render('action.warning') }}');
+                      $.pjax.reload('#pjax-container');
+                      return;
+                    }else{
+                      alertMsg('success', data.msg);
+                      $.pjax.reload('#pjax-container');
+                      resolve(data);
+                    }
+
+                }
+            });
+        });
+    }
+
+  }).then((result) => {
+    if (result.value) {
+      alertMsg('success', '{{ sc_language_render('product.admin.clone_success') }}', '');
+    } else if (
+      // Read more about handling dismissals
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      // swalWithBootstrapButtons.fire(
+      //   'Cancelled',
+      //   'Your imaginary file is safe :)',
+      //   'error'
+      // )
+    }
+  })
+}
+
 {{--/ sweetalert2 --}}
 
 

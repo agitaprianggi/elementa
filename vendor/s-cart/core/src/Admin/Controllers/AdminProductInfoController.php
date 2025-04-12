@@ -186,14 +186,14 @@ class AdminProductInfoController extends RootAdminController
             </a>';
             if ($row['kind'] == SC_PRODUCT_SINGLE) {
                 $htmlAction .= '
-                <span onclick="cloneProduct(\'' . $row['id'] . '\');" title="' . sc_language_render('product.admin.clone') . '" type="button" class="btn btn-flat btn-sm btn-secondary">
+                <span onclick="cloneProductInfo(\'' . $row['id'] . '\');" title="' . sc_language_render('product.admin.clone') . '" type="button" class="btn btn-flat btn-sm btn-secondary">
                 <i class="fa fa-clipboard"></i>
                 </span>';
             }
             $htmlAction .='<span onclick="deleteItem(\'' . $row['id'] . '\');"  title="' . sc_language_render('action.delete') . '" class="btn btn-flat btn-sm btn-danger">
             <i class="fas fa-trash-alt"></i>
             </span>
-            <a target=_new href="' . sc_route('product.detail', ['alias' => $row['alias']]) . '"><span title="Link" type="button" class="btn btn-flat btn-sm btn-warning"><i class="fas fa-external-link-alt"></i></a>';
+            <a target=_new href="' . sc_route('product-info-product.detail', ['alias' => $row['alias']]) . '"><span title="Link" type="button" class="btn btn-flat btn-sm btn-warning"><i class="fas fa-external-link-alt"></i></a>';
 
             $dataMap['action'] = $htmlAction;
             $dataTr[$row['id']] = $dataMap;
@@ -1146,7 +1146,7 @@ class AdminProductInfoController extends RootAdminController
      * Only clone single product
      * @return  [type]  [return description]
      */
-    public function cloneProduct() {
+    public function cloneProductInfo() {
 
         if (!request()->ajax()) {
             return response()->json(['error' => 1, 'msg' => sc_language_render('admin.method_not_allow')]);
