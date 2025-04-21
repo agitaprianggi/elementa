@@ -408,9 +408,9 @@ class AdminProductInfoController extends RootAdminController
     {
         $data = request()->all();
         $langFirst = array_key_first(sc_language_all()->toArray()); //get first code language active
-        $data['alias'] = !empty($data['alias'])?$data['alias']:$data['descriptions'][$langFirst]['name'];
-        $data['alias'] = sc_word_format_url($data['alias']);
-        $data['alias'] = sc_word_limit($data['alias'], 100);
+        // $data['alias'] = !empty($data['alias'])?$data['alias']:$data['descriptions'][$langFirst]['name'];
+        // $data['alias'] = sc_word_format_url($data['alias']);
+        // $data['alias'] = sc_word_limit($data['alias'], 100);
 
         switch ($data['kind']) {
             case SC_PRODUCT_SINGLE: // product single
@@ -424,7 +424,7 @@ class AdminProductInfoController extends RootAdminController
                     'descriptions.*.content'     => 'required|string',
                     'category'                   => 'required',
                     'sku'                        => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|product_sku_unique',
-                    'alias'                      => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:120|product_alias_unique',
+                    // 'alias'                      => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:120|product_alias_unique',
                 ];
 
                 //Custom fields
@@ -445,8 +445,8 @@ class AdminProductInfoController extends RootAdminController
                     'category.required'               => sc_language_render('validation.required', ['attribute' => sc_language_render('product.category')]),
                     'sku.regex'                       => sc_language_render('product.sku_validate'),
                     'sku.product_sku_unique'          => sc_language_render('product.sku_unique'),
-                    'alias.regex'                     => sc_language_render('product.alias_validate'),
-                    'alias.product_alias_unique'      => sc_language_render('product.alias_unique'),
+                    // 'alias.regex'                     => sc_language_render('product.alias_validate'),
+                    // 'alias.product_alias_unique'      => sc_language_render('product.alias_unique'),
                 ];
                 break;
 
@@ -460,7 +460,7 @@ class AdminProductInfoController extends RootAdminController
                     'descriptions.*.description' => 'nullable|string|max:100',
                     'category'                   => 'required',
                     'sku'                        => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|product_sku_unique',
-                    'alias'                      => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:120|product_alias_unique',
+                    // 'alias'                      => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:120|product_alias_unique',
                     'productBuild'               => 'required',
                     'productBuildQty'            => 'required',
                 ];
@@ -472,8 +472,8 @@ class AdminProductInfoController extends RootAdminController
                     'category.required'            => sc_language_render('validation.required', ['attribute' => sc_language_render('product.category')]),
                     'sku.regex'                    => sc_language_render('product.sku_validate'),
                     'sku.product_sku_unique'       => sc_language_render('product.sku_unique'),
-                    'alias.regex'                  => sc_language_render('product.alias_validate'),
-                    'alias.product_alias_unique'   => sc_language_render('product.alias_unique'),
+                    // 'alias.regex'                  => sc_language_render('product.alias_validate'),
+                    // 'alias.product_alias_unique'   => sc_language_render('product.alias_unique'),
                 ];
                 break;
 
@@ -482,7 +482,7 @@ class AdminProductInfoController extends RootAdminController
                     'kind'                       => 'required',
                     'productInGroup'             => 'required',
                     'sku'                        => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|product_sku_unique',
-                    'alias'                      => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:120|product_alias_unique',
+                    // 'alias'                      => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:120|product_alias_unique',
                     'sort'                       => 'numeric|min:0',
                     'category'                   => 'required',
                     'descriptions.*.name'        => 'required|string|max:200',
@@ -494,8 +494,8 @@ class AdminProductInfoController extends RootAdminController
                     'sku.regex'                    => sc_language_render('product.sku_validate'),
                     'category.required'            => sc_language_render('validation.required', ['attribute' => sc_language_render('product.category')]),
                     'sku.product_sku_unique'       => sc_language_render('product.sku_unique'),
-                    'alias.regex'                  => sc_language_render('product.alias_validate'),
-                    'alias.product_alias_unique'   => sc_language_render('product.alias_unique'),
+                    // 'alias.regex'                  => sc_language_render('product.alias_validate'),
+                    // 'alias.product_alias_unique'   => sc_language_render('product.alias_unique'),
                 ];
                 break;
 
@@ -536,7 +536,7 @@ class AdminProductInfoController extends RootAdminController
             'length'         => $data['length'] ?? 0,
             'width'          => $data['width'] ?? 0,
             'kind'           => $data['kind'] ?? SC_PRODUCT_SINGLE,
-            'alias'          => $data['alias'],
+            'alias'          => Str::startsWith($data['sku'], 'INF-') ? $data['sku'] : 'INF-' . $data['sku'],
             'property'       => $data['property'] ?? SC_PROPERTY_PHYSICAL,
             'image'          => $data['image'] ?? '',
             'tax_id'         => $data['tax_id'] ?? "",
@@ -744,9 +744,9 @@ class AdminProductInfoController extends RootAdminController
         }
         $data = request()->all();
         $langFirst = array_key_first(sc_language_all()->toArray()); //get first code language active
-        $data['alias'] = !empty($data['alias'])?$data['alias']:$data['descriptions'][$langFirst]['name'];
-        $data['alias'] = sc_word_format_url($data['alias']);
-        $data['alias'] = sc_word_limit($data['alias'], 100);
+        // $data['alias'] = !empty($data['alias'])?$data['alias']:$data['descriptions'][$langFirst]['name'];
+        // $data['alias'] = sc_word_format_url($data['alias']);
+        // $data['alias'] = sc_word_limit($data['alias'], 100);
 
         switch ($product['kind']) {
             case SC_PRODUCT_SINGLE: // product single
@@ -759,7 +759,7 @@ class AdminProductInfoController extends RootAdminController
                     'descriptions.*.content' => 'required|string',
                     'category' => 'required',
                     'sku' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|product_sku_unique:'.$id,
-                    'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:120|product_alias_unique:'.$id,
+                    // 'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:120|product_alias_unique:'.$id,
                 ];
 
                 //Custom fields
@@ -780,8 +780,8 @@ class AdminProductInfoController extends RootAdminController
                     'category.required'               => sc_language_render('validation.required', ['attribute' => sc_language_render('product.category')]),
                     'sku.regex'                       => sc_language_render('product.sku_validate'),
                     'sku.product_sku_unique'          => sc_language_render('product.sku_unique'),
-                    'alias.regex'                     => sc_language_render('product.alias_validate'),
-                    'alias.product_alias_unique'      => sc_language_render('product.alias_unique'),
+                    // 'alias.regex'                     => sc_language_render('product.alias_validate'),
+                    // 'alias.product_alias_unique'      => sc_language_render('product.alias_unique'),
                 ];
                 break;
             case SC_PRODUCT_BUILD: //product build
@@ -793,7 +793,7 @@ class AdminProductInfoController extends RootAdminController
                     'descriptions.*.description' => 'nullable|string|max:500',
                     'category' => 'required',
                     'sku' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|product_sku_unique:'.$id,
-                    'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:120|product_alias_unique:'.$id,
+                    // 'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:120|product_alias_unique:'.$id,
                     'productBuild' => 'required',
                     'productBuildQty' => 'required',
                 ];
@@ -805,15 +805,15 @@ class AdminProductInfoController extends RootAdminController
                     'category.required'            => sc_language_render('validation.required', ['attribute' => sc_language_render('product.category')]),
                     'sku.regex'                    => sc_language_render('product.sku_validate'),
                     'sku.product_sku_unique'       => sc_language_render('product.sku_unique'),
-                    'alias.regex'                  => sc_language_render('product.alias_validate'),
-                    'alias.product_alias_unique'   => sc_language_render('product.alias_unique'),
+                    // 'alias.regex'                  => sc_language_render('product.alias_validate'),
+                    // 'alias.product_alias_unique'   => sc_language_render('product.alias_unique'),
                 ];
                 break;
 
             case SC_PRODUCT_GROUP: //product group
                 $arrValidation = [
                     'sku' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|product_sku_unique:'.$id,
-                    'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:120|product_alias_unique:'.$id,
+                    // 'alias' => 'required|regex:/(^([0-9A-Za-z\-_]+)$)/|string|max:120|product_alias_unique:'.$id,
                     'productInGroup' => 'required',
                     'category' => 'required',
                     'sort' => 'numeric|min:0',
@@ -825,8 +825,8 @@ class AdminProductInfoController extends RootAdminController
                     'sku.regex'                    => sc_language_render('product.sku_validate'),
                     'sku.product_sku_unique'       => sc_language_render('product.sku_unique'),
                     'category.required'            => sc_language_render('validation.required', ['attribute' => sc_language_render('product.category')]),
-                    'alias.regex'                  => sc_language_render('product.alias_validate'),
-                    'alias.product_alias_unique'   => sc_language_render('product.alias_unique'),
+                    // 'alias.regex'                  => sc_language_render('product.alias_validate'),
+                    // 'alias.product_alias_unique'   => sc_language_render('product.alias_unique'),
                     'descriptions.*.name.required' => sc_language_render('validation.required', ['attribute' => sc_language_render('product.name')]),
                 ];
                 break;
@@ -867,7 +867,7 @@ class AdminProductInfoController extends RootAdminController
             'width'        => $data['width'] ?? 0,
             'property'     => $data['property'] ?? SC_PROPERTY_PHYSICAL,
             'sku'          => Str::startsWith($data['sku'], 'INF-') ? $data['sku'] : 'INF-' . $data['sku'],
-            'alias'        => $data['alias'],
+            'alias'        => Str::startsWith($data['sku'], 'INF-') ? $data['sku'] : 'INF-' . $data['sku'],
             'status'       => (!empty($data['status']) ? 1 : 0),
             'approve'       => (!empty($data['approve']) ? 1 : 0),
             'sort'         => (int) $data['sort'],

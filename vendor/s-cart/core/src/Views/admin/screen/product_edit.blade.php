@@ -307,7 +307,7 @@
                         {{-- //Sku --}}
 
 
-                        {{-- Alias --}}
+                        <!-- {{-- Alias --}}
                         <div class="form-group row {{ $errors->has('alias') ? ' text-red' : '' }}">
                             <label for="alias" class="col-sm-2 col-form-label">{!! sc_language_render('product.alias') !!}</label>
                             <div class="col-sm-8">
@@ -330,7 +330,7 @@
                                 @endif
                             </div>
                         </div>
-                        {{-- //Alias --}}
+                        {{-- //Alias --}} -->
 
 @if (sc_config_admin('product_brand') && ($product->kind == SC_PRODUCT_SINGLE || $product->kind == SC_PRODUCT_BUILD))
                         {{-- Brand --}}
