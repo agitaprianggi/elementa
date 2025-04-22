@@ -12,9 +12,9 @@
         <p class="footer-detail">{!! sc_store('time_active', ($storeId ?? null)) !!}</p>
 
         <div class="footer-social mt-3">
-          <a href="{{ sc_config('facebook_url') }}" class="social-icon"><i class="mdi mdi-facebook"></i></a>
+          <a href="{{ sc_config('facebook_url') }}" target="_blank" class="social-icon"><i class="mdi mdi-facebook"></i></a>
           <!-- <a href="{{ sc_config('twitter_url') }}" class="social-icon"><i class="mdi mdi-twitter"></i></a> -->
-          <a href="{{ sc_config('instagram_url') }}" class="social-icon"><i class="mdi mdi-instagram"></i></a>
+          <a href="{{ sc_config('instagram_url') }}" target="_blank" class="social-icon"><i class="mdi mdi-instagram"></i></a>
           <!-- <a href="{{ sc_config('youtube_url') }}" class="social-icon"><i class="mdi mdi-youtube-play"></i></a> -->
         </div>
 
