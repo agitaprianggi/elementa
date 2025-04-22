@@ -20,6 +20,19 @@ $productsNew = $modelProduct->start()->getProductLatest()->setlimit(sc_config('p
                 margin-top: 50px;
             }
 
+            .product-item img {
+                width: 100%;
+                height: auto; /* Hindari pemotongan vertikal */
+                object-fit: contain; /* Atau gunakan 'cover' kalau ingin crop proporsional */
+                display: block;
+            }
+
+            .product-item .image-wrapper {
+                width: 100%;
+                height: auto;
+                overflow: hidden;
+            }
+
             @media (max-width: 767px) {
                 .product-grid {
                     display: grid;
