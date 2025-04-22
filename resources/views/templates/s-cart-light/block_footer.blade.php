@@ -7,14 +7,25 @@
         <a href="{{ sc_route('home') }}">
           <img class="logo-footer mb-3" style="max-width: 180px; height: auto;" src="{{ sc_file(sc_store('logo', ($storeId ?? null))) }}" alt="{{ sc_store('title', ($storeId ?? null)) }}">
         </a>
-        <!-- <p class="footer-store-name">{{ sc_store('title', ($storeId ?? null)) }}</p> -->
-        <p class="footer-store-name">Follow Us</p>
+
+        <p class="footer-store-name">Ikuti Kami</p>
         <p class="footer-detail">{!! sc_store('time_active', ($storeId ?? null)) !!}</p>
+
         <div class="footer-social mt-3">
           <a href="{{ sc_config('facebook_url') }}" class="social-icon"><i class="mdi mdi-facebook"></i></a>
-          <a href="{{ sc_config('twitter_url') }}" class="social-icon"><i class="mdi mdi-twitter"></i></a>
+          <!-- <a href="{{ sc_config('twitter_url') }}" class="social-icon"><i class="mdi mdi-twitter"></i></a> -->
           <a href="{{ sc_config('instagram_url') }}" class="social-icon"><i class="mdi mdi-instagram"></i></a>
-          <a href="{{ sc_config('youtube_url') }}" class="social-icon"><i class="mdi mdi-youtube-play"></i></a>
+          <!-- <a href="{{ sc_config('youtube_url') }}" class="social-icon"><i class="mdi mdi-youtube-play"></i></a> -->
+        </div>
+
+        <p class="footer-store-name mt-4">Temukan Kami di</p>
+        <div class="footer-marketplace mt-2">
+          <a href="https://www.tokopedia.com/elementa-media" target="_blank">
+            <img src="{{ asset('data/logo/tokopedia-logo-square.png') }}" alt="Tokopedia" style="height: 32px; margin-right: 10px;">
+          </a>
+          <a href="https://shopee.co.id/elementamedia?entryPoint=ShopByPDP" target="_blank">
+            <img src="{{ asset('data/logo/shopee-logo-square.png') }}" alt="Shopee" style="height: 32px;">
+          </a>
         </div>
       </div>
 
