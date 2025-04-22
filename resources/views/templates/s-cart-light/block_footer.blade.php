@@ -69,6 +69,16 @@
 
 <!-- Custom Styles -->
 <style>
+  .footer-marketplace a img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  }
+
+  .footer-marketplace a:hover img {
+    transform: scale(1.1);
+    opacity: 0.9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
   .footer-title {
     text-transform: uppercase;
     font-weight: bold;
