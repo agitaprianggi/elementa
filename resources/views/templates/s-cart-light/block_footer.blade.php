@@ -31,7 +31,7 @@
         <h5 class="footer-title">Menu</h5>
         <ul class="list-unstyled footer-detail">
           <li><a href="{{ sc_route('shop') }}" class="footer-detail">Belanja Buku Favorit</a></li>
-          <li><a href="https://elementamedia.id/id/product-info" class="footer-detail">Informasi Produk</a></li>
+          <li><a href="{{ sc_route('product_info') }}" class="footer-detail">Informasi Produk</a></li>
           <li><a href="{{ sc_route('news') }}" class="footer-detail">Artikel</a></li>
           <li><a href="{{ sc_route('contact') }}" class="footer-detail">Kontak Kami</a></li>
           <li><a href="{{ sc_route('about') }}" class="footer-detail">Tentang Kami</a></li>
@@ -153,6 +153,15 @@
   }
   @media (max-width: 768px) {
   /* Pusatkan ikon kontak */
+    .footer-title,
+    .footer-detail {
+      text-align: center;
+    }
+
+    .footer-detail li {
+      text-align: center;
+    }
+  }
     .contact-list {
       display: flex;
       flex-direction: column;
