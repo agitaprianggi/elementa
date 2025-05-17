@@ -7,19 +7,16 @@
         <a href="{{ sc_route('home') }}">
           <img class="logo-footer mb-3" style="max-width: 180px; height: auto;" src="{{ sc_file(sc_store('logo', ($storeId ?? null))) }}" alt="{{ sc_store('title', ($storeId ?? null)) }}">
         </a>
-
-        <p class="footer-store-name">Ikuti Kami</p>
+        <p class="footer-detail-w">PT. Elementa Media Literasi menyediakan buku cetak dan digital dengan tema beragam dan kekinian untuk memenuhi koleksi bacaan Anda.</p>
         <p class="footer-detail">{!! sc_store('time_active', ($storeId ?? null)) !!}</p>
-
-        <div class="footer-social mt-3">
-          <a href="{{ sc_config('facebook_url') }}" target="_blank" class="social-icon"><i class="mdi mdi-facebook"></i></a>
-          <!-- <a href="{{ sc_config('twitter_url') }}" class="social-icon"><i class="mdi mdi-twitter"></i></a> -->
-          <a href="{{ sc_config('instagram_url') }}" target="_blank" class="social-icon"><i class="mdi mdi-instagram"></i></a>
-          <!-- <a href="{{ sc_config('youtube_url') }}" class="social-icon"><i class="mdi mdi-youtube-play"></i></a> -->
-        </div>
-
-        <p class="footer-store-name mt-4">Temukan Kami di</p>
-        <div class="footer-marketplace mt-2">
+        <p class="footer-store-name">Temukan Kami Di</p>
+        <div class="footer-marketplace mt-3">
+          <a href="{{ sc_config('facebook_url') }}" target="_blank">
+            <img src="{{ asset('data/logo/Facebook_Logo_Primary.png') }}" alt="Tokopedia" style="height: 32px; margin-right: 10px;">
+          </a>
+          <a href="{{ sc_config('instagram_url') }}" target="_blank">
+            <img src="{{ asset('data/logo/Instagram_Glyph_Gradient.png') }}" alt="Tokopedia" style="height: 32px; margin-right: 10px;">
+          </a>
           <a href="https://www.tokopedia.com/elementa-media" target="_blank">
             <img src="{{ asset('data/logo/tokopedia-logo-square.png') }}" alt="Tokopedia" style="height: 32px; margin-right: 10px;">
           </a>
@@ -29,10 +26,16 @@
         </div>
       </div>
 
-      <!-- About Section -->
-      <div class="col-md-3">
-        <h5 class="footer-title">Tentang Kami</h5>
-        <p class="footer-detail-w">PT. Elementa Media Literasi menyediakan buku cetak dan digital dengan tema beragam dan kekinian untuk memenuhi koleksi bacaan Anda.</p>
+      <!-- Footer Menu -->
+      <div>
+        <h5 class="footer-title">Menu</h5>
+        <ul class="list-unstyled footer-detail">
+          <li><a href="{{ sc_route('shop') }}" class="footer-detail">Belanja Buku Favorit</a></li>
+          <li><a href="https://elementamedia.id/id/product-info" class="footer-detail">Informasi Produk</a></li>
+          <li><a href="{{ sc_route('news') }}" class="footer-detail">Artikel</a></li>
+          <li><a href="{{ sc_route('contact') }}" class="footer-detail">Kontak Kami</a></li>
+          <li><a href="{{ sc_route('about') }}" class="footer-detail">Tentang Kami</a></li>
+        </ul>
       </div>
 
       <!-- Contact Section -->
