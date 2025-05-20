@@ -155,6 +155,9 @@
   /* Pusatkan ikon kontak */
     .footer-title,
     .footer-detail {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
     }
 
