@@ -167,7 +167,7 @@
       align-items: center;
       text-align: center;
     }
-  }
+    
     .contact-list {
       display: flex;
       flex-direction: column;
