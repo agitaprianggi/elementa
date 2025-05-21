@@ -27,7 +27,7 @@
       </div>
 
       <!-- Footer Menu -->
-      <div>
+      <div class="col-md-3 footer-menu-center">
         <h5 class="footer-title">Menu</h5>
         <ul class="list-unstyled footer-detail">
           <li><a href="{{ sc_route('shop') }}" class="footer-detail">Belanja Buku Favorit</a></li>
@@ -188,6 +188,18 @@
       flex-wrap: wrap; /* Jika terlalu banyak, akan turun ke bawah */
       gap: 10px;
       text-align: center;
+    }
+
+    .footer-menu-center {
+      text-align: center;
+    }
+
+    .footer-menu-center ul {
+      padding-left: 0;
+    }
+
+    .footer-menu-center ul li {
+      margin-bottom: 5px;
     }
   }
 
