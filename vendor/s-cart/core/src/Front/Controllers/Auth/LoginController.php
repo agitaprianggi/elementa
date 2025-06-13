@@ -31,7 +31,7 @@ class LoginController extends RootFrontController
     // protected $redirectTo = '/';
     protected function redirectTo()
     {
-        return sc_route('customer.index');
+        return sc_route('home');
     }
     /**
      * Create a new controller instance.
