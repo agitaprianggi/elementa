@@ -358,6 +358,17 @@ $layout_page = shop_checkout
                                                             </span>
                                                     </label>
                                                 </div>
+                                                <div class="mb-2 ml-3">
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="paymentMethod" value="mandiri" style="position: relative;">
+                                                            <span class="radio-inline" for="paymentMethod">
+                                                                <img title="Mandiri"
+                                                                    alt="Mandiri"
+                                                                    src="{{ sc_file('Plugins/Payment/BankTransfer/images/mandiri.png') }}"
+                                                                    height="100px" width="100px">
+                                                            </span>
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

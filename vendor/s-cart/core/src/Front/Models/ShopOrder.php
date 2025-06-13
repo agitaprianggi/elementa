@@ -516,15 +516,28 @@ class ShopOrder extends Model
             'shipping_address' => $shipping_address,
         ];
 
-        $transaction_data = [
-            'transaction_details' => $transaction_details,
-            'item_details' => $item_details,
-            'customer_details' => $customer_details,
-            'payment_type' => 'bank_transfer',
-            'bank_transfer' => [
-                'bank' => $dataOrder['payment_method'],
-            ],
-        ];
+        if($dataOrder['payment_method']=='mandiri'){
+            $transaction_data = [
+                'transaction_details' => $transaction_details,
+                'item_details' => $item_details,
+                'customer_details' => $customer_details,
+                'payment_type' => 'echannel',
+                "echannel" => [
+                    "bill_info1" => "Payment:",
+                    "bill_info2" => "Online purchase from Elementa Media Literasi"
+                ]
+            ];
+        }else{
+            $transaction_data = [
+                'transaction_details' => $transaction_details,
+                'item_details' => $item_details,
+                'customer_details' => $customer_details,
+                'payment_type' => 'bank_transfer',
+                'bank_transfer' => [
+                    'bank' => $dataOrder['payment_method'],
+                ],
+            ];
+        }
 
         try {
             // $response = Snap::createTransaction($transaction_data);
