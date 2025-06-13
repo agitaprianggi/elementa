@@ -544,7 +544,13 @@ class ShopOrder extends Model
             // $this->info('Response: ' . print_r($response, true));
 
             $response = CoreApi::charge($transaction_data);
-            return $response->va_numbers[0]->va_number;
+            if($dataOrder['payment_method']=='mandiri'){
+                $va_number = $response->biller_code.''.$response->bill_key;
+            }else{
+                $va_number = $response->va_numbers[0]->va_number;
+            }
+            // Log::info('Response : ' . print_r($response, true));
+            return $va_number;
             // $this->info('Response: ' . print_r($response, true));
             // $this->info('Response: ' . $response->va_numbers[0]->va_number);
         } catch (\Midtrans\MidtransException $e) {
