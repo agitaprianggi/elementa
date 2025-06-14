@@ -1,14 +1,15 @@
 <?php
 namespace SCart\Core\Admin\Controllers;
 
-use SCart\Core\Admin\Controllers\RootAdminController;
+use Validator;
 use SCart\Core\Front\Models\ShopCountry;
 use SCart\Core\Front\Models\ShopLanguage;
 use SCart\Core\Admin\Models\AdminCustomer;
 use SCart\Core\Front\Models\ShopCustomField;
-use SCart\Core\Front\Models\ShopCustomFieldDetail;
 use SCart\Core\Front\Controllers\Auth\AuthTrait;
-use Validator;
+use SCart\Core\Front\Models\ShopCustomerAddress;
+use SCart\Core\Front\Models\ShopCustomFieldDetail;
+use SCart\Core\Admin\Controllers\RootAdminController;
 
 class AdminCustomerController extends RootAdminController
 {
@@ -220,17 +221,33 @@ class AdminCustomerController extends RootAdminController
         $data['status'] = empty($data['status']) ? 0 : 1;
         $data['store_id'] = session('adminStoreId');
         $data['id'] = $id;
-        $dataMapping = $this->mappingValidatorEdit($data);
+        // $dataMapping = $this->mappingValidatorEdit($data);
 
-        $validator =  Validator::make($data, $dataMapping['validate'], $dataMapping['messages']);
+        // $validator =  Validator::make($data, $dataMapping['validate'], $dataMapping['messages']);
 
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
+        // if ($validator->fails()) {
+        //     return redirect()->back()
+        //         ->withErrors($validator)
+        //         ->withInput();
+        // }
+
+        AdminCustomer::updateInfo($data, $id);
+
+        $address = ShopCustomerAddress::where('customer_id', $id)->first();
+
+        if ($address) {
+            $address->update([
+                'first_name'    => $data['first_name'] ?? $address->first_name,
+                'last_name'     => $data['last_name'] ?? $address->last_name,
+                'phone'         => $data['phone'] ?? $address->phone,
+                'province' => $data['province'] ?? $address->province,
+                'regency' => $data['regency'] ?? $address->regency,
+                'district' => $data['district'] ?? $address->district,
+                'subdistrict' => $data['subdistrict'] ?? $address->subdistrict,
+                'postcode' => $data['postcode'] ?? $customer->postcode,
+                'id_addr' => $data['id_addr'] ?? $address->id_addr,
+            ]);
         }
-
-        AdminCustomer::updateInfo($dataMapping['dataUpdate'], $id);
 
         return redirect()->route('admin_customer.index')->with('success', sc_language_render('action.edit_success'));
     }
