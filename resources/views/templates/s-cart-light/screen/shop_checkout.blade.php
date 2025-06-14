@@ -41,17 +41,20 @@ $layout_page = shop_checkout
                     {{-- Begin address shipping --}}
                     <div class="col-md-6">
                         {{-- Select address if customer login --}}
-                        @if (auth()->user())
+                        <!-- @if (auth()->user())
                             <div class="">
                                 <select class="form-control" name="address_process" style="width: 100%;" id="addressList" disabled>
-                                    <!-- <option value="">{{ sc_language_render('cart.change_address') }}</option> -->
+                                    <option value="">{{ sc_language_render('cart.change_address') }}</option>
                                     @foreach ($addressList as $k => $address)
                                     <option value="{{ $address->id }}" {{ (old('address_process') ==  $address->id) ? 'selected':''}}>- {{ $address->first_name. ' '.$address->last_name.', '.$address->address1.' '.$address->address2.' '.$address->address3 }}</option>
                                     @endforeach
                                     <option value="new" {{ (old('address_process') ==  'new') ? 'selected':''}}>{{ sc_language_render('cart.add_new_address') }}</option>
                                 </select>
                             </div>
-                        @endif
+                        @endif -->
+                        <div class="">
+                            <h5>{{ sc_language_render('customer.informasi_pelanggan') }}</h5>
+                        </div>
                         {{--// Select address if customer login --}}
                         
                         {{-- Render address shipping --}}
@@ -325,49 +328,38 @@ $layout_page = shop_checkout
                                             </div>
                                             <div class="form-group cart-payment-method">
                                                 <p class="mb-2">Bank Transfer</p>
-                                                <div class="mb-2 ml-3">
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="paymentMethod" value="bca" style="position: relative;">
-                                                            <span class="radio-inline" for="paymentMethod">
-                                                                <img title="BCA"
-                                                                    alt="BCA"
-                                                                    src="{{ sc_file('Plugins/Payment/BankTransfer/images/bca.png') }}"
-                                                                    height="100px" width="100px">
-                                                            </span>
+                                                <div class="d-flex flex-wrap align-items-center">
+                                                    <input type="radio" name="paymentMethod" id="bca" value="bca" class="d-none radio-payment">
+                                                    <label for="bca" class="btn btn-outline-primary mr-2 mb-2 custom-radio-btn bank-option radio-payment"">
+                                                        <img title="BCA"
+                                                            alt="BCA"
+                                                            src="{{ sc_file('Plugins/Payment/BankTransfer/images/bca.png') }}"
+                                                            height="100px" width="100px" class="img-fluid bank-img">
                                                     </label>
-                                                </div>
-                                                <div class="mb-2 ml-3">
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="paymentMethod" value="bni" style="position: relative;">
-                                                            <span class="radio-inline" for="paymentMethod">
-                                                                <img title="BNI"
-                                                                    alt="BNI"
-                                                                    src="{{ sc_file('Plugins/Payment/BankTransfer/images/bni.png') }}"
-                                                                    height="100px" width="100px">
-                                                            </span>
-                                                    </label>
-                                                </div>
-                                                <div class="mb-2 ml-3">
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="paymentMethod" value="bri" style="position: relative;">
-                                                            <span class="radio-inline" for="paymentMethod">
-                                                                <img title="BRI"
-                                                                    alt="BRI"
-                                                                    src="{{ sc_file('Plugins/Payment/BankTransfer/images/bri.png') }}"
-                                                                    height="100px" width="100px">
-                                                            </span>
-                                                    </label>
-                                                </div>
-                                                <div class="mb-2 ml-3">
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="paymentMethod" value="mandiri" style="position: relative;">
-                                                            <span class="radio-inline" for="paymentMethod">
-                                                                <img title="Mandiri"
-                                                                    alt="Mandiri"
-                                                                    src="{{ sc_file('Plugins/Payment/BankTransfer/images/mandiri.png') }}"
-                                                                    height="100px" width="100px">
-                                                            </span>
-                                                    </label>
+
+                                                    <input type="radio" name="paymentMethod" id="bni" value="bni" class="d-none radio-payment">
+                                                    <label for="bni" class="btn btn-outline-primary mr-2 mb-2 custom-radio-btn bank-option radio-payment"">
+                                                        <img title="BNI"
+                                                            alt="BNI"
+                                                            src="{{ sc_file('Plugins/Payment/BankTransfer/images/bni.png') }}"
+                                                            height="100px" width="100px" class="img-fluid bank-img">
+                                                        </label>
+
+                                                    <input type="radio" name="paymentMethod" id="bri" value="bri" class="d-none radio-payment">
+                                                    <label for="bri" class="btn btn-outline-primary mr-2 mb-2 custom-radio-btn bank-option radio-payment"">
+                                                        <img title="BRI"
+                                                            alt="BRI"
+                                                            src="{{ sc_file('Plugins/Payment/BankTransfer/images/bri.png') }}"
+                                                            height="100px" width="100px" class="img-fluid bank-img">
+                                                        </label>
+
+                                                    <input type="radio" name="paymentMethod" id="mandiri" value="mandiri" class="d-none radio-payment">
+                                                    <label for="mandiri" class="btn btn-outline-primary mr-2 mb-2 custom-radio-btn bank-option radio-payment"">
+                                                        <img title="Mandiri"
+                                                            alt="Mandiri"
+                                                            src="{{ sc_file('Plugins/Payment/BankTransfer/images/mandiri.png') }}"
+                                                            height="100px" width="100px" class="img-fluid bank-img">
+                                                        </label>
                                                 </div>
                                             </div>
                                         </div>
@@ -376,7 +368,6 @@ $layout_page = shop_checkout
                                 @endif
 
                             </div>
-                            
                         </div>
                         {{-- End total --}}
 
@@ -462,6 +453,17 @@ $layout_page = shop_checkout
 <script type="text/javascript">
 
     $(document).ready(function () {
+        document.querySelectorAll('input[name="paymentMethod"]').forEach(input => {
+            input.addEventListener('change', function () {
+                document.querySelectorAll('label.radio-payment').forEach(label => {
+                    label.classList.remove('selected');
+                });
+                const label = document.querySelector('label[for="' + this.id + '"]');
+                if (label) {
+                    label.classList.add('selected');
+                }
+            });
+        });
         getCost();
     });
 
@@ -504,9 +506,9 @@ $layout_page = shop_checkout
         // )
         .then(data => {
             const container = document.getElementById("shippingMethodsContainer");
+            container.className = "d-flex flex-wrap align-items-center";
             container.innerHTML = "";
 
-            // Pastikan data valid
             if (!data || !data.data || data.data.length === 0) {
                 container.innerHTML = "<p>No shipping methods available.</p>";
                 return;
@@ -518,21 +520,20 @@ $layout_page = shop_checkout
                 return a.cost - b.cost;
             });
 
-            // Looping response data untuk membuat radio button
             data.data.forEach((shipping, index) => {
-                const div = document.createElement("div");
-                div.innerHTML = `
-                    <label class="radio-inline">
-                        <input type="radio" name="shippingMethod" value="${shipping.name}|${shipping.code}|${shipping.service}|${shipping.cost}" 
-                            id="shipping-${index}" style="position: relative;" class="radio-custom">
-                        <span class="radio-custom-dummy"></span>
-                        <span for="shippingMethod">
-                            <b>${shipping.code.toUpperCase()} - ${shipping.service}</b> (Rp ${shipping.cost.toLocaleString()})<br>
-                            <small class="ml-4">Estimasi: ${shipping.etd}</small>
-                        </span>
+                const id = `shipping-${index}`;
+                const logo = `${shipping.code.toUpperCase()}.png`;
+                container.innerHTML += `
+                    <input type="radio" name="shippingMethod" value="${shipping.name}|${shipping.code}|${shipping.service}|${shipping.cost}" id="${id}" class="d-none radio-shipment">
+                    <label for="${id}" class="btn btn-outline-primary mr-2 mb-2 shipping-radio text-left">
+                        <div class="fw-bold">
+                            <img src="{{ sc_file('Plugins/Shipping/images/${logo}') }}" height="25px" width="25px" >
+                            ${shipping.code.toUpperCase()} - ${shipping.service}
+                            <span class="float-right"> &nbsp;Rp ${shipping.cost.toLocaleString()}</span>
+                        </div>
+                        <small>Estimasi: ${shipping.etd}</small>
                     </label>
                 `;
-                container.appendChild(div);
             });
 
             loadingContainer.style.display = "none";
@@ -594,11 +595,45 @@ $layout_page = shop_checkout
         });
         }
     });
-
 </script>
 
 @endpush
 
 @push('styles')
 {{-- Your css style --}}
+<style>
+    .custom-radio-btn.active {
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+    }
+    .bank-option {
+        height: 80px;
+        width: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .bank-img {
+        max-height: 80px;
+        max-width: 100%;
+        object-fit: contain;
+    }
+
+    input[type="radio"].radio-shipment:checked + label {
+        background-color: #007bff;
+        border-color: #e6f0ff;
+        color: white;
+    }
+
+    label.radio-payment.selected {
+        background-color: #007bff !important;
+        border-color: #e6f0ff !important;
+        color: white !important;
+    }
+</style>
 @endpush
