@@ -31,7 +31,8 @@ $layout_page = shop_order_success
 
             <div class="box">
                 <label>{{ sc_language_render('checkout.order_success_metode') }}</label>
-                <span class="value">{{ session('payment_metode') }}</span>
+                <span class="value"><img src="{{ sc_file('Plugins/Payment/BankTransfer/images/' . session('payment_metode') . '.png') }}" height="50px" width="50px" class="img-fluid bank-img">
+                </span>
             </div>
 
             <div class="total">{{ sc_language_render('checkout.order_success_total') }} : {{ session('total_order') }}</div>
