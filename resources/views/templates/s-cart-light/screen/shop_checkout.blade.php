@@ -33,7 +33,6 @@ $layout_page = shop_checkout
             @include($sc_templatePath.'.common.checkout_list', ['cartItem' => $cartItem])
             {{-- //Item cart detail --}}
 
-
             <div class="col-md-12">
             <form class="sc-shipping-address" id="sc_form-process" role="form" method="POST" action="{{ sc_route('checkout.process') }}">
                 @csrf

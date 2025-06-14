@@ -251,7 +251,8 @@ class ShopOrder extends Model
             // Process event created
             sc_event_order_created($order);
 
-            $return = ['error' => 0, 'orderID' => $orderID, 'msg' => "", 'detail' => $order, 'va_number' => $va_number];
+            $now = Carbon::now()->setTimezone('Asia/Jakarta');
+            $return = ['error' => 0, 'orderID' => $orderID, 'msg' => "", 'detail' => $order, 'va_number' => $va_number, 'expired_date' => $now];
         } catch (\Throwable $e) {
             DB::connection(SC_CONNECTION)->rollBack();
             $return = ['error' => 1, 'msg' => $e->getMessage()];
