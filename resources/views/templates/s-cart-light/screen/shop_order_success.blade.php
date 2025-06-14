@@ -23,18 +23,18 @@ $layout_page = shop_order_success
             <div class="box">
                 <label>{{ sc_language_render('checkout.order_success_va_number1') }}</label>
                 <span class="value">{{ session('va_number') }}</span>
-                <button class="copy-btn" onclick="copyToClipboard(session('va_number'))">Salin</button>
+                <button class="copy-btn" onclick="copyToClipboard('{{ session('va_number') }}')">Salin</button>
             </div>
 
             <div class="box">
                 <label>{{ sc_language_render('checkout.order_success_order_info1') }}</label>
                 <span class="value">{{ session('orderID') }}</span>
-                <button class="copy-btn" onclick="copyToClipboard(session('orderID'))">Salin</button>
+                <button class="copy-btn" onclick="copyToClipboard('{{ session('va_number') }}')">Salin</button>
             </div>
 
             <div class="box">
                 <label>{{ sc_language_render('checkout.order_success_metode') }}</label>
-                <span class="value">Bank Mandiri</span>
+                <span class="value">{{ session('payment_metode') }}</span>
             </div>
 
             <div class="total">{{ sc_language_render('checkout.order_success_total') }} : {{ session('total_order') }}</div>
@@ -137,26 +137,5 @@ $layout_page = shop_order_success
     navigator.clipboard.writeText(text);
     alert("Disalin: " + text);
   }
-
-  // Countdown timer logic
-  let countdown = 57 * 60 + 32;
-  const timerElement = document.getElementById("countdown");
-
-  function updateTimer() {
-    let minutes = Math.floor(countdown / 60);
-    let seconds = countdown % 60;
-    let hours = Math.floor(minutes / 60);
-    minutes = minutes % 60;
-
-    timerElement.textContent = 
-      `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-    
-    if (countdown > 0) {
-      countdown--;
-      setTimeout(updateTimer, 1000);
-    }
-  }
-
-  updateTimer();
 </script>
 @endpush
