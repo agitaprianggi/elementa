@@ -522,7 +522,7 @@ $layout_page = shop_checkout
 
             data.data.forEach((shipping, index) => {
                 const id = `shipping-${index}`;
-                const logo = `${shipping.code.toUpperCase()}.png`;
+                const logo = shipping.code.toLowerCase() + '.png';
                 container.innerHTML += `
                     <input type="radio" name="shippingMethod" value="${shipping.name}|${shipping.code}|${shipping.service}|${shipping.cost}" id="${id}" class="d-none radio-shipment">
                     <label for="${id}" class="btn btn-outline-primary mr-2 mb-2 shipping-radio text-left">
