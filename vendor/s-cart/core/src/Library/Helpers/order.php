@@ -125,9 +125,12 @@ if (!function_exists('sc_order_process_after_success') && !in_array('sc_order_pr
             }
         }
         $data = \SCart\Core\Front\Models\ShopOrder::with('details')->find($orderID)->toArray();
+        $now = Carbon::now()->setTimezone('Asia/Jakarta');
         $dataResponse = [
             'orderID'        => $orderID,
             'va_number'      => $data['virtual_account'],
+            'expired_date'   => $now,
+            'payment_metode' => $data['payment_method'],
             'total_order'    => sc_currency_render($data['total']),
         ];
 
