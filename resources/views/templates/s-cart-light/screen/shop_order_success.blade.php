@@ -12,9 +12,6 @@ $layout_page = shop_order_success
 <h6 class="aside-title">{{ $title }}</h6>
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
-            <h2 class="title-page">{{ $title }}</h2>
-        </div>
         <div class="col-md-12 text-success container-inv">
             <div class="timer" id="countdown">{{ session('expired_date') }}</div>
             <h2 class="h2">{{ sc_language_render('checkout.order_success_menunggu_pembayaran') }}</h2>
@@ -23,13 +20,13 @@ $layout_page = shop_order_success
             <div class="box">
                 <label>{{ sc_language_render('checkout.order_success_va_number1') }}</label>
                 <span class="value">{{ session('va_number') }}</span>
-                <button class="copy-btn" onclick="copyToClipboard('{{ session('va_number') }}')">Salin</button>
+                <button class="copy-btn" onclick="copyToClipboard('{{ session('va_number') }}')">{{ sc_language_render('checkout.salin') }}</button>
             </div>
 
             <div class="box">
                 <label>{{ sc_language_render('checkout.order_success_order_info1') }}</label>
                 <span class="value">{{ session('orderID') }}</span>
-                <button class="copy-btn" onclick="copyToClipboard('{{ session('va_number') }}')">Salin</button>
+                <button class="copy-btn" onclick="copyToClipboard('{{ session('orderID') }}')">{{ sc_language_render('checkout.salin') }}</button>
             </div>
 
             <div class="box">
@@ -63,7 +60,14 @@ $layout_page = shop_order_success
     }
     .h2 {
       margin-top: 10px;
+      font-size: 23px;
+      font-weight: bold;
+      color: #333;
+    }
+    .h3 {
+      margin-top: 10px;
       font-size: 18px;
+      font-weight: bold;
       color: #333;
     }
     .p {
@@ -137,5 +141,29 @@ $layout_page = shop_order_success
     navigator.clipboard.writeText(text);
     alert("Disalin: " + text);
   }
+
+  const expiredDate = new Date("{{ \Carbon\Carbon::parse(session('expired_date'))->toIso8601String() }}");
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = expiredDate - now;
+
+    if (diff <= 0) {
+      document.getElementById("countdown").textContent = "00:00:00";
+      clearInterval(timer);
+      return;
+    }
+
+    const totalSeconds = Math.floor(diff / 1000);
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    document.getElementById("countdown").textContent =
+      `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  }
+
+  const timer = setInterval(updateCountdown, 1000);
+  updateCountdown();
 </script>
 @endpush

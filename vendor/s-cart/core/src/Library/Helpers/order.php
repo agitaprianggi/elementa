@@ -126,7 +126,7 @@ if (!function_exists('sc_order_process_after_success') && !in_array('sc_order_pr
             }
         }
         $data = \SCart\Core\Front\Models\ShopOrder::with('details')->find($orderID)->toArray();
-        $now = Carbon::now()->setTimezone('Asia/Jakarta');
+        $now = Carbon::now()->setTimezone('Asia/Jakarta')->addDay();
         $dataResponse = [
             'orderID'        => $orderID,
             'va_number'      => $data['virtual_account'],
