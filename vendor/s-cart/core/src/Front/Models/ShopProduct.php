@@ -19,7 +19,7 @@ class ShopProduct extends Model
     use \SCart\Core\Front\Models\ModelTrait;
     use \SCart\Core\Front\Models\UuidTrait;
 
-    public $table = SC_DB_PREFIX.'shop_product';
+    public $table = SC_DB_PREFIX.'shop_product_donate';
     protected $guarded = [];
 
     protected $connection = SC_CONNECTION;
