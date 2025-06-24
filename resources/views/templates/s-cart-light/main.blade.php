@@ -19,6 +19,7 @@
     <meta property="og:title" content="{{ $title??sc_store('title') }}" />
     <meta property="og:description" content="{{ $description??sc_store('description') }}" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="google-site-verification" content="_wBB73OMeRDtD3kOgqkg-jEsngnMN7VE1YIpQ7NfnjM" />
 
     <!-- css default for item s-cart -->
     @include($sc_templatePath.'.common.css')
