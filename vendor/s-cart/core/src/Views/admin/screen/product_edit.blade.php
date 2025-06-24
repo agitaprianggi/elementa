@@ -721,44 +721,11 @@
 
 
 @if (sc_config_admin('product_property'))
-                        {{-- Virtual --}}
-                        @if ($product->kind == SC_PRODUCT_SINGLE)
-                        <div class="form-group row kind kind0 kind1  {{ $errors->has('property') ? ' text-red' : '' }}">
-                            <label for="property" class="col-sm-2 col-form-label">{{ sc_language_render('product.property') }}</label>
-                            <div class="col-sm-8">
-                                @foreach ( $properties as $key => $property)
-                                <div class="icheck-primary d-inline">
-                                    <input type="radio" id="radioPrimary{{ $key }}" name="property" value="{{ $key }}"  {{ (old('property',$product->property) == $key)?'checked':'' }}>
-                                    <label for="radioPrimary{{ $key }}">
-                                        {{ $property }}
-                                    </label>
-                                </div>
-                                @endforeach
-                                <div class="icheck-primary d-inline">
-                                <label>
-                                    <a target=_new href="{{ sc_route_admin('admin_product_property.index') }}" title="New">
-                                        <i class="fa fa-plus" title="{{ sc_language_render('action.add') }}"></i>
-                                    </a>
-                                </label>
-                                </div>
-                                @if ($errors->has('property'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('property') }}
-                                </span>
-                                @endif
-
-                                <div class="input-group" style="margin-top: 10px; {{ (old('property', $product->property) != SC_PROPERTY_DOWNLOAD && old('property', $product->property) != SC_PROPERTY_DOWNPHYS) ? 'display:none':'' }}" id="download_path">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fa fa-download"></i></span>
-                                    </div>
-                                    <input type="text"  name="download_path" value="{{ old('download_path', $product->downloadPath->path ?? '') }}" class="form-control input-sm" placeholder="{{ sc_language_render('product.download_path') }}" />
-                                </div>
-
-                            </div>
-                        </div>
-                        @endif
-                        {{-- //Virtual --}}
+    @if ($product->kind == SC_PRODUCT_SINGLE)
+        <input type="hidden" name="property" value="{{ SC_PROPERTY_PHYSICAL }}">
+    @endif
 @endif
+
 
                         {{-- Isbn --}}
                         <div class="form-group row {{ $errors->has('isbn') ? ' text-red' : '' }}">

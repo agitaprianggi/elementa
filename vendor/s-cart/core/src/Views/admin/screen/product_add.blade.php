@@ -689,41 +689,9 @@
 
 
 @if (sc_config_admin('product_property'))
-                        {{-- property --}}
-                        <div class="form-group row kind   {{ $errors->has('property') ? ' text-red' : '' }}">
-                            <label for="property" class="col-sm-2 col-form-label">{{ sc_language_render('product.property') }}</label>
-                            <div class="col-sm-8">
-                                @foreach ($properties as $key => $property)
-                                    @if ($key == SC_PROPERTY_PHYSICAL)
-                                        <div class="icheck-primary d-inline">
-                                            <input type="radio" id="radioPrimary{{ $key }}" name="property" value="{{ $key }}"
-                                                {{ ((!old() && $key == SC_PROPERTY_PHYSICAL) || old('property') == $key) ? 'checked' : '' }}>
-                                            <label for="radioPrimary{{ $key }}">
-                                                {{ $property }}
-                                            </label>
-                                        </div>
-                                    @endif
-                                @endforeach
-
-                                <!-- <div class="icheck-primary d-inline">
-                                    <label>
-                                    <a target=_new href="{{ sc_route_admin('admin_product_property.index') }}" title="New">
-                                        <i class="fa fa-plus" title="{{ sc_language_render('action.add') }}"></i>
-                                     </a>
-                                    </label>
-                                </div>
-                                @if ($errors->has('property'))
-                                <span class="form-text">
-                                    <i class="fa fa-info-circle"></i> {{ $errors->first('property') }}
-                                </span>
-                                @endif
-                                <div style="margin-top: 10px; {{ (old('property') != SC_PROPERTY_DOWNLOAD || old('property') != SC_PROPERTY_DOWNPHYS) ? 'display:none':'' }}" id="download_path">
-                                    <input type="text"  name="download_path" value="{{ old('download_path') }}" class="form-control input-sm" placeholder="{{ sc_language_render('product.download_path') }}" />
-                                </div> -->
-                            </div>
-                        </div>
-                        {{-- //property --}}
+    <input type="hidden" name="property" value="{{ SC_PROPERTY_PHYSICAL }}">
 @endif
+
 
 
                         {{-- isbn --}}
