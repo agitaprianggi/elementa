@@ -35,6 +35,10 @@ $layout_page = shop_order_success
                 </span>
             </div>
 
+            <div class="box">
+                <label>Selamat Anda Telah Membeli Buku Digital {{ session('qty') }} Copy, Akan Diaktifkan di Aplikasi Perpustakaan Digital Kampus/Sekolah/Instansi Anda</label>
+            </div>
+
             <div class="total">{{ sc_language_render('checkout.order_success_total') }} : {{ session('total_order') }}</div>
         </div>
     </div>

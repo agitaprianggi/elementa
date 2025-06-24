@@ -119,64 +119,62 @@ $layout_page = shop_product_detail
                   <!-- <hr class="hr-gray-100"> -->
 
                 @if ($product->kind != SC_PRODUCT_GROUP && $product->allowSale() && !sc_config('product_cart_off'))
-                  <div style="
-                      display: flex; flex-direction: column; gap: 2px; align-items: flex-start;
-                  ">
+                    <div style="display: flex; flex-direction: column; gap: 2px; align-items: flex-start;">
 
-                    @if ($product->property == 'physical' || $product->property == 'downphys')
-                    {{-- Bagian Stepper dan Tombol Beli --}}
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <div class="product-stepper">
-                                <input class="form-input" name="qty" type="number" value="1" readonly>
-                            </div>
+                        @if ($product->property == 'physical' || $product->property == 'downphys')
+                        {{-- Bagian Stepper dan Tombol Beli --}}
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div class="product-stepper">
+                                    <input class="form-input" name="qty" type="number" value="1" readonly>
+                                </div>
 
-                            {{-- Tombol "Beli Versi Cetak" --}}
-                            <button id="sc_button-form-process" type="submit" style="
-                                background: #0097b2;
-                                border: none;
-                                padding: 9px 15px;
-                                border-radius: 8px;
-                                cursor: pointer;
-                                transition: background 0.3s ease-in-out;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                gap: 8px;
-                                min-width: 160px;
-                            " onmouseover="this.style.background='#d9d9d9'" 
-                            onmouseout="this.style.background='#0097b2'">
-                                <i class="fa fa-cart-plus" style="color: white; font-size: 16px;"></i>
-                                <span style="color: white; font-size: 14px; font-weight: bold;">Beli Versi Cetak</span>
-                            </button>
-                    @endif
+                                {{-- Tombol "Beli Versi Cetak" --}}
+                                <button id="sc_button-form-process" type="submit" style="
+                                    background: #0097b2;
+                                    border: none;
+                                    padding: 9px 15px;
+                                    border-radius: 8px;
+                                    cursor: pointer;
+                                    transition: background 0.3s ease-in-out;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    gap: 8px;
+                                    min-width: 160px;
+                                    " onmouseover="this.style.background='#d9d9d9'" 
+                                    onmouseout="this.style.background='#0097b2'">
+                                    <i class="fa fa-cart-plus" style="color: white; font-size: 16px;"></i>
+                                    <span style="color: white; font-size: 14px; font-weight: bold;">Beli</span>
+                                </button>
+                        @endif
                             
                         {{-- Tombol "Beli Versi Digital" --}}
-                            @if ($product->property == 'download' || $product->property == 'downphys')
-                                <a href="{{ $product->downloadPath->path }}" 
-                                    id="sc_button-digital"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    style="
-                                        background: #ff914d;
-                                        border: none;
-                                        padding: 9px 15px;
-                                        border-radius: 6px;
-                                        cursor: pointer;
-                                        transition: background 0.3s ease-in-out;
-                                        display: flex;
-                                        align-items: center;
-                                        justify-content: center;
-                                        gap: 8px;
-                                        min-width: 160px;
-                                        text-align: center;
-                                    "
-                                    onmouseover="this.style.background='#d9d9d9'" 
-                                    onmouseout="this.style.background='#ff914d'">
-                                    <i class="fa fa-book" style="color: white; font-size: 14px;"></i>
-                                    <span style="color: white; font-size: 14px; font-weight: bold; text-align: center;">Beli Versi Digital</span>
-                                </a>
-                            @endif
-                        </div>
+                        @if ($product->property == 'download' || $product->property == 'downphys')
+                            <a href="{{ $product->downloadPath->path }}" 
+                                id="sc_button-digital"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style="
+                                    background: #ff914d;
+                                    border: none;
+                                    padding: 9px 15px;
+                                    border-radius: 6px;
+                                    cursor: pointer;
+                                    transition: background 0.3s ease-in-out;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    gap: 8px;
+                                    min-width: 160px;
+                                    text-align: center;
+                                "
+                                onmouseover="this.style.background='#d9d9d9'" 
+                                onmouseout="this.style.background='#ff914d'">
+                                <i class="fa fa-book" style="color: white; font-size: 14px;"></i>
+                                <span style="color: white; font-size: 14px; font-weight: bold; text-align: center;">Beli Versi Digital</span>
+                            </a>
+                        @endif
+                    </div>
                 @endif
 
                   {{-- Show attribute --}}

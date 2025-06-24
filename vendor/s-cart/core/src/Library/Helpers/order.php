@@ -133,6 +133,7 @@ if (!function_exists('sc_order_process_after_success') && !in_array('sc_order_pr
             'expired_date'   => $now,
             'payment_metode' => $data['payment_method'],
             'total_order'    => sc_currency_render($data['total']),
+            'qty'            => array_sum(array_column($data['details'], 'qty')),
         ];
 
         return $dataResponse;

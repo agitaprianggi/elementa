@@ -291,25 +291,14 @@ $layout_page = shop_checkout
 
                                 @if (!sc_config('shipping_off'))
                                 {{-- Shipping method --}}
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div
-                                                class="form-group {{ $errors->has('shippingMethod') ? ' has-error' : '' }}">
-                                                <h3 class="control-label"><i class="fa fa-truck" aria-hidden="true"></i>
-                                                    {{ sc_language_render('order.shipping_method') }}:<br></h3>
-                                                @if($errors->has('shippingMethod'))
-                                                <span class="help-block">{{ $errors->first('shippingMethod') }}</span>
-                                                @endif
-                                            </div>
-
-                                            <div class="form-group" id="shippingMethodsContainer">
-                                                <div id="loadingContainer" style="display: none; align-items: center;">
-                                                    <p style="margin-left: 10px;">Loading shipping methods</p>
-                                                    <div class="loading-spinner"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <div class="form-group" id="shippingMethodsContainer">
+                                        {{-- Default shipping method --}}
+                                        <input type="radio"
+                                        name="shippingMethod"
+                                        value="Lainnya|0|0|0"
+                                        id="Lainnya"
+                                        class="d-none radio-shipment"
+                                        checked>
                                 {{-- //Shipping method --}}
                                 @endif
 
@@ -463,86 +452,86 @@ $layout_page = shop_checkout
                 }
             });
         });
-        getCost();
+        // getCost();
     });
 
-    function getCost() {
-        const loadingContainer = document.getElementById('loadingContainer');
-        loadingContainer.style.display = "flex";
-        let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    // function getCost() {
+    //     const loadingContainer = document.getElementById('loadingContainer');
+    //     loadingContainer.style.display = "flex";
+    //     let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
-        const id_addr = document.getElementById('id_addr').value;
+    //     const id_addr = document.getElementById('id_addr').value;
 
-        let totalWeight = 0;
+    //     let totalWeight = 0;
 
-        document.querySelectorAll("tr.row_cart").forEach(row => {
-            let weightElement = row.querySelector("td#productweight");
-            let qtyElement = row.querySelector("td#productqty");
+    //     document.querySelectorAll("tr.row_cart").forEach(row => {
+    //         let weightElement = row.querySelector("td#productweight");
+    //         let qtyElement = row.querySelector("td#productqty");
 
-            if (weightElement && qtyElement) {
-                let weight = parseFloat(weightElement.textContent.trim()) || 0;
-                let qty = parseInt(qtyElement.textContent.trim()) || 0;
+    //         if (weightElement && qtyElement) {
+    //             let weight = parseFloat(weightElement.textContent.trim()) || 0;
+    //             let qty = parseInt(qtyElement.textContent.trim()) || 0;
 
-                totalWeight += weight * qty;
-            }
-        });
+    //             totalWeight += weight * qty;
+    //         }
+    //     });
 
-        fetch("/api/calculate-ship-cost", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-                "X-CSRF-TOKEN": csrfToken
-            },
-            body: JSON.stringify({
-                destination: id_addr,
-                weight: totalWeight,
-            })
-        })
-        .then(response => response.json())
-        // .then(
-        //     result => console.log(result.data)
-        // )
-        .then(data => {
-            const container = document.getElementById("shippingMethodsContainer");
-            container.className = "d-flex flex-wrap align-items-center";
-            container.innerHTML = "";
+    //     fetch("/api/calculate-ship-cost", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Accept": "application/json",
+    //             "X-CSRF-TOKEN": csrfToken
+    //         },
+    //         body: JSON.stringify({
+    //             destination: id_addr,
+    //             weight: totalWeight,
+    //         })
+    //     })
+    //     .then(response => response.json())
+    //     // .then(
+    //     //     result => console.log(result.data)
+    //     // )
+    //     .then(data => {
+    //         const container = document.getElementById("shippingMethodsContainer");
+    //         container.className = "d-flex flex-wrap align-items-center";
+    //         container.innerHTML = "";
 
-            if (!data || !data.data || data.data.length === 0) {
-                container.innerHTML = "<p>No shipping methods available.</p>";
-                return;
-            }
+    //         if (!data || !data.data || data.data.length === 0) {
+    //             container.innerHTML = "<p>No shipping methods available.</p>";
+    //             return;
+    //         }
 
-            data.data.sort((a, b) => {
-                if (a.code < b.code) return -1;
-                if (a.code > b.code) return 1;
-                return a.cost - b.cost;
-            });
+    //         data.data.sort((a, b) => {
+    //             if (a.code < b.code) return -1;
+    //             if (a.code > b.code) return 1;
+    //             return a.cost - b.cost;
+    //         });
 
-            data.data.forEach((shipping, index) => {
-                const id = `shipping-${index}`;
-                const logo = shipping.code.toLowerCase() + '.png';
-                container.innerHTML += `
-                    <input type="radio" name="shippingMethod" value="${shipping.name}|${shipping.code}|${shipping.service}|${shipping.cost}" id="${id}" class="d-none radio-shipment">
-                    <label for="${id}" class="btn btn-outline-primary mr-2 mb-2 shipping-radio text-left">
-                        <div class="fw-bold">
-                            <img src="{{ sc_file('Plugins/Shipping/images/${logo}') }}" height="25px" width="25px" >
-                            ${shipping.code.toUpperCase()} - ${shipping.service}
-                            <span class="float-right"> &nbsp;Rp ${shipping.cost.toLocaleString()}</span>
-                        </div>
-                        <small>Estimasi: ${shipping.etd}</small>
-                    </label>
-                `;
-            });
+    //         data.data.forEach((shipping, index) => {
+    //             const id = `shipping-${index}`;
+    //             const logo = shipping.code.toLowerCase() + '.png';
+    //             container.innerHTML += `
+    //                 <input type="radio" name="shippingMethod" value="${shipping.name}|${shipping.code}|${shipping.service}|${shipping.cost}" id="${id}" class="d-none radio-shipment">
+    //                 <label for="${id}" class="btn btn-outline-primary mr-2 mb-2 shipping-radio text-left">
+    //                     <div class="fw-bold">
+    //                         <img src="{{ sc_file('Plugins/Shipping/images/${logo}') }}" height="25px" width="25px" >
+    //                         ${shipping.code.toUpperCase()} - ${shipping.service}
+    //                         <span class="float-right"> &nbsp;Rp ${shipping.cost.toLocaleString()}</span>
+    //                     </div>
+    //                     <small>Estimasi: ${shipping.etd}</small>
+    //                 </label>
+    //             `;
+    //         });
 
-            loadingContainer.style.display = "none";
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            document.getElementById("loadingContainer").innerHTML = "<p>Error loading shipping methods.</p>";
-            loadingContainer.style.display = "none";
-        });
-    }
+    //         loadingContainer.style.display = "none";
+    //     })
+    //     .catch(error => {
+    //         console.error("Error:", error);
+    //         document.getElementById("loadingContainer").innerHTML = "<p>Error loading shipping methods.</p>";
+    //         loadingContainer.style.display = "none";
+    //     });
+    // }
 
     $('#sc_button-form-process').click(function(){
         $('#sc_form-process').submit();
