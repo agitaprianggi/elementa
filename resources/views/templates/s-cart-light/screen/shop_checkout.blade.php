@@ -317,13 +317,13 @@ $layout_page = shop_checkout
                                             <div class="form-group cart-payment-method">
                                                 <p class="mb-2">Bank Transfer</p>
                                                 <div class="d-flex flex-wrap align-items-center">
-                                                    <input type="radio" name="paymentMethod" id="bca" value="bca" class="d-none radio-payment">
+                                                    <!--<input type="radio" name="paymentMethod" id="bca" value="bca" class="d-none radio-payment">
                                                     <label for="bca" class="btn btn-outline-primary mr-2 mb-2 custom-radio-btn bank-option radio-payment"">
                                                         <img title="BCA"
                                                             alt="BCA"
                                                             src="{{ sc_file('Plugins/Payment/BankTransfer/images/bca.png') }}"
                                                             height="100px" width="100px" class="img-fluid bank-img">
-                                                    </label>
+                                                    </label> -->
 
                                                     <input type="radio" name="paymentMethod" id="bni" value="bni" class="d-none radio-payment">
                                                     <label for="bni" class="btn btn-outline-primary mr-2 mb-2 custom-radio-btn bank-option radio-payment"">
