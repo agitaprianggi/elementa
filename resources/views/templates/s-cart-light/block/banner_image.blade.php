@@ -69,7 +69,7 @@ $banners = $modelBanner->start()->setType('banner')->getData()
   Kami berkomitmen untuk memberikan lebih dari sekadar buku—kami memberikan inspirasi untuk setiap pembaca. 
   Temukan buku yang Anda cari hanya di Elementa Media Literasi dan mulailah perjalanan literasi Anda hari ini!
 
-  <div class="elementor-container" style="margin-top: 30px;">
+<!--  <div class="elementor-container" style="margin-top: 30px;">
     <div class="elementor-column">
       <div class="elementor-widget-wrap">
         <div class="elementor-icon-box-icon">
@@ -103,5 +103,5 @@ $banners = $modelBanner->start()->setType('banner')->getData()
         </p>
       </div>
     </div>
-  </div>
+  </div> -->
 </section>
