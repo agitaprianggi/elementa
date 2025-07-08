@@ -11,7 +11,7 @@ class ShopBanner extends Model
     use \SCart\Core\Front\Models\ModelTrait;
     use \SCart\Core\Front\Models\UuidTrait;
 
-    public $table = SC_DB_PREFIX.'shop_banner';
+    public $table = SC_DB_PREFIX.'shop_banner_donation';
     protected $guarded = [];
     protected $connection = SC_CONNECTION;
 
