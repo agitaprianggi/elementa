@@ -35,19 +35,6 @@
           <li><a href="{{ sc_route('news') }}" class="footer-detail">Artikel</a></li>
           <li><a href="{{ sc_route('contact') }}" class="footer-detail">Kontak Kami</a></li>
           <li><a href="{{ sc_route('about') }}" class="footer-detail">Tentang Kami</a></li>
-          
-          <!-- Dropdown Kebijakan -->
-          <li class="dropdown mt-2">
-            <a class="footer-detail dropdown-toggle" href="#" role="button" id="policyDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-              Kebijakan
-            </a>
-            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="policyDropdown">
-              <li><a class="dropdown-item" href="/id/terms-and-conditions.html">Syarat & Ketentuan</a></li>
-              <li><a class="dropdown-item" href="/id/privacy-policy.html">Kebijakan Privasi</a></li>
-              <li><a class="dropdown-item" href="/id/refund-policy.html">Kebijakan Refund</a></li>
-              <li><a class="dropdown-item" href="/id/shipping-policy.html">Kebijakan Pengiriman</a></li>
-            </ul>
-          </li>
         </ul>
       </div>
 
@@ -74,6 +61,22 @@
     </div>
   </div>
 
+  <!-- Footer Policy Links -->
+  <div class="footer-policy-links text-center mt-4">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <div class="d-flex flex-wrap justify-content-center gap-3 policy-links">
+            <a href="/id/terms-and-conditions.html" class="footer-detail">Syarat & Ketentuan</a>
+            <a href="/id/privacy-policy.html" class="footer-detail">Kebijakan Privasi</a>
+            <a href="/id/refund-policy.html" class="footer-detail">Kebijakan Refund</a>
+            <a href="/id/shipping-policy.html" class="footer-detail">Kebijakan Pengiriman</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer Bottom -->
   <div class="footer-bottom text-center mt-4 py-3 bg-secondary">
     <p class="mb-0 footer-detail">&copy; <span class="copyright-year"></span> {{ sc_store('title', ($storeId ?? null)) }}. All rights reserved.</p>
@@ -85,6 +88,17 @@
 
 <!-- Custom Styles -->
 <style>
+  .footer-policy-links a {
+    color: #A0A0A0;
+    font-size: 14px;
+    transition: color 0.3s;
+    text-decoration: none;
+  }
+
+  .footer-policy-links a:hover {
+    color: rgb(255, 192, 45);
+    text-decoration: underline;
+  }
   .footer-marketplace a img {
     transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
   }
@@ -164,28 +178,15 @@
     text-transform: uppercase;
     letter-spacing: 1px;
   }
-
-  .dropdown-toggle::after {
-    margin-left: 0.5em;
-  }
-
-  .dropdown-menu {
-    background-color: #2b2b2b; /* Dark background */
-    border: none;
-    font-size: 14px;
-  }
-
-  .dropdown-menu a.dropdown-item {
-    color: #A0A0A0;
-    padding: 8px 15px;
-  }
-
-  .dropdown-menu a.dropdown-item:hover {
-    background-color: rgba(255, 192, 45, 0.1);
-    color: rgb(255, 192, 45);
-  }
-
   @media (max-width: 768px) {
+    .footer-policy-links {
+      padding: 0 10px;
+    }
+
+    .footer-policy-links .policy-links {
+      flex-direction: column;
+      gap: 8px;
+    }
   /* Pusatkan ikon kontak */
     .footer-title,
     .footer-detail {
