@@ -35,6 +35,19 @@
           <li><a href="{{ sc_route('news') }}" class="footer-detail">Artikel</a></li>
           <li><a href="{{ sc_route('contact') }}" class="footer-detail">Kontak Kami</a></li>
           <li><a href="{{ sc_route('about') }}" class="footer-detail">Tentang Kami</a></li>
+          
+          <!-- Dropdown Kebijakan -->
+          <li class="dropdown mt-2">
+            <a class="footer-detail dropdown-toggle" href="#" role="button" id="policyDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              Kebijakan
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="policyDropdown">
+              <li><a class="dropdown-item" href="/id/terms-and-conditions.html">Syarat & Ketentuan</a></li>
+              <li><a class="dropdown-item" href="/id/privacy-policy.html">Kebijakan Privasi</a></li>
+              <li><a class="dropdown-item" href="/id/refund-policy.html">Kebijakan Refund</a></li>
+              <li><a class="dropdown-item" href="/id/shipping-policy.html">Kebijakan Pengiriman</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
 
@@ -151,6 +164,27 @@
     text-transform: uppercase;
     letter-spacing: 1px;
   }
+
+  .dropdown-toggle::after {
+    margin-left: 0.5em;
+  }
+
+  .dropdown-menu {
+    background-color: #2b2b2b; /* Dark background */
+    border: none;
+    font-size: 14px;
+  }
+
+  .dropdown-menu a.dropdown-item {
+    color: #A0A0A0;
+    padding: 8px 15px;
+  }
+
+  .dropdown-menu a.dropdown-item:hover {
+    background-color: rgba(255, 192, 45, 0.1);
+    color: rgb(255, 192, 45);
+  }
+
   @media (max-width: 768px) {
   /* Pusatkan ikon kontak */
     .footer-title,
