@@ -93,12 +93,19 @@
     font-size: 14px;
     transition: color 0.3s;
     text-decoration: none;
+    padding: 0 10px; /* Tambahan jarak kanan-kiri */
   }
 
   .footer-policy-links a:hover {
     color: rgb(255, 192, 45);
     text-decoration: underline;
   }
+
+  .footer-policy-links .policy-links {
+    gap: 20px; /* jarak antar tautan di desktop */
+    flex-wrap: wrap;
+  }
+
   .footer-marketplace a img {
     transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
   }
@@ -186,6 +193,10 @@
     .footer-policy-links .policy-links {
       flex-direction: column;
       gap: 8px;
+    }
+
+    .footer-policy-links a {
+      padding: 0; /* hilangkan padding horizontal di mobile */
     }
   /* Pusatkan ikon kontak */
     .footer-title,
