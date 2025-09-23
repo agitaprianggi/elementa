@@ -9,6 +9,15 @@ $layout_page = product_info_detail
 
 @extends($sc_templatePath.'.layout')
 
+{{-- Inject OG meta khusus produk --}}
+@section('head')
+    <meta property="og:type" content="product" />
+    <meta property="og:title" content="{{ $product->name }}">
+    <meta property="og:description" content="{{ strip_tags(Str::limit($product->description, 160)) }}">
+    <meta property="og:image" content="{{ sc_file($product->getImage()) }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+@endsection
+
 {{-- block_main --}}
 @section('block_main_content_center')
 @php
