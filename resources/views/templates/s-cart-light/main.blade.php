@@ -10,7 +10,7 @@
     <link rel="canonical" href="{{ request()->url() }}" />
 
     {{-- SEO Meta --}}
-    <meta name="description" content="{{ $description ?? sc_store('description') }}">
+    <meta name="description" content="{{ urldecode($description ?? sc_store('description')) }}">
     <meta name="keywords" content="{{ $keyword ?? sc_store('keyword') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -20,8 +20,8 @@
     {{-- Open Graph Meta --}}
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:title" content="{{ $title ?? sc_store('title') }}" />
-    <meta property="og:description" content="{{ $description ?? sc_store('description') }}" />
+    <meta property="og:title" content="{!! $title ?? sc_store('title') !!}" />
+    <meta property="og:description" content="{{ urldecode($description ?? sc_store('description')) }}" />
     <meta property="og:image" content="{{ !empty($og_image) ? sc_file($og_image) : sc_file(sc_store('og_image')) }}" />
 
     <meta name="google-site-verification" content="_wBB73OMeRDtD3kOgqkg-jEsngnMN7VE1YIpQ7NfnjM" />
