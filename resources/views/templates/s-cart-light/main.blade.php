@@ -14,7 +14,7 @@
     <meta name="keywords" content="{{ $keyword ?? sc_store('keyword') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title ?? sc_store('title') }}</title>
+    <title>{!! $title ?? sc_store('title') !!}</title>
     <link rel="icon" href="{{ sc_file(sc_store('icon', null, 'images/icon.png')) }}" type="image/png" sizes="16x16">
 
     {{-- Open Graph Meta --}}
