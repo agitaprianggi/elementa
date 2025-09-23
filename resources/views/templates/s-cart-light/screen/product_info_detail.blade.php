@@ -9,11 +9,15 @@ $layout_page = product_info_detail
 
 @extends($sc_templatePath.'.layout')
 
+@php
+  $desc = $product->descriptions->where('lang', app()->getLocale())->first();
+@endphp
+
 {{-- Inject OG meta khusus produk --}}
 @section('head')
     <meta property="og:type" content="product" />
-    <meta property="og:title" content="{!! urldecode($product->name) !!}">
-    <meta property="og:description" content="{!! Str::limit(strip_tags(html_entity_decode($product->description)), 160) !!}">
+    <meta property="og:title" content="{{ $desc->name ?? $product->alias }}">
+    <meta property="og:description" content="{{ strip_tags(Str::limit($desc->description ?? '', 160)) }}">
     <meta property="og:image" content="{{ sc_file($product->getImage()) }}">
     <meta property="og:url" content="{{ url()->current() }}">
 @endsection
