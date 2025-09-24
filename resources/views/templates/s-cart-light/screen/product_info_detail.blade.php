@@ -13,10 +13,14 @@ $layout_page = product_info_detail
   $desc = $product->descriptions->where('lang', app()->getLocale())->first();
 @endphp
 
+<p>{{ $desc->name }}</p>
+<p>{!! $desc->name !!}</p>
+<p>{{ urldecode($desc->name) }}</p>
+
 {{-- Inject OG meta khusus produk --}}
 @section('head')
     <meta property="og:type" content="product" />
-    <meta property="og:title" content="{!! urldecode($desc->name) !!}">
+    <meta property="og:title" content="{!! $desc->name !!}">
     <meta property="og:description" content="{{ strip_tags(Str::limit($desc->description ?? '', 160)) }}">
     <meta property="og:image" content="{{ sc_file($product->getImage()) }}">
     <meta property="og:url" content="{{ url()->current() }}">
