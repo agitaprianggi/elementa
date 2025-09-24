@@ -26,12 +26,13 @@
     @else
         @php
             $ogTitle = $title ?? sc_store('title');
-            // Replace encoding %3A jadi normal colon :
-            $ogTitle = str_replace('%3A', ':', $ogTitle);
+            // Decode semua karakter yang ke-encode (misalnya %3A, %26, %20, dll)
+            $ogTitle = urldecode($ogTitle);
+            $ogDesc  = urldecode($description ?? sc_store('description'));
         @endphp
 
         <meta property="og:title" content="{{ $ogTitle }}">
-        <meta property="og:description" content="{{ urldecode($description ?? sc_store('description')) }}" />
+        <meta property="og:description" content="{{ $ogDesc }}" />
         <meta property="og:image" content="{{ !empty($og_image) ? sc_file($og_image) : sc_file(sc_store('og_image')) }}" />
     @endif
 
