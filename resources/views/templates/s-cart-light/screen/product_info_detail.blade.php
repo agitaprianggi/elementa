@@ -16,7 +16,7 @@ $layout_page = product_info_detail
 {{-- Inject OG meta khusus produk --}}
 @section('head')
     <meta property="og:type" content="product" />
-    <meta property="og:title" content="{!! $desc->name !!}">
+    <meta property="og:title" content="{{ str_replace(['"', "'"], '', $desc->name) }}">
     <meta property="og:description" content="{{ strip_tags(Str::limit($desc->description ?? '', 160)) }}">
     <meta property="og:image" content="{{ sc_file($product->getImage()) }}">
     <meta property="og:url" content="{{ url()->current() }}">
