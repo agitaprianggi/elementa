@@ -16,7 +16,7 @@
 
     <link rel="icon" href="{{ sc_file(sc_store('icon', null, 'images/icon.png')) }}" type="image/png" sizes="16x16">
 
-    {{-- Open Graph Meta --}}
+   {{-- Open Graph Meta --}}
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ url()->current() }}" />
 
@@ -24,7 +24,13 @@
     @hasSection('head')
         @yield('head')
     @else
-        <meta property="og:title" content="{!! $title ?? sc_store('title') !!}">
+        @php
+            $ogTitle = $title ?? sc_store('title');
+            // Replace encoding %3A jadi normal colon :
+            $ogTitle = str_replace('%3A', ':', $ogTitle);
+        @endphp
+
+        <meta property="og:title" content="{{ $ogTitle }}">
         <meta property="og:description" content="{{ urldecode($description ?? sc_store('description')) }}" />
         <meta property="og:image" content="{{ !empty($og_image) ? sc_file($og_image) : sc_file(sc_store('og_image')) }}" />
     @endif
