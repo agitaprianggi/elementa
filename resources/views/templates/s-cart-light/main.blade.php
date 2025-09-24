@@ -19,11 +19,15 @@
     {{-- Open Graph Meta --}}
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    @if (!View::hasSection('head'))
+
+    {{-- Kalau ada section head dari child view (contoh: produk), jangan render og:title default --}}
+    @hasSection('head')
+        @yield('head')
+    @else
         <meta property="og:title" content="{!! $title ?? sc_store('title') !!}">
+        <meta property="og:description" content="{{ urldecode($description ?? sc_store('description')) }}" />
+        <meta property="og:image" content="{{ !empty($og_image) ? sc_file($og_image) : sc_file(sc_store('og_image')) }}" />
     @endif
-    <meta property="og:description" content="{{ urldecode($description ?? sc_store('description')) }}" />
-    <meta property="og:image" content="{{ !empty($og_image) ? sc_file($og_image) : sc_file(sc_store('og_image')) }}" />
 
     <meta name="google-site-verification" content="_wBB73OMeRDtD3kOgqkg-jEsngnMN7VE1YIpQ7NfnjM" />
 
