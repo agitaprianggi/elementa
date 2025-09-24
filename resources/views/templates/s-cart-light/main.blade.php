@@ -20,7 +20,7 @@
     {{-- Open Graph Meta --}}
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:title" content="{!! $title ?? sc_store('title') !!}" />
+    <meta property="og:title" content="{!! urldecode($desc->name ?? $product->alias) !!}">
     <meta property="og:description" content="{{ urldecode($description ?? sc_store('description')) }}" />
     <meta property="og:image" content="{{ !empty($og_image) ? sc_file($og_image) : sc_file(sc_store('og_image')) }}" />
 
