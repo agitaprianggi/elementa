@@ -13,9 +13,12 @@ $layout_page = product_info_detail
   $desc = $product->descriptions->where('lang', app()->getLocale())->first();
 @endphp
 
-<p>{{ $desc->name }}</p>
-<p>{!! $desc->name !!}</p>
-<p>{{ urldecode($desc->name) }}</p>
+{{-- TESTING --}}
+<div style="background:yellow; padding:10px;">
+  <p>{{ $desc->name }}</p>
+  <p>{!! $desc->name !!}</p>
+  <p>{{ urldecode($desc->name) }}</p>
+</div>
 
 {{-- Inject OG meta khusus produk --}}
 @section('head')
