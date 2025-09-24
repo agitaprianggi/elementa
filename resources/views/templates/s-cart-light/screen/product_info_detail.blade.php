@@ -13,6 +13,15 @@ $layout_page = product_info_detail
   $desc = $product->descriptions->where('lang', app()->getLocale())->first();
 @endphp
 
+{{-- DEBUG START --}}
+<div style="background:yellow; padding:10px;">
+  <p>Raw: {{ $desc->name }}</p>
+  <p>Unescaped: {!! $desc->name !!}</p>
+  <meta property="og:title" content="{{ $desc->name }}">
+  <meta property="og:title" content="{!! $desc->name !!}">
+</div>
+{{-- DEBUG END --}}
+
 {{-- Inject OG meta khusus produk --}}
 @section('head')
     <meta property="og:type" content="product" />
