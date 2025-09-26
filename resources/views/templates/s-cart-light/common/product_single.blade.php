@@ -1,3 +1,22 @@
+<style>
+article.product {
+    position: relative; /* supaya badge absolute terhadap card */
+}
+
+.product-badge-wrap {
+    position: absolute;
+    top: 0;
+    right: 0;   /* ganti dari left:0 ke right:0 */
+    z-index: 10;
+}
+
+.product-badge-img {
+    width: 40px;  /* ukuran kecil */
+    height: auto;
+}
+</style>
+
+
 <article class="product wow fadeInRight">
     <div class="product-body">
       <div class="product-figure">
@@ -29,26 +48,23 @@
       {!! $product->showPrice() !!}
     </div>
     
-    @if ($product->price != $product->getFinalPrice() && $product->kind != SC_PRODUCT_GROUP)
-    <span>
-        <img class="product-badge new" 
-             src="{{ sc_file($sc_templateFile.'/images/home/sale.png') }}" 
-             alt="Sale" 
-             style="width: 100px; height: auto;" />
-    </span>
+     @if ($product->price != $product->getFinalPrice() && $product->kind != SC_PRODUCT_GROUP)
+        <span class="product-badge-wrap">
+            <img class="product-badge-img" 
+                 src="{{ sc_file($sc_templateFile.'/images/home/sale.png') }}" 
+                 alt="Sale" />
+        </span>
     @elseif ($product->kind == SC_PRODUCT_BUILD)
-        <span>
-            <img class="product-badge new" 
-                src="{{ sc_file($sc_templateFile.'/images/home/bundle.png') }}" 
-                alt="Bundle" 
-                style="width: 100px; height: auto;" />
+        <span class="product-badge-wrap">
+            <img class="product-badge-img" 
+                 src="{{ sc_file($sc_templateFile.'/images/home/bundle.png') }}" 
+                 alt="Bundle" />
         </span>
     @elseif ($product->kind == SC_PRODUCT_GROUP)
-        <span>
-            <img class="product-badge new" 
-                src="{{ sc_file($sc_templateFile.'/images/home/group.png') }}" 
-                alt="Group" 
-                style="width: 100px; height: auto;" />
+        <span class="product-badge-wrap">
+            <img class="product-badge-img" 
+                 src="{{ sc_file($sc_templateFile.'/images/home/group.png') }}" 
+                 alt="Group" />
         </span>
     @endif
 
