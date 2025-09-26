@@ -30,18 +30,28 @@
     </div>
     
     @if ($product->price != $product->getFinalPrice() && $product->kind != SC_PRODUCT_GROUP)
+    <span>
+        <img class="product-badge new" 
+             src="{{ sc_file($sc_templateFile.'/images/home/sale.png') }}" 
+             alt="Sale" 
+             style="width: 100px; height: auto;" />
+    </span>
+    @elseif ($product->kind == SC_PRODUCT_BUILD)
         <span>
-            <img class="product-badge-img" src="{{ sc_file($sc_templateFile.'/images/home/sale.png') }}" alt="Sale">
+            <img class="product-badge new" 
+                src="{{ sc_file($sc_templateFile.'/images/home/bundle.png') }}" 
+                alt="Bundle" 
+                style="width: 100px; height: auto;" />
         </span>
-    @elseif($product->kind == SC_PRODUCT_BUILD)
+    @elseif ($product->kind == SC_PRODUCT_GROUP)
         <span>
-            <img class="product-badge-img" src="{{ sc_file($sc_templateFile.'/images/home/bundle.png') }}" alt="Bundle">
-        </span>
-    @elseif($product->kind == SC_PRODUCT_GROUP)
-        <span>
-            <img class="product-badge-img" src="{{ sc_file($sc_templateFile.'/images/home/group.png') }}" alt="Group">
+            <img class="product-badge new" 
+                src="{{ sc_file($sc_templateFile.'/images/home/group.png') }}" 
+                alt="Group" 
+                style="width: 100px; height: auto;" />
         </span>
     @endif
+
     
     <div class="product-button-wrap">
       
