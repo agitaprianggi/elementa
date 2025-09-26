@@ -29,13 +29,20 @@
       {!! $product->showPrice() !!}
     </div>
     
-    @if ($product->price != $product->getFinalPrice() && $product->kind !=SC_PRODUCT_GROUP)
-    <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/sale.png') }}" class="new" alt="" style="width: 100px; height: auto;" /></span>
+    @if ($product->price != $product->getFinalPrice() && $product->kind != SC_PRODUCT_GROUP)
+        <span>
+            <img class="product-badge-img" src="{{ sc_file($sc_templateFile.'/images/home/sale.png') }}" alt="Sale">
+        </span>
     @elseif($product->kind == SC_PRODUCT_BUILD)
-    <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/bundle.png') }}" class="new" alt="" style="width: 100px; height: auto;" /></span>
+        <span>
+            <img class="product-badge-img" src="{{ sc_file($sc_templateFile.'/images/home/bundle.png') }}" alt="Bundle">
+        </span>
     @elseif($product->kind == SC_PRODUCT_GROUP)
-    <span><img class="product-badge new" src="{{ sc_file($sc_templateFile.'/images/home/group.png') }}" class="new" alt="" style="width: 100px; height: auto;" /></span>
+        <span>
+            <img class="product-badge-img" src="{{ sc_file($sc_templateFile.'/images/home/group.png') }}" alt="Group">
+        </span>
     @endif
+    
     <div class="product-button-wrap">
       
       @if (!sc_config('product_wishlist_off'))
