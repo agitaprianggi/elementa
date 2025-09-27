@@ -12,16 +12,16 @@
         <p class="footer-store-name">Temukan Kami Di</p>
         <div class="footer-marketplace mt-3">
           <a href="{{ sc_config('facebook_url') }}" target="_blank">
-            <img src="{{ asset('data/logo/Facebook_Logo_Primary.png') }}" alt="Tokopedia" style="height: 32px; margin-right: 10px;">
+            <img src="{{ asset('data/logo/Facebook_Logo_Primary.webp') }}" alt="Tokopedia" style="height: 32px; margin-right: 10px;">
           </a>
           <a href="{{ sc_config('instagram_url') }}" target="_blank">
-            <img src="{{ asset('data/logo/Instagram_Glyph_Gradient.png') }}" alt="Tokopedia" style="height: 32px; margin-right: 10px;">
+            <img src="{{ asset('data/logo/Instagram_Glyph_Gradient.webp') }}" alt="Tokopedia" style="height: 32px; margin-right: 10px;">
           </a>
           <a href="https://www.tokopedia.com/elementa-media" target="_blank">
-            <img src="{{ asset('data/logo/tokopedia-logo-square.png') }}" alt="Tokopedia" style="height: 32px; margin-right: 10px;">
+            <img src="{{ asset('data/logo/tokopedia-logo-square.webp') }}" alt="Tokopedia" style="height: 32px; margin-right: 10px;">
           </a>
           <a href="https://shopee.co.id/elementamedia?entryPoint=ShopByPDP" target="_blank">
-            <img src="{{ asset('data/logo/shopee-logo-square.png') }}" alt="Shopee" style="height: 32px;">
+            <img src="{{ asset('data/logo/shopee-logo-square.webp') }}" alt="Shopee" style="height: 32px;">
           </a>
         </div>
       </div>
